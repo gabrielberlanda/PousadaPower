@@ -56,14 +56,14 @@
         	</activation>
 			<properties>
 				<!-- Database -->
-				<mvn.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/blank</mvn.jdbc.jdbcUrl>
-				<mvn.jdbc.username>blank</mvn.jdbc.username>
-				<mvn.jdbc.password>blank</mvn.jdbc.password>
+				<mvn.jdbc.jdbcUrl>jdbc:postgresql://localhost/pousada-power</mvn.jdbc.jdbcUrl>
+				<mvn.jdbc.username>pousadapower</mvn.jdbc.username>
+				<mvn.jdbc.password>pousadapower</mvn.jdbc.password>
 
 				<!-- Database Test -->
-				<mvn.test.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/blank-test</mvn.test.jdbc.jdbcUrl>
-				<mvn.test.jdbc.username>blank</mvn.test.jdbc.username>
-				<mvn.test.jdbc.password>blank</mvn.test.jdbc.password>
+				<mvn.test.jdbc.jdbcUrl>jdbc:postgresql://localhost/pousada-power-test</mvn.test.jdbc.jdbcUrl>
+				<mvn.test.jdbc.username>pousadapower</mvn.test.jdbc.username>
+				<mvn.test.jdbc.password>pousadapower</mvn.test.jdbc.password>
 
 				<!-- Hibernate -->
 				<mvn.hibernate.hbm2ddl>validate</mvn.hibernate.hbm2ddl>

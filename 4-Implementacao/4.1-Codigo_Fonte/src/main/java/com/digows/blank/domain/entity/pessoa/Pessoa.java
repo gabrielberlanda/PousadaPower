@@ -18,7 +18,6 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  *
  */
 @Entity
-@Audited
 @DataTransferObject(javascript = "Pessoa")
 public class Pessoa extends AbstractEntity implements Serializable
 {

@@ -19,7 +19,6 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  *
  */
 @Entity
-@Audited
 @DataTransferObject(javascript = "Pais")
 public class Pais extends AbstractEntity implements Serializable
 {
@@ -29,16 +28,16 @@ public class Pais extends AbstractEntity implements Serializable
 	 */
 	private static final long serialVersionUID = 2101744238861508309L;
 
-	/*
-	 * ATRIBUTOS
-	 */
+	/*-------------------------------------------------------------------
+	*				 		     ATRIBUTOS
+	*-------------------------------------------------------------------*/
 	
 	@Column( nullable = false, unique = true, length = 50 )
 	private String name;
 
-	/*
-	 * CONTRUTORES 
-	 */
+	/*-------------------------------------------------------------------
+	* 		 					CONSTRUTORES
+	*-------------------------------------------------------------------*/
 	
 	/**
 	 * 
@@ -56,9 +55,9 @@ public class Pais extends AbstractEntity implements Serializable
 		super( id );
 	}
 	
-	/*
-	 * HASH E EQUALS
-	 */
+	/*-------------------------------------------------------------------
+	*							METODOS
+	*-------------------------------------------------------------------*/
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -90,10 +89,9 @@ public class Pais extends AbstractEntity implements Serializable
 		return true;
 	}
 
-	/*
-	 * Get & Set
-	 */
-	
+	/*-------------------------------------------------------------------
+	*						GETTERS AND SETTERS
+	*-------------------------------------------------------------------*/
 	
 	/**
 	 * @return the name

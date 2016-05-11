@@ -32,9 +32,16 @@ public class Cidade extends AbstractEntity implements Serializable
 	/*-------------------------------------------------------------------
 	*				 		     ATRIBUTOS
 	*-------------------------------------------------------------------*/
+	
+	/**
+	 * 
+	 */
 	@Column( length = 50, nullable = false, unique = true )
 	private String name;
 	
+	/**
+	 * 
+	 */
 	@ManyToOne( optional = false, fetch = FetchType.EAGER )
 	private Estado estado;
 

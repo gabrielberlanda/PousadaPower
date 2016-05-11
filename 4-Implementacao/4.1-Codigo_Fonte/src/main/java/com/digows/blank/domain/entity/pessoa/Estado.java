@@ -32,9 +32,15 @@ public class Estado extends AbstractEntity implements Serializable
 	*				 		     ATRIBUTOS
 	*-------------------------------------------------------------------*/
 	
+	/**
+	 * 
+	 */
 	@Column( length = 50, nullable = false, unique = true )
 	private String name;
 	
+	/**
+	 * 
+	 */
 	@ManyToOne( optional= false, fetch=FetchType.EAGER )
 	private Pais pais;
 

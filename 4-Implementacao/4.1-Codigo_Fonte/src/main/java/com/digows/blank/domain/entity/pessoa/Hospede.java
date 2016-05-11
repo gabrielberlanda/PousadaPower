@@ -5,28 +5,23 @@ package com.digows.blank.domain.entity.pessoa;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.UniqueConstraint;
-
-import org.directwebremoting.annotations.DataTransferObject;
-import org.hibernate.envers.Audited;
-
-import br.com.eits.common.domain.entity.AbstractEntity;
 
 /**
- * @author Gabriel Berlanda
+ * @author BERLANDA
  *
  */
 @Entity
-@DataTransferObject(javascript = "Pais")
-public class Pais extends AbstractEntity implements Serializable
+@DiscriminatorValue( value = Pessoa.HOSPEDE_VALUE )
+
+public class Hospede extends Pessoa implements Serializable
 {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2101744238861508309L;
+	private static final long serialVersionUID = 7546938978181416165L;
 
 	/*-------------------------------------------------------------------
 	*				 		     ATRIBUTOS
@@ -35,8 +30,12 @@ public class Pais extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@Column( nullable = false, unique = true, length = 50 )
-	private String name;
+	private String descritivoVeiculo;
+
+	/**
+	 * 
+	 */
+	private String observacao;
 
 	/*-------------------------------------------------------------------
 	* 		 					CONSTRUTORES
@@ -45,19 +44,19 @@ public class Pais extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	public Pais()
+	public Hospede()
 	{
 		super();
 	}
-	
+
 	/**
-	 * 
+	 * @param id
 	 */
-	public Pais( Long id )
+	public Hospede( Long id )
 	{
 		super( id );
 	}
-	
+
 	/*-------------------------------------------------------------------
 	*							METODOS
 	*-------------------------------------------------------------------*/
@@ -70,7 +69,8 @@ public class Pais extends AbstractEntity implements Serializable
 	{
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
+		result = prime * result + ( ( descritivoVeiculo == null ) ? 0 : descritivoVeiculo.hashCode() );
+		result = prime * result + ( ( observacao == null ) ? 0 : observacao.hashCode() );
 		return result;
 	}
 
@@ -83,12 +83,17 @@ public class Pais extends AbstractEntity implements Serializable
 		if ( this == obj ) return true;
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
-		Pais other = ( Pais ) obj;
-		if ( name == null )
+		Hospede other = ( Hospede ) obj;
+		if ( descritivoVeiculo == null )
 		{
-			if ( other.name != null ) return false;
+			if ( other.descritivoVeiculo != null ) return false;
 		}
-		else if ( !name.equals( other.name ) ) return false;
+		else if ( !descritivoVeiculo.equals( other.descritivoVeiculo ) ) return false;
+		if ( observacao == null )
+		{
+			if ( other.observacao != null ) return false;
+		}
+		else if ( !observacao.equals( other.observacao ) ) return false;
 		return true;
 	}
 
@@ -97,19 +102,36 @@ public class Pais extends AbstractEntity implements Serializable
 	*-------------------------------------------------------------------*/
 	
 	/**
-	 * @return the name
+	 * @return the descritivoVeiculo
 	 */
-	public String getName()
+	public String getDescritivoVeiculo()
 	{
-		return name;
+		return descritivoVeiculo;
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param descritivoVeiculo the descritivoVeiculo to set
 	 */
-	public void setName( String name )
+	public void setDescritivoVeiculo( String descritivoVeiculo )
 	{
-		this.name = name;
+		this.descritivoVeiculo = descritivoVeiculo;
 	}
 
+	/**
+	 * @return the observacao
+	 */
+	public String getObservacao()
+	{
+		return observacao;
+	}
+
+	/**
+	 * @param observacao the observacao to set
+	 */
+	public void setObservacao( String observacao )
+	{
+		this.observacao = observacao;
+	}
+	
+	
 }

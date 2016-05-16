@@ -30,8 +30,13 @@ public class Hospede extends Pessoa implements Serializable
 	/**
 	 * 
 	 */
-	private String descritivoVeiculo;
+	private String modeloVeiculo;
 
+	/**
+	 * 
+	 */
+	private String placa;
+	
 	/**
 	 * 
 	 */
@@ -56,11 +61,29 @@ public class Hospede extends Pessoa implements Serializable
 	{
 		super( id );
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param nome
+	 * @param email
+	 * @param telefone
+	 * @param cidade
+	 */
+	public Hospede( Long id, String nome, String email, String telefone, Cidade cidade )
+	{
+		super ( id );
+		this.setName( nome );
+		this.setEmail( email );
+		this.setTelefone( telefone );
+		
+		this.setCidade( cidade );
+	}
 
 	/*-------------------------------------------------------------------
 	*							METODOS
 	*-------------------------------------------------------------------*/
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -69,8 +92,9 @@ public class Hospede extends Pessoa implements Serializable
 	{
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ( ( descritivoVeiculo == null ) ? 0 : descritivoVeiculo.hashCode() );
+		result = prime * result + ( ( modeloVeiculo == null ) ? 0 : modeloVeiculo.hashCode() );
 		result = prime * result + ( ( observacao == null ) ? 0 : observacao.hashCode() );
+		result = prime * result + ( ( placa == null ) ? 0 : placa.hashCode() );
 		return result;
 	}
 
@@ -84,38 +108,27 @@ public class Hospede extends Pessoa implements Serializable
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		Hospede other = ( Hospede ) obj;
-		if ( descritivoVeiculo == null )
+		if ( modeloVeiculo == null )
 		{
-			if ( other.descritivoVeiculo != null ) return false;
+			if ( other.modeloVeiculo != null ) return false;
 		}
-		else if ( !descritivoVeiculo.equals( other.descritivoVeiculo ) ) return false;
+		else if ( !modeloVeiculo.equals( other.modeloVeiculo ) ) return false;
 		if ( observacao == null )
 		{
 			if ( other.observacao != null ) return false;
 		}
 		else if ( !observacao.equals( other.observacao ) ) return false;
+		if ( placa == null )
+		{
+			if ( other.placa != null ) return false;
+		}
+		else if ( !placa.equals( other.placa ) ) return false;
 		return true;
 	}
 
 	/*-------------------------------------------------------------------
 	*						GETTERS AND SETTERS
 	*-------------------------------------------------------------------*/
-	
-	/**
-	 * @return the descritivoVeiculo
-	 */
-	public String getDescritivoVeiculo()
-	{
-		return descritivoVeiculo;
-	}
-
-	/**
-	 * @param descritivoVeiculo the descritivoVeiculo to set
-	 */
-	public void setDescritivoVeiculo( String descritivoVeiculo )
-	{
-		this.descritivoVeiculo = descritivoVeiculo;
-	}
 
 	/**
 	 * @return the observacao
@@ -131,6 +144,38 @@ public class Hospede extends Pessoa implements Serializable
 	public void setObservacao( String observacao )
 	{
 		this.observacao = observacao;
+	}
+
+	/**
+	 * @return the modeloVeiculo
+	 */
+	public String getModeloVeiculo()
+	{
+		return modeloVeiculo;
+	}
+
+	/**
+	 * @param modeloVeiculo the modeloVeiculo to set
+	 */
+	public void setModeloVeiculo( String modeloVeiculo )
+	{
+		this.modeloVeiculo = modeloVeiculo;
+	}
+
+	/**
+	 * @return the placa
+	 */
+	public String getPlaca()
+	{
+		return placa;
+	}
+
+	/**
+	 * @param placa the placa to set
+	 */
+	public void setPlaca( String placa )
+	{
+		this.placa = placa;
 	}
 	
 	

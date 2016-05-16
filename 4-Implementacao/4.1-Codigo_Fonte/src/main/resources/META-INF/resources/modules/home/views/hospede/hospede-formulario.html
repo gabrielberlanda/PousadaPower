@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+		<form name="hospedeForm" id="hospedeForm">
+		
+			<eits-hbox>
+		          <md-input-container width="100" class="md-block" flex-gt-sm>
+		            <label>Nome</label>
+		            <input ng-model="hospede.nome">
+		          </md-input-container>
+		          
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Data de Nascimento</label>
+		            <input ng-model="hospede.dataNascimento" type="date">
+		          </md-input-container>
+			</eits-hbox>
+			<eits-hbox>
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>RG</label>
+		            <input ng-model="hospede.rg">
+		          </md-input-container>
+		          
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>CPF</label>
+		            <input ng-model="hospede.cpf">
+		          </md-input-container>
+		                    <md-input-container class="md-block" flex-gt-sm>
+		            <label>Passaporte</label>
+		            <input ng-model="hospede.passaporte">
+		          </md-input-container>
+			</eits-hbox>
+          
+	          <eits-hbox>
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Email</label>
+		            <input ng-model="hospede.email">
+		          </md-input-container>
+		       	  <md-input-container class="md-block" flex-gt-sm>
+		            <label>Sexo</label>
+		            <input ng-model="hospede.sexo">
+		          </md-input-container>
+	          </eits-hbox>
+
+	          <eits-hbox> 
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Telefone</label>
+		            <input ng-model="hospede.telefone">
+		          </md-input-container>
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Celular</label>
+		            <input ng-model="hospede.celular">
+		          </md-input-container>
+	          </eits-hbox>
+	          
+	          <eits-hbox>
+	          
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Cep</label>
+		            <input ng-model="hospede.cep">
+		          </md-input-container>
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Cidade</label>
+		            <input ng-model="hospede.cidade">
+		          </md-input-container>
+		          
+	          </eits-hbox>
+	          
+	          <eits-hbox>
+	           	  <md-input-container class="md-block" flex-gt-sm>
+		            <label>Bairro</label>
+		            <input ng-model="hospede.bairro">
+		          </md-input-container>
+		                    <md-input-container class="md-block" flex-gt-sm>
+		            <label>Complemento</label>
+		            <input ng-model="hospede.complemento">
+		          </md-input-container>
+		                    <md-input-container class="md-block" flex-gt-sm>
+		            <label>Numero</label>
+		            <input ng-model="hospede.numero">
+		          </md-input-container>
+	          </eits-hbox>
+
+		</form>
+</html>

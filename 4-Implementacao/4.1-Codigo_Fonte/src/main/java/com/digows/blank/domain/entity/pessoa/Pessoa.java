@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
+import org.junit.Assert;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -56,7 +57,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@Column( nullable = false, length = 50 )
-	private String name;
+	private String nome;
 	
 	/**
 	 * 
@@ -160,7 +161,22 @@ public class Pessoa extends AbstractEntity implements Serializable
 	/*-------------------------------------------------------------------
 	*							METODOS
 	*-------------------------------------------------------------------*/
-	 
+	
+	public void validarPessoa()
+	{
+		Assert.assertNotNull( "Campo nome não pode ser nulo" , this.nome );
+		Assert.assertNotNull( "Campo email não pode ser nulo", this.email );
+		Assert.assertNotNull( "Campo telefone não pode ser Nulo", this.telefone );
+		
+		if ( this.getCidade() != null )
+		{
+			if ( this.getCidade().getEstado().getPais() != null )
+			{
+				
+			}
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -177,7 +193,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 		result = prime * result + ( ( cpf == null ) ? 0 : cpf.hashCode() );
 		result = prime * result + ( ( dataNascimento == null ) ? 0 : dataNascimento.hashCode() );
 		result = prime * result + ( ( email == null ) ? 0 : email.hashCode() );
-		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
+		result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
 		result = prime * result + ( ( numero == null ) ? 0 : numero.hashCode() );
 		result = prime * result + ( ( passaporte == null ) ? 0 : passaporte.hashCode() );
 		result = prime * result + ( ( rg == null ) ? 0 : rg.hashCode() );
@@ -236,11 +252,11 @@ public class Pessoa extends AbstractEntity implements Serializable
 			if ( other.email != null ) return false;
 		}
 		else if ( !email.equals( other.email ) ) return false;
-		if ( name == null )
+		if ( nome == null )
 		{
-			if ( other.name != null ) return false;
+			if ( other.nome != null ) return false;
 		}
-		else if ( !name.equals( other.name ) ) return false;
+		else if ( !nome.equals( other.nome ) ) return false;
 		if ( numero == null )
 		{
 			if ( other.numero != null ) return false;
@@ -274,7 +290,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 	 */
 	public String getName()
 	{
-		return name;
+		return nome;
 	}
 
 	/**
@@ -282,7 +298,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 	 */
 	public void setName( String name )
 	{
-		this.name = name;
+		this.nome = name;
 	}
 
 	/**

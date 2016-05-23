@@ -4,7 +4,7 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.Usuario;
 
 /**
  *
@@ -22,13 +22,13 @@ public class ContextHolder
 	 *
 	 * @return
 	 */
-	public static User getAuthenticatedUser()
+	public static Usuario getAuthenticatedUser()
 	{
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		if ( authentication != null && authentication.getPrincipal() instanceof User )
+		if ( authentication != null && authentication.getPrincipal() instanceof Usuario )
 		{
-			return ( User ) authentication.getPrincipal();
+			return ( Usuario ) authentication.getPrincipal();
 		}
 
 		throw new AuthenticationCredentialsNotFoundException( "There is no user authenticated." );

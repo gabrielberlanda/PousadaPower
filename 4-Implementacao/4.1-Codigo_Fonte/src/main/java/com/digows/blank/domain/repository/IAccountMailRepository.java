@@ -1,7 +1,7 @@
 package com.digows.blank.domain.repository;
 import java.util.concurrent.Future;
 
-import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.Usuario;
  
 /**
  * Interface para o envio de e-mails
@@ -16,7 +16,7 @@ public interface IAccountMailRepository
      *                          BEHAVIORS
      *-------------------------------------------------------------------*/
     /**
-     * @param user
+     * @param usuario
      */
-    public Future<Void> sendNewUserAccount( User user );
+    public Future<Void> sendNewUserAccount( Usuario usuario );
 }

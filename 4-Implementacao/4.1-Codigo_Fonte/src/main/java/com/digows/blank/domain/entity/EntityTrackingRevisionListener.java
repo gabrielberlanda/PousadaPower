@@ -6,7 +6,7 @@ import org.hibernate.envers.RevisionType;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 
 import com.digows.blank.application.security.ContextHolder;
-import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.Usuario;
 
 /**
  * @author rodrigo.p.fraga@gmail.com
@@ -31,8 +31,8 @@ public class EntityTrackingRevisionListener implements org.hibernate.envers.Enti
 	{
 		try
 		{
-			final User user = ContextHolder.getAuthenticatedUser();
-			( ( Revision<?, ?> ) revisionEntity ).setUserId( user.getId() );
+			final Usuario usuario = ContextHolder.getAuthenticatedUser();
+			( ( Revision<?, ?> ) revisionEntity ).setUserId( usuario.getId() );
 		}
 		catch ( AuthenticationCredentialsNotFoundException e )
 		{

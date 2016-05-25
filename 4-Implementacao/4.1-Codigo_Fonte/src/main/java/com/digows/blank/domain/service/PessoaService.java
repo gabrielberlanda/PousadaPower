@@ -87,7 +87,7 @@ public class PessoaService
 	public Page<Hospede> listHospedeByFilters ( String filter, PageRequest pageable )
 	{
 		
-		return null;
+		return this.hospedeRepository.listHospedeByFilters( filter, pageable );
 		
 	}
 	

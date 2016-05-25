@@ -41,7 +41,7 @@ public class Pais extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	private boolean cpfRequerido;
+	private Boolean cpfRequerido;
 	
 	/*-------------------------------------------------------------------
 	* 		 					CONSTRUTORES

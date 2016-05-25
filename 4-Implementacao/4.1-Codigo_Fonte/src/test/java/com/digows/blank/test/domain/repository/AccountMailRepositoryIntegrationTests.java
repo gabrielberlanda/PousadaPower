@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.Usuario;
 import com.digows.blank.domain.repository.IAccountMailRepository;
 import com.digows.blank.test.domain.AbstractIntegrationTests;
 
@@ -39,11 +39,11 @@ public class AccountMailRepositoryIntegrationTests extends AbstractIntegrationTe
 	@Test
 	public void sendNewUserAccountTestMustPass() throws InterruptedException, ExecutionException
 	{
-		final User user = new User();
-		user.setEmail( "eits@mailinator.com" );
-		user.setName( "Suporte da eits" );
+		final Usuario usuario = new Usuario();
+		usuario.setEmail( "eits@mailinator.com" );
+		usuario.setName( "Suporte da eits" );
 
-		final Future<Void> emailSent = this.accountMailRepository.sendNewUserAccount( user );
+		final Future<Void> emailSent = this.accountMailRepository.sendNewUserAccount( usuario );
 		
 		Assert.assertNotNull( emailSent );
 		Assert.assertNull( emailSent.get() );

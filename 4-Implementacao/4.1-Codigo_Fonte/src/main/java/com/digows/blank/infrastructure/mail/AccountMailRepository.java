@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.Usuario;
 import com.digows.blank.domain.repository.IAccountMailRepository;
 
 /**
@@ -51,11 +51,11 @@ public class AccountMailRepository implements IAccountMailRepository
 	 *-------------------------------------------------------------------*/
 	/**
 	 *
-	 * @param user
+	 * @param usuario
 	 */
 	@Async
 	@Override
-	public Future<Void> sendNewUserAccount( final User user )
+	public Future<Void> sendNewUserAccount( final Usuario usuario )
 	{
 		final MimeMessagePreparator preparator = new MimeMessagePreparator()
 		{
@@ -66,13 +66,13 @@ public class AccountMailRepository implements IAccountMailRepository
 				
 				final MimeMessageHelper message = new MimeMessageHelper( mimeMessage, true, "UTF-8" );
 				message.setSubject( title );
-				message.setTo( user.getEmail() );
+				message.setTo( usuario.getEmail() );
 				message.setFrom( mailFrom );
 
 				final Context context = new Context();
 				context.setVariable("title", title);
 				context.setVariable("logo", logo);
-				context.setVariable("uzer", user);
+				context.setVariable("uzer", usuario);
 				
 				final String content = templateEngine.process( "mail/new-account", context );
 				message.setText( content, true );

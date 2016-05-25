@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.Usuario;
 
 /**
  * 
@@ -15,23 +15,23 @@ import com.digows.blank.domain.entity.account.User;
  * @version 1.0
  * @category Repository
  */
-public interface IUserRepository extends JpaRepository<User, Long>
+public interface IUserRepository extends JpaRepository<Usuario, Long>
 {
 	/**
 	 * @param username
 	 * @return
 	 */
-	public User findByEmail(String email);
+	public Usuario findByEmail(String email);
 	
 	/**
 	 * @param filter
 	 * @param pageable
 	 * @return
 	 */
-	@Query(value="SELECT new User(user.id, user.name, user.email, user.enabled, user.role) " +
-				   "FROM User user " +
-				  "WHERE ( FILTER(user.id, :filter) = TRUE "
-				  	 + "OR FILTER(user.name, :filter) = TRUE "
-				  	 + "OR FILTER(user.email, :filter) = TRUE )" )
-	public Page<User> listByFilters( @Param("filter") String filter, Pageable pageable );
+	@Query(value="SELECT new Usuario(usuario.id, usuario.name, usuario.email, usuario.enabled, usuario.role) " +
+				   "FROM Usuario usuario " +
+				  "WHERE ( FILTER(usuario.id, :filter) = TRUE "
+				  	 + "OR FILTER(usuario.name, :filter) = TRUE "
+				  	 + "OR FILTER(usuario.email, :filter) = TRUE )" )
+	public Page<Usuario> listByFilters( @Param("filter") String filter, Pageable pageable );
 }

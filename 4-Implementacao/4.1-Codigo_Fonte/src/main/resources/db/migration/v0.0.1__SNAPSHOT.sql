@@ -54,7 +54,7 @@ CREATE TABLE auditing.user_audited
 -- TOC entry 175 (class 1259 OID 278679)
 -- Name: user; Type: TABLE; Schema: public; Owner: -
 --
-CREATE TABLE "public"."user"
+CREATE TABLE "public"."usuario"
 (
   id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
@@ -72,6 +72,6 @@ CREATE TABLE "public"."user"
 ----------------------- 
 -- DEFAULT DATA
 -----------------------
-INSERT INTO "public"."user"(
+INSERT INTO "public"."usuario"(
             id, created, updated, email, enabled, name, password, role)
     VALUES (1, NOW(), null, 'admin@admin.com', TRUE, 'Administrador de Sistemas', 'd1bd2f08fead38a982aed9d4ca060152400b1b8f', 0);

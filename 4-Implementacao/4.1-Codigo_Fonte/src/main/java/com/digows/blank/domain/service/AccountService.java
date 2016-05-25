@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import com.digows.blank.domain.entity.account.User;
-import com.digows.blank.domain.entity.account.UserRole;
+import com.digows.blank.domain.entity.account.Usuario;
+import com.digows.blank.domain.entity.account.PermissaoUsuario;
 import com.digows.blank.domain.repository.account.IUserRepository;
 
 /**
@@ -64,30 +64,30 @@ public class AccountService
 	 * @param event
 	 */
 	@PreAuthorize("isAuthenticated() && #user.id == principal.id")
-	public void updateLastUserLogin( User user ) 
+	public void updateLastUserLogin( Usuario usuario ) 
 	{
-		Assert.notNull( user );
-		user = this.findUserById( user.getId() );
-		user.setLastLogin( Calendar.getInstance() );
-		this.userRepository.save( user );
+		Assert.notNull( usuario );
+		usuario = this.findUserById( usuario.getId() );
+		usuario.setLastLogin( Calendar.getInstance() );
+		this.userRepository.save( usuario );
     }
 	
 	/**
 	 * 
-	 * @param user
+	 * @param usuario
 	 * @return
 	 */
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
-	public User insertUser( User user )
+	@PreAuthorize("hasAnyAuthority('"+PermissaoUsuario.ADMINISTRATOR_VALUE+"','"+PermissaoUsuario.MANAGER_VALUE+"')")
+	public Usuario insertUser( Usuario usuario )
 	{
-		Assert.notNull( user );
+		Assert.notNull( usuario );
 
-		user.setEnabled( true );
+		usuario.setEnabled( true );
 		// encrypt password
-		final String encodedPassword = this.passwordEncoder.encodePassword( user.getPassword(), this.saltSource.getSalt( user ) );
-		user.setPassword( encodedPassword );
+		final String encodedPassword = this.passwordEncoder.encodePassword( usuario.getPassword(), this.saltSource.getSalt( usuario ) );
+		usuario.setPassword( encodedPassword );
 
-		return this.userRepository.save( user );
+		return this.userRepository.save( usuario );
 	}
 	
 	/**
@@ -96,11 +96,11 @@ public class AccountService
 	 * @return
 	 */
 	@Transactional(readOnly=true)
-	public User findUserById( Long id )
+	public Usuario findUserById( Long id )
 	{
-		final User user = this.userRepository.findOne( id );
-		Assert.notNull( user, this.messageSorce.getMessage("repository.notFoundById", new Object[]{id}, LocaleContextHolder.getLocale()) );
-		return user;
+		final Usuario usuario = this.userRepository.findOne( id );
+		Assert.notNull( usuario, this.messageSorce.getMessage("repository.notFoundById", new Object[]{id}, LocaleContextHolder.getLocale()) );
+		return usuario;
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class AccountService
 	 * @return
 	 */
 	@Transactional(readOnly=true)
-	public Page<User> listUsersByFilters( String filter, PageRequest pageable )
+	public Page<Usuario> listUsersByFilters( String filter, PageRequest pageable )
 	{
 		return this.userRepository.listByFilters( filter, pageable );
 	}

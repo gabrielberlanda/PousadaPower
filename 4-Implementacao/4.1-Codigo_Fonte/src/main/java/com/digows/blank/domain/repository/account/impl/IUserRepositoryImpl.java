@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.Usuario;
 
 /**
  * 
@@ -43,10 +43,10 @@ public class IUserRepositoryImpl implements UserDetailsService
 	{
 		try
 		{
-			final String hql = "FROM User user "
-							+ "WHERE user.email = :email";
+			final String hql = "FROM Usuario usuario "
+							+ "WHERE usuario.email = :email";
 			
-			final TypedQuery<User> query = this.entityManager.createQuery( hql, User.class );
+			final TypedQuery<Usuario> query = this.entityManager.createQuery( hql, Usuario.class );
 			query.setParameter("email", email);
 			
 			return query.getSingleResult();

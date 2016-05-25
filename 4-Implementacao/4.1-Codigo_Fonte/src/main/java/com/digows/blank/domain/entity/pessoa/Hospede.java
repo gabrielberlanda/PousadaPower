@@ -8,13 +8,15 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import org.directwebremoting.annotations.DataTransferObject;
+
 /**
  * @author BERLANDA
  *
  */
 @Entity
 @DiscriminatorValue( value = Pessoa.HOSPEDE_VALUE )
-
+@DataTransferObject( javascript = "Hospede" )
 public class Hospede extends Pessoa implements Serializable
 {
 

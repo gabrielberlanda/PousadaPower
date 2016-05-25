@@ -38,6 +38,11 @@ public class Pais extends AbstractEntity implements Serializable
 	@Column( nullable = false, unique = true, length = 50 )
 	private String name;
 
+	/**
+	 * 
+	 */
+	private boolean cpfRequerido;
+	
 	/*-------------------------------------------------------------------
 	* 		 					CONSTRUTORES
 	*-------------------------------------------------------------------*/
@@ -70,6 +75,7 @@ public class Pais extends AbstractEntity implements Serializable
 	{
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ( cpfRequerido ? 1231 : 1237 );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
 		return result;
 	}
@@ -84,6 +90,7 @@ public class Pais extends AbstractEntity implements Serializable
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		Pais other = ( Pais ) obj;
+		if ( cpfRequerido != other.cpfRequerido ) return false;
 		if ( name == null )
 		{
 			if ( other.name != null ) return false;
@@ -104,12 +111,29 @@ public class Pais extends AbstractEntity implements Serializable
 		return name;
 	}
 
+
 	/**
 	 * @param name the name to set
 	 */
 	public void setName( String name )
 	{
 		this.name = name;
+	}
+
+	/**
+	 * @return the cpfRequerido
+	 */
+	public boolean isCpfRequerido()
+	{
+		return cpfRequerido;
+	}
+
+	/**
+	 * @param cpfRequerido the cpfRequerido to set
+	 */
+	public void setCpfRequerido( boolean cpfRequerido )
+	{
+		this.cpfRequerido = cpfRequerido;
 	}
 
 }

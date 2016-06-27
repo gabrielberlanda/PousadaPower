@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.estado
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome="Parana"
+		pais_id="1000" />
+	<public.estado
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome="Santa Catarina"
+		pais_id="1000" />
+</dataset>

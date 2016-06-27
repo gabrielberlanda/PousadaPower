@@ -9,11 +9,9 @@ import org.directwebremoting.annotations.DataTransferObject;
  * @author BERLANDA
  *
  */
-@DataTransferObject( javascript = "enum" )
+@DataTransferObject(type = "enum")
 public enum Sexo
 {
-	
 	MASCULINO,
-	FEMININO
-	
+	FEMININO;
 }

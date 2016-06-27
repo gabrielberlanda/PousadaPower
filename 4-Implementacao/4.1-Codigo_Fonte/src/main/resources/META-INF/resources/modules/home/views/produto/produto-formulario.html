@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+		<form name="produtoForm" id="produtoForm" >
+			
+			<eits-hbox>
+		          <md-input-container width="300" class="md-block" >
+		            <label>Nome</label>
+		            <input required="true" name="nome" ng-model="model.entity.nome">
+		            <div ng-messages="produtoForm.nome.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
+		          </md-input-container>
+		          
+
+			</eits-hbox>
+          		<md-input-container style="width: 70%" class="md-block" >
+		            <label>Descrição</label>
+		            <textarea ng-model="model.entity.descricao" md-maxlength="200" rows="5" md-select-on-focus></textarea>
+		          </md-input-container>
+		          
+	          <eits-hbox> 
+		          <md-input-container width="200">
+		            <label>Quantidade Estoque</label>
+		            <input required="true" ng-model="model.entity.quantidadeEstoque" type="number" name="quantidadeEstoque">
+		            <div ng-messages="produtoForm.quantidadeEstoque.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
+		          </md-input-container>
+		          
+		          <md-input-container width="200">
+		            <label>Quantidade Miníma</label>
+		            <input required="true" ng-model="model.entity.quantidadeMinima" type="number" name="quantidadeMinima">
+		            <div ng-messages="produtoForm.quantidadeMinima.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
+		          </md-input-container>
+	          </eits-hbox>
+			
+			<eits-hbox>
+		          <md-input-container width="200">
+		            <label>Preço unitário</label>
+		            <input required="true" ng-model="model.entity.precoUnitario" type="number" name="precoUnitario">
+		            <div ng-messages="produtoForm.precoUnitario.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
+		          </md-input-container>
+		          
+		          <md-input-container width="200">
+		            <label>Preço Custo</label>
+		            <input required="true" ng-model="model.entity.precoCusto" type="number" name="precoCusto">
+		            <div ng-messages="produtoForm.precoCusto.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
+		          </md-input-container>
+			</eits-hbox>
+
+         
+
+	          <eits-hbox>
+         
+
+                 <md-input-container width="200">
+			       <label>Tipo Produto</label>
+			       <md-select ng-model="model.entity.tipoProduto">
+			         <md-option  value="BEBIDA" >
+			           Bebidas
+			         </md-option>
+    			     <md-option  value="REFEICAO" >
+			           Refeição
+			         </md-option>
+         		     <md-option  value="SOUVENIER" >
+			           Souvenier
+			         </md-option>
+			       </md-select>
+			     </md-input-container>
+
+					<md-autocomplete  width="350" style="margin-top: 8px;"
+						required
+						maxlength="100"
+					    md-input-name="fornecedor"
+					    md-no-cache="true"
+					    md-search-text="model.filtroFornecedor"
+					    md-selected-item="model.entity.fornecedor"
+			   		    md-selected-item-change="console.log('mudou')"
+					    md-items="fornecedor in listFornecedoresByFilters( model.filtroFornecedor )"
+					    md-item-text="fornecedor.nomeFantasia"
+					    md-floating-label="Fornecedor">
+					  <md-item-template>
+					    <span md-highlight-text="Fornecedor">{{fornecedor.nomeFantasia}}</span>
+					  </md-item-template>
+					  <div ng-messages="produtoForm.fornecedor.$error">
+					  	<div ng-message="required"> Campo obrigatório </div>
+					  </div>
+					</md-autocomplete>
+			      
+			      
+					
+		          
+	          </eits-hbox>
+
+
+		</form>
+</html>

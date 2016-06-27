@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.pais
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome="Brasil"
+		cpf_requerido="true" />
+	<public.pais
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome="Paraguai"
+		cpf_requerido="true" />
+</dataset>

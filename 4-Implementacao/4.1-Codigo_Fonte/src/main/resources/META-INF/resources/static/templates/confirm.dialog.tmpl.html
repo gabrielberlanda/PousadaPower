@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <md-dialog aria-label="Confirm dialog" style="width:500px;overflow:hidden">
+        <md-toolbar>
+            <div class="md-toolbar-tools" style="background:#fff;">
+                <h2 style="color:#666" ng-bind="confirmConfig.title"></h2>
+                <div flex></div>
+
+                <md-button aria-label="close" class="md-icon-button" ng-click="close()" style="color:#666;position: absolute;top: 8px;right: 19px;">
+	                <md-icon md-font-set="zmdi zmdi-close zmdi-hc-lg" style="color:#666;"></md-icon>
+	            </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-height:810px;border:solid 1px #DDD;border-left:0;border-right:0;width:500px" layout="column" layout-align="center start">
+            <div>
+                <p ng-bind-html="trustAsHtml(confirmConfig.content)"></p>
+            </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button class="md-raised button-orange" ng-click="closeOk()">{{confirmConfig.ok}}</md-button>
+            <md-button class="md-raised" ng-click="close()">{{confirmConfig.cancel}}</md-button>
+        </div>
+    </md-dialog>
+
+</body>
+</html>

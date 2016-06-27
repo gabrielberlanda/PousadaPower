@@ -288,7 +288,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 	/**
 	 * @return the name
 	 */
-	public String getName()
+	public String getNome()
 	{
 		return nome;
 	}
@@ -296,9 +296,9 @@ public class Pessoa extends AbstractEntity implements Serializable
 	/**
 	 * @param name the name to set
 	 */
-	public void setName( String name )
+	public void setNome( String nome )
 	{
-		this.nome = name;
+		this.nome = nome;
 	}
 
 	/**

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  tipo character varying(31) NOT NULL,
+  id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  bairro character varying(50),
+  celular character varying(25),
+  cep character varying(50),
+  complemento character varying(100),
+  cpf character varying(11),
+  data_nascimento timestamp without time zone,
+  email character varying(100) NOT NULL,
+  numero integer,
+  passaporte character varying(20),
+  rg character varying(9),
+  sexo integer,
+  telefone character varying(25) NOT NULL,
+  modelo_veiculo character varying(255),
+  observacao character varying(500),
+  placa character varying(255),
+  cidade_id bigint,
+<dataset>
+	<public.pessoa
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome=""
+		telefone=""
+		cnpj=""
+		inscricao_estadual=""
+		bairro=""
+		endereco=""
+		numero=""
+		observacao=""
+		cidade_id=""
+		email=""
+		/>
+</dataset>

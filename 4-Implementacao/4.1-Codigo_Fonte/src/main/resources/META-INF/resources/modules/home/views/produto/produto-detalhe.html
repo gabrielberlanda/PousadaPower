@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+	<eits-hbox >
+	
+		<eits-vbox class="detail">
+			<label>Nome</label>
+			<span ng-if="model.entity.nome">{{model.entity.nome}}</span>
+			<span ng-if="!model.entity.nome"> - </span>
+		</eits-vbox>
+		
+		<eits-vbox class="detail"> 
+			<label>Descrição</label>
+			<span>{{model.entity.descricao}}</span>
+			<span ng-if="!model.entity.descricao"> - </span>
+		</eits-vbox>
+		
+		<eits-vbox class="detail">
+			<label>Quantidade Estoque</label>
+			<span>{{model.entity.quantidadeEstoque}}</span>
+			<span ng-if="!model.entity.quantidadeEstoque"> - </span>
+		</eits-vbox>
+		
+		<eits-vbox class="detail">
+			<label>Quantidade Miníma</label>
+			<span>{{model.entity.quantidadeMinima}}</span>
+			<span ng-if="!model.entity.quantidadeMinima"> - </span>
+		</eits-vbox>
+		
+	</eits-hbox>
+	<eits-hbox>
+		<eits-vbox class="detail">
+			<label>Preço unitário</label>
+			<span>{{model.entity.precoUnitario}}</span>
+			<span ng-if="!model.entity.precoUnitario"> - </span>
+		</eits-vbox>
+
+		<eits-vbox class="detail">
+			<label>Preço Custo</label>
+			<span>{{model.entity.precoCusto}}</span>
+			<span ng-if="!model.entity.precoCusto"> - </span>
+		</eits-vbox>
+		
+		<eits-vbox class="detail">
+			<label>Tipo Produto</label>
+			<span>{{model.entity.tipoProduto}}</span>
+			<span ng-if="!model.entity.tipoProduto"> - </span>
+		</eits-vbox>
+		<eits-vbox class="detail">
+			<label>Fornecedor</label>
+			<span>{{model.entity.fornecedor.nomeFantasia}}</span>
+			<span ng-if="!model.entity.fornecedor.nomeFantasia"> - </span>
+		</eits-vbox>
+		
+	</eits-hbox>
+	
+</html>

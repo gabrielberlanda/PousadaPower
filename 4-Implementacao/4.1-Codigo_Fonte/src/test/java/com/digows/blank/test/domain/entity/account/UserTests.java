@@ -29,11 +29,11 @@ public class UserTests extends AbstractUnitTests
 	public void getAuthoritiesMustPass()
 	{
 		final Usuario usuario = new Usuario();
-		usuario.setRole( PermissaoUsuario.ADMINISTRATOR );
+		usuario.setRole( PermissaoUsuario.ADMINISTRADOR );
 		
 		Assert.assertNotNull( usuario.getAuthorities() );
-		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.ADMINISTRATOR ) );
-		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.MANAGER ) );
-		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.USER ) );
+		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.ADMINISTRADOR ) );
+		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.CAIXA ) );
+		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.RECEPCIONISTA ) );
 	}
 }

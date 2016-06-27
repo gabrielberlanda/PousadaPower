@@ -1,6 +1,12 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/resources/META-INF/resources/modules/home/views/hospede/hospede-formulario.html=UTF-8
+encoding//src/main/resources/META-INF/resources/modules/home/views/hospede/hospede-lista.html=UTF-8
+encoding//src/main/resources/META-INF/resources/modules/home/views/usuario/usuario-detalhe.html=UTF-8
+encoding//src/main/resources/META-INF/resources/modules/home/views/usuario/usuario-formulario.html=UTF-8
+encoding//src/main/resources/META-INF/resources/modules/home/views/usuario/usuario-index.html=UTF-8
+encoding//src/main/resources/META-INF/resources/modules/home/views/usuario/usuario-lista.html=UTF-8
 encoding//src/main/resources/i18n=UTF-8
 encoding//src/main/resources/i18n/exceptions_en.properties=UTF-8
 encoding//src/main/resources/i18n/exceptions_pt.properties=UTF-8

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org"
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+    <header class="navbar">
+        <div class="navbar-page">
+            <div class="navbar-title" layout="row" layout-align="start center">
+                <div flex="">EDITAR PERFIL</div>
+                <md-button class="md-raised button-green" ng-click="updateUser( model.entity )">Salvar</md-button>
+            </div>
+            <md-divider></md-divider>
+    </header>
+
+	<form name="profileForm" id="profileForm" class="border">
+		
+			<eits-hbox>
+		          <md-input-container width="300" class="md-block" >
+		            <label>Nome</label>
+		            <input required="true" name="name" ng-model="model.entity.name">
+		            <div ng-messages="profileForm.name.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
+		          </md-input-container>
+
+		          <md-input-container width="300" class="md-block" >
+		            <label>Email</label>
+		            <input required="true" name="email" type="email" ng-model="model.entity.email">
+        		    <div ng-messages="profileForm.email.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
+		          </md-input-container>
+
+			</eits-hbox>
+				     
+			<md-divider></md-divider>	     
+			<eits-hbox style="margin-top : 20px;">
+				<md-checkbox ng-model="model.changePassword" ng-if="model.entity.id"> Alterar senha </md-checkbox>
+			</eits-hbox>
+			
+			
+			<div ng-if="model.changePassword && model.entity.id">
+				<md-input-container width="300" class="md-block" >
+		            <label>Senha atual</label>
+		            <input name="password" type="password" ng-model="model.entity.currentPassword">
+	        	</md-input-container>
+				<eits-hbox >
+					<md-input-container width="300" class="md-block" >
+			            <label>Nova Senha</label>
+			            <input name="password" type="password" ng-model="model.entity.password">
+		        	</md-input-container>
+					<md-input-container width="300" class="md-block" >
+			            <label>Confirmar Senha</label>
+			            <input name="confirmPassword" type="password" ng-model="model.entity.confirmPassword" ng-pattern="\b{{model.entity.password}}\b" >
+			            <div ng-messages="profileForm.confirmPassword.$error" md-auto-hide="false"> 
+			            	<div ng-message="pattern"> Senhas inválidas</div>
+			            </div>
+		          </md-input-container>
+				</eits-hbox>
+			</div>
+			
+			
+
+		</form>
+
+</html>

@@ -37,7 +37,7 @@ public class Cidade extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@Column( length = 50, nullable = false, unique = true )
-	private String name;
+	private String nome;
 	
 	/**
 	 * 
@@ -69,10 +69,10 @@ public class Cidade extends AbstractEntity implements Serializable
 	 * @param name
 	 * @param estado
 	 */
-	public Cidade( Long id, String name, Estado estado )
+	public Cidade( Long id, String nome, Estado estado )
 	{
 		super( id );
-		this.name = name;
+		this.nome = nome;
 		this.estado = estado;
 	}
 
@@ -89,7 +89,7 @@ public class Cidade extends AbstractEntity implements Serializable
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ( ( estado == null ) ? 0 : estado.hashCode() );
-		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
+		result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
 		return result;
 	}
 
@@ -108,11 +108,11 @@ public class Cidade extends AbstractEntity implements Serializable
 			if ( other.estado != null ) return false;
 		}
 		else if ( !estado.equals( other.estado ) ) return false;
-		if ( name == null )
+		if ( nome == null )
 		{
-			if ( other.name != null ) return false;
+			if ( other.nome != null ) return false;
 		}
-		else if ( !name.equals( other.name ) ) return false;
+		else if ( !nome.equals( other.nome ) ) return false;
 		return true;
 	}
 
@@ -123,17 +123,17 @@ public class Cidade extends AbstractEntity implements Serializable
 	/**
 	 * @return the name
 	 */
-	public String getName()
+	public String getNome()
 	{
-		return name;
+		return nome;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName( String name )
+	public void setNome( String nome )
 	{
-		this.name = name;
+		this.nome = nome;
 	}
 
 	/**

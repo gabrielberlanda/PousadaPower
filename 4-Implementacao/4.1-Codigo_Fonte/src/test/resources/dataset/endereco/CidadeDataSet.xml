@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.cidade
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome="Foz do Iguaçu"
+		estado_id="1000" />
+	<public.cidade
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome="Medianeira"
+		estado_id="1000" />
+</dataset>

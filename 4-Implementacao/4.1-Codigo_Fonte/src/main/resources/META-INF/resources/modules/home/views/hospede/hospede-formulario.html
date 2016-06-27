@@ -2,84 +2,168 @@
 <html xmlns:ng="http://angularjs.org" 
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 
-		<form name="hospedeForm" id="hospedeForm">
+		<form name="hospedeForm" id="hospedeForm" >
 		
 			<eits-hbox>
-		          <md-input-container width="100" class="md-block" flex-gt-sm>
+		          <md-input-container width="300" class="md-block" >
 		            <label>Nome</label>
-		            <input ng-model="hospede.nome">
+		            <input required="true" name="nome" ng-model="model.entity.nome">
+		            <div ng-messages="hospedeForm.nome.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
 		          </md-input-container>
-		          
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>Data de Nascimento</label>
-		            <input ng-model="hospede.dataNascimento" type="date">
+
+		          <md-input-container width="300" class="md-block" >
+		            <label>Email</label>
+		            <input required="true" name="email" ng-model="model.entity.email">
+        		    <div ng-messages="hospedeForm.email.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
 		          </md-input-container>
+
 			</eits-hbox>
-			<eits-hbox>
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>RG</label>
-		            <input ng-model="hospede.rg">
+	          <eits-hbox> 
+		          <md-input-container width="200">
+		            <label>Telefone</label>
+		            <input required="true" ng-model="model.entity.telefone" name="telefone">
+		            <div ng-messages="hospedeForm.telefone.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            </div>
 		          </md-input-container>
 		          
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>CPF</label>
-		            <input ng-model="hospede.cpf">
+		          <md-input-container width="200">
+		            <label>Celular</label>
+		            <input ng-model="model.entity.celular">
 		          </md-input-container>
-		                    <md-input-container class="md-block" flex-gt-sm>
+	          </eits-hbox>
+			
+			<eits-hbox>
+		          <md-input-container width="300" class="md-block">
+		            <label>RG</label>
+		            <input ng-model="model.entity.rg">
+		          </md-input-container>
+		          
+		          <md-input-container width="300" class="md-block">
+		            <label>CPF</label>
+		            <input ng-model="model.entity.cpf" ng-disabled="!model.entity.pais.cpfRequerido">
+		          </md-input-container>
+                  <md-input-container width="300" class="md-block">
 		            <label>Passaporte</label>
-		            <input ng-model="hospede.passaporte">
+		            <input ng-disabled="model.entity.pais.cpfRequerido" ng-model="model.entity.passaporte">
 		          </md-input-container>
 			</eits-hbox>
           
 	          <eits-hbox>
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>Email</label>
-		            <input ng-model="hospede.email">
-		          </md-input-container>
-		       	  <md-input-container class="md-block" flex-gt-sm>
-		            <label>Sexo</label>
-		            <input ng-model="hospede.sexo">
-		          </md-input-container>
+		          <eits-vbox style="margin-right: 20px;">
+		              <span>Data de Nascimento</span>
+		              <md-datepicker style="margin-right: 0px !important" ng-model="model.entity.dataNascimento" />
+		          </eits-vbox>
+	                 <md-input-container width="200">
+				       <label>Sexo</label>
+				       <md-select ng-model="model.entity.sexo">
+				         <md-option  value="MASCULINO" >
+				           Masculino
+				         </md-option>
+	    			     <md-option  value="FEMININO" >
+				           Feminino
+				         </md-option>
+				       </md-select>
+				     </md-input-container>
+			    
 	          </eits-hbox>
 
-	          <eits-hbox> 
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>Telefone</label>
-		            <input ng-model="hospede.telefone">
-		          </md-input-container>
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>Celular</label>
-		            <input ng-model="hospede.celular">
-		          </md-input-container>
-	          </eits-hbox>
-	          
 	          <eits-hbox>
-	          
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>Cep</label>
-		            <input ng-model="hospede.cep">
-		          </md-input-container>
-		          <md-input-container class="md-block" flex-gt-sm>
-		            <label>Cidade</label>
-		            <input ng-model="hospede.cidade">
-		          </md-input-container>
+
+					<md-autocomplete  width="200" style="margin-top: 8px; margin-left: 20px;"
+						maxlength="100"
+					    md-input-name="pais"
+					    md-no-cache="true"
+					    md-search-text="model.filtroPais"
+					    md-selected-item="model.entity.pais"
+			   		    md-selected-item-change="console.log('mudou')"
+					    md-items="pais in listPaisByFilters( model.filtroPais )"
+					    md-item-text="pais.nome"
+					    md-floating-label="Pais">
+					  <md-item-template>
+					    <span md-highlight-text="Pais">{{pais.nome}}</span>
+					  </md-item-template>
+					</md-autocomplete>
+			      
+			      
+					<md-autocomplete  width="200" style="margin-top: 8px; margin-left: 20px;"
+						maxlength="100"
+						ng-disabled="!model.entity.pais || !model.entity.pais.id"
+					    md-input-name="estado"
+					    md-no-cache="true"
+					    md-search-text="model.filtroEstado"
+					    md-selected-item="model.entity.estado"
+			   		    md-selected-item-change="console.log('mudou')"
+					    md-items="estado in listEstadoByFilters( model.filtroEstado, model.entity.pais.id )"
+					    md-item-text="estado.nome"
+					    md-floating-label="Estado">
+					  <md-item-template>
+					    <span md-highlight-text="Estado">{{estado.nome}}</span>
+					  </md-item-template>
+					</md-autocomplete>
+					
+					
+					<md-autocomplete  width="200" style="margin-top: 8px; margin-left: 20px;"
+						maxlength="100"
+						ng-disabled="!model.entity.estado || !model.entity.estado.id"
+					    md-input-name="cidade"
+					    md-no-cache="true"
+					    md-search-text="model.filtroCidade"
+					    md-selected-item="model.entity.cidade"
+			   		    md-selected-item-change="console.log('mudou')"
+					    md-items="cidade in listCidadeByFilters( model.filtroCidade, model.entity.estado.id )"
+					    md-item-text="cidade.nome"
+					    md-floating-label="Cidade">
+					  <md-item-template>
+					    <span md-highlight-text="Cidade">{{cidade.nome}}</span>
+					  </md-item-template>
+					</md-autocomplete>
 		          
 	          </eits-hbox>
 	          
 	          <eits-hbox>
-	           	  <md-input-container class="md-block" flex-gt-sm>
+     		      <md-input-container width="200" class="md-block" >
+		            <label>Cep</label>
+		            <input ng-model="model.entity.cep">
+		          </md-input-container>
+	           	  <md-input-container width="200" class="md-block" >
 		            <label>Bairro</label>
-		            <input ng-model="hospede.bairro">
+		            <input ng-model="model.entity.bairro">
 		          </md-input-container>
-		                    <md-input-container class="md-block" flex-gt-sm>
+                  <md-input-container width="200" class="md-block" >
 		            <label>Complemento</label>
-		            <input ng-model="hospede.complemento">
+		            <input ng-model="model.entity.complemento">
 		          </md-input-container>
-		                    <md-input-container class="md-block" flex-gt-sm>
+                 <md-input-container width="200" class="md-block" >
 		            <label>Numero</label>
-		            <input ng-model="hospede.numero">
+		            <input ng-model="model.entity.numero">
 		          </md-input-container>
 	          </eits-hbox>
+				<eits-hbox> 
+				
+				</eits-hbox>
+     		      <eits-hbox>
+	     		      <md-input-container width="200" class="md-block" >
+			            <label>Modelo do Veiculo</label>
+			            <input ng-model="model.entity.modeloVeiculo">
+			          </md-input-container>
+            		  
+            		  <md-input-container width="200" class="md-block" >
+			            <label>Placa</label>
+			            <input ng-model="model.entity.placa">
+			          </md-input-container>
+     		      </eits-hbox>
 
+		          <md-input-container style="width: 70%" class="md-block" >
+		            <label>Observação</label>
+		            <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="10" md-select-on-focus></textarea>
+		          </md-input-container>
 		</form>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+
+	<form>
+	   <eits-hbox>
+	       <md-input-container width="300" class="md-block">
+	         <label>Filtro de Produtos</label>
+	         <input ng-model="model.query.filter.name">
+	       </md-input-container>
+	       <md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listProdutosByFilters( model.query.filter.name )"> Filtrar </md-button>
+	   </eits-hbox>
+	</form>
+	
+<md-toolbar class="md-table-toolbar md-primary">
+  <div class="md-toolbar-tools">
+    <span>Produtos</span>
+  </div>
+</md-toolbar>
+
+<md-table-container class="table" style="border: 1px #DDDDDD solid">
+  <table md-table>
+    <thead md-head >
+      <tr md-row>
+        <th md-column style="width: 40%" ><span>Nome</span></th>
+        <th md-column style="width: 10%"><span>Tipo</span></th>
+        <th md-column style="width: 10%">Preço</th>
+        <th md-column style="width: 10%">Quantidade</th>
+        <th md-column style="width: 10%">Fornecedor</th>
+        <th md-column style="width: 20%">Ações</th>
+      </tr>
+    </thead>
+    <tbody md-body>
+      <tr md-row  md-auto-select ng-click="changeToDetail($event, produto)" ng-repeat="produto in model.pageRequest.content">
+        <td md-cell>{{produto.nome}}</td>
+        <td md-cell>{{produto.tipoProduto}}</td>
+        <td md-cell>{{produto.precoUnitario}}</td>
+        <td md-cell>{{produto.quantidadeEstoque}}</td>
+        <td md-cell>{{produto.fornecedor.nomeFantasia}}</td>
+        <td md-cell> 
+       	    <md-button ng-click="changeToEdit($event, produto)" aria-label="remove" class="md-raised table-button">
+            	<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
+            </md-button>
+            <md-button ng-click="removeProduto($event, produto)" aria-label="remove" class="md-raised table-button">
+            	<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+            </md-button>            
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>
+
+<md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"  md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+	
+</html>

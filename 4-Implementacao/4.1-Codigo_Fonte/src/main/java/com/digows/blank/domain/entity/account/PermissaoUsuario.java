@@ -14,13 +14,13 @@ public enum PermissaoUsuario implements GrantedAuthority
 	/*-------------------------------------------------------------------
 	 *				 		     ENUMS
 	 *-------------------------------------------------------------------*/
-	ADMINISTRATOR, // 0
-	MANAGER, // 1
-	USER; // 2
+	ADMINISTRADOR,
+	RECEPCIONISTA,
+	CAIXA;
 
-	public static final String ADMINISTRATOR_VALUE 	= "ADMINISTRATOR";
-	public static final String MANAGER_VALUE 		= "MANAGER";
-	public static final String USER_VALUE 			= "USER";
+	public static final String ADMINISTRADOR_VALUE 	= "ADMINISTRADOR";
+	public static final String RECEPCIONISTA_VALUE 	= "RECEPCIONISTA";
+	public static final String CAIXA_VALUE 			= "CAIXA";
 	
 	/*
 	 * (non-Javadoc)

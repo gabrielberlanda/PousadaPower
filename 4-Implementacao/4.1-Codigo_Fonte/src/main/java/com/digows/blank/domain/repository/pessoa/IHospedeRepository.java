@@ -32,7 +32,7 @@ public interface IHospedeRepository extends JpaRepository<Hospede, Long>
 				+ "OR FILTER( hospede.rg, :filter ) = TRUE "
 				+ "OR FILTER( hospede.passaporte, :filter ) = TRUE "
 				+ "OR FILTER( hospede.placa, :filter ) = TRUE "
-				+ "OR FILTER( cidade.name, :filter ) = TRUE ) " )
+				+ "OR FILTER( cidade.nome, :filter ) = TRUE ) " )
 	public Page<Hospede> listHospedeByFilters ( @Param("filter") String filter, Pageable page );
 	
 }

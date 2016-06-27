@@ -3,6 +3,7 @@ package com.digows.blank.domain.repository.account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -34,4 +35,20 @@ public interface IUserRepository extends JpaRepository<Usuario, Long>
 				  	 + "OR FILTER(usuario.name, :filter) = TRUE "
 				  	 + "OR FILTER(usuario.email, :filter) = TRUE )" )
 	public Page<Usuario> listByFilters( @Param("filter") String filter, Pageable pageable );
+	
+	/**
+	 * Ativa um usuário
+	 * @param id
+	 */
+	@Modifying
+	@Query("update Usuario u set u.enabled = true, u.updated = now() where u.id= :id")
+	public void active ( @Param("id") Long id );
+	
+	/**
+	 * Desativa um usuário
+	 * @param id
+	 */
+	@Modifying
+	@Query("update Usuario u set u.enabled = false, u.updated = now() where u.id =:id")
+	public void deactivate ( @Param("id") Long id );
 }

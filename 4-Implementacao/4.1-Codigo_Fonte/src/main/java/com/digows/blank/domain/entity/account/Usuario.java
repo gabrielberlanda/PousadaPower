@@ -174,12 +174,11 @@ public class Usuario extends AbstractEntity implements Serializable, UserDetails
 		
 		authorities.add( role );
 
-		if ( role.equals( PermissaoUsuario.ADMINISTRATOR ) )
+		if ( role.equals( PermissaoUsuario.ADMINISTRADOR ) )
 		{
-			authorities.add( PermissaoUsuario.MANAGER );
+			authorities.add( PermissaoUsuario.RECEPCIONISTA );
+			authorities.add( PermissaoUsuario.CAIXA );
 		}
-
-		authorities.add( PermissaoUsuario.USER );
 
 		return authorities;
 	}

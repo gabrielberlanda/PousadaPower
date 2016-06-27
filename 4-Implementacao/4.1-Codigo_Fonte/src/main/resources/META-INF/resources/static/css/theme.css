@@ -1,1 +1,52 @@
 /* Theme */
+.border {
+	border : #DDDDDD 1px solid;
+	padding: 20px 20px 20px 20px;
+}
+
+.toast {
+    background-color : #000;
+    border           : solid 1px #000;
+    color            : #fff;
+    font-weight      : bold;
+    margin           : 0 auto;
+    position         : fixed;
+    box-shadow       : none;
+}
+
+.toast.red {
+    background-color : #f5a69a;
+    border-color     : #d77a6c;
+    color            : #872818;
+}
+
+.toast.green {
+    color            : #30503d;
+    background-color : #66c08b;
+    border-color     : #3d9260;
+}
+
+
+.toast.yellow {
+    color            : #8b550c;
+    background-color : #f0ad4e;
+    border-color     : #ee9d31;
+}
+
+.detail {
+	margin: 20px 20px 20px 20px;
+}
+
+.detail label {
+	font-weight: 600;
+}
+
+.table-button {
+	min-width: 25px !important;
+	width: 32px !important;
+}
+
+.table tbody tr:hover {
+	background-color: #DDDDDD;
+	cursor: pointer;
+}

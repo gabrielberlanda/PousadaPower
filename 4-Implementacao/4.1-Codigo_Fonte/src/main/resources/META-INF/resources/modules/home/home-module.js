@@ -2,7 +2,7 @@
 	'use strict';
 
 	//Start the AngularJS
-	var module = angular.module('home', ['ngMessages', 'ngSanitize', 'ngMaterial', 'ui.router', 'eits-md', 'eits-ng' ]);
+	var module = angular.module('home', ['ngMessages', 'ngSanitize', 'ngMaterial', 'ui.router', 'eits-md', 'eits-ng', 'md.data.table' ]);
 
 	/**
 	 * 
@@ -28,6 +28,33 @@
 	        	url 		: "/",
 	        	templateUrl	: './modules/home/views/home/home-index.html',
 	        })
+	        .state('usuario', {
+	        	url 		: "/usuario",
+	        	templateUrl	: './modules/home/views/usuario/usuario-index.html',
+	        	controller	: 'UsuarioController',
+	        	abstract 	: true,
+	        })
+	        .state('usuario.lista', {
+	        	url 		: "/lista",
+	        	templateUrl	: './modules/home/views/usuario/usuario-lista.html',
+	        })
+	        .state('usuario.detalhe', {
+	        	url 		: "/detalhe/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/usuario/usuario-detalhe.html',
+	        })
+	        .state('usuario.novo', {
+	        	url 		: "/novo",
+	        	templateUrl	: './modules/home/views/usuario/usuario-formulario.html',
+	        })
+	        .state('usuario.editar', {
+	        	url         : "/editar/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/usuario/usuario-formulario.html',
+	        })
+	        .state('profile',{
+                url         : "/profile",
+                controller  : 'profileController',
+                templateUrl : "./modules/home/views/profile/profile-index.html"
+            })
 	        .state('hospede', {
 	        	url 		: "/hospede",
 	        	templateUrl	: './modules/home/views/hospede/hospede-index.html',
@@ -49,7 +76,30 @@
 	        .state('hospede.editar', {
 	        	url         : "/editar/{id:[0-9]{1,10}}",
 	        	templateUrl	: './modules/home/views/hospede/hospede-formulario.html',
+	        })
+	        .state('produto', {
+	        	url 		: "/produto",
+	        	templateUrl	: './modules/home/views/produto/produto-index.html',
+	        	controller	: 'ProdutoController',
+	        	abstract 	: true,
+	        })
+	        .state('produto.lista', {
+	        	url 		: "/lista",
+	        	templateUrl	: './modules/home/views/produto/produto-lista.html',
+	        })
+	        .state('produto.detalhe', {
+	        	url 		: "/detalhe/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/produto/produto-detalhe.html',
+	        })
+	        .state('produto.novo', {
+	        	url 		: "/novo",
+	        	templateUrl	: './modules/home/views/produto/produto-formulario.html',
+	        })
+	        .state('produto.editar', {
+	        	url         : "/editar/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/produto/produto-formulario.html',
 	        });
+
 	});
 
 	/**
@@ -64,7 +114,7 @@
 	 * 
 	 */
 	module.run( function( $rootScope, $window, $state, $stateParams ) {
-		//$rootScope.$usuario 	= $window.usuario;
+		$rootScope.$usuario 	= $window.usuario;
 		$rootScope.$state 		= $state;
 		$rootScope.$stateParams = $stateParams;
 	});

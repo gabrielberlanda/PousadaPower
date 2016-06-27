@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 
 import com.digows.blank.domain.service.AccountService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -44,12 +45,12 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 	{
 		try
 		{
-			this.accountService.updateLastUserLogin( ContextHolder.getAuthenticatedUser() );
+			response.getWriter().write( new ObjectMapper().writeValueAsString(ContextHolder.getAuthenticatedUser()) );
 		}
 		catch ( Exception e )
 		{
 			e.printStackTrace();
-			LOG.severe( "Ocorreu um problema ao atualizar o ultimo login do usuário" );
+			LOG.severe( "Ocorreu um problema ao capturar o usuário autenticado" );
 		}
 	}
 }

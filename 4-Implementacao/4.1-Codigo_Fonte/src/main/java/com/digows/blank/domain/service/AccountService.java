@@ -42,14 +42,14 @@ public class AccountService
 	 */
 	@Autowired
 	private SaltSource saltSource;
-	
+
 	/**
 	 * 
 	 */
 	@Autowired
 	private MessageSource messageSorce;
 
-	//Repositories
+	// Repositories
 	/**
 	 * 
 	 */
@@ -64,43 +64,139 @@ public class AccountService
 	 * @param event
 	 */
 	@PreAuthorize("isAuthenticated() && #user.id == principal.id")
-	public void updateLastUserLogin( Usuario usuario ) 
+	public void updateLastUserLogin( Usuario usuario )
 	{
 		Assert.notNull( usuario );
 		usuario = this.findUserById( usuario.getId() );
 		usuario.setLastLogin( Calendar.getInstance() );
 		this.userRepository.save( usuario );
-    }
-	
+	}
+
 	/**
 	 * 
 	 * @param usuario
 	 * @return
 	 */
-	@PreAuthorize("hasAnyAuthority('"+PermissaoUsuario.ADMINISTRATOR_VALUE+"','"+PermissaoUsuario.MANAGER_VALUE+"')")
+	@PreAuthorize("hasAnyAuthority('" + PermissaoUsuario.ADMINISTRADOR_VALUE + "')")
 	public Usuario insertUser( Usuario usuario )
 	{
 		Assert.notNull( usuario );
 
 		usuario.setEnabled( true );
+
+		usuario.setPassword( "temp123" );
 		// encrypt password
 		final String encodedPassword = this.passwordEncoder.encodePassword( usuario.getPassword(), this.saltSource.getSalt( usuario ) );
 		usuario.setPassword( encodedPassword );
 
 		return this.userRepository.save( usuario );
 	}
-	
+
+	/**
+	 * 
+	 * @param userId
+	 * @param name
+	 * @param email
+	 * @return
+	 */
+	@PreAuthorize("hasAnyAuthority('" + PermissaoUsuario.ADMINISTRADOR_VALUE + "')")
+	public Usuario updateUserByAdmin( Long userId, String name, String email, PermissaoUsuario role, boolean status, String password, String confirmPassword )
+	{
+		Usuario usuario = this.userRepository.findOne( userId );
+
+		usuario.setName( name );
+		usuario.setEmail( email );
+		usuario.setRole( role );
+		usuario.setEnabled( status );
+
+		if ( password != null )
+		{
+			Assert.notNull( confirmPassword, "Confirme a senha a ser alterada!" );
+			if ( password.equals( confirmPassword ) )
+			{
+				final String encodedPassword = this.passwordEncoder.encodePassword( password, this.saltSource.getSalt( usuario ) );
+				usuario.setPassword( encodedPassword );
+			}
+			else
+			{
+				throw new RuntimeException( "Confirme a senha a ser alterada" );
+			}
+		}
+		return this.userRepository.save( usuario );
+	}
+
+	/**
+	 * 
+	 * @param userId
+	 * @param name
+	 * @param email
+	 * @param password
+	 * @param confirmPassword
+	 * @return
+	 */
+	public Usuario updateProfile( Long userId, String name, String email, String currentPassword, String password, String confirmPassword )
+	{
+		Usuario usuario = this.userRepository.findOne( userId );
+		
+		usuario.setName( name );
+		usuario.setEmail( email );
+
+		if( password != null )
+		{
+			final String encodedOldPassword = this.passwordEncoder.encodePassword( currentPassword, this.saltSource.getSalt( usuario ) );
+
+			if ( !encodedOldPassword.equals( usuario.getPassword() ) )
+			{
+				throw new IllegalArgumentException( "Senha inválida" );
+			}
+
+			if ( password.equals( confirmPassword ) )
+			{
+				final String encodedNewPassword = this.passwordEncoder.encodePassword( password, this.saltSource.getSalt( usuario ) );
+				usuario.setPassword( encodedNewPassword );
+			} else {
+				throw new IllegalArgumentException( "Confirme a senha, as senhas estão incorretas" );
+			}
+		}
+
+		this.userRepository.saveAndFlush( usuario );
+		
+		return null;
+
+	}
+
 	/**
 	 * 
 	 * @param id
 	 * @return
 	 */
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Usuario findUserById( Long id )
 	{
 		final Usuario usuario = this.userRepository.findOne( id );
-		Assert.notNull( usuario, this.messageSorce.getMessage("repository.notFoundById", new Object[]{id}, LocaleContextHolder.getLocale()) );
+		Assert.notNull( usuario, this.messageSorce.getMessage( "repository.notFoundById", new Object[]
+		{ id }, LocaleContextHolder.getLocale() ) );
 		return usuario;
+	}
+
+	/**
+	 * Ativa um usuário
+	 * @param userId
+	 */
+	@PreAuthorize("hasAnyAuthority('"+PermissaoUsuario.ADMINISTRADOR_VALUE+"')")
+	public void activateUser(Long userId){
+		Assert.notNull( userId );
+		this.userRepository.active( userId );
+	}
+
+	/**
+	 * Desativa um usuário
+	 * @param userId
+	 */
+	@PreAuthorize("hasAnyAuthority('"+PermissaoUsuario.ADMINISTRADOR_VALUE+"')")
+	public void deactivateUser(Long userId){
+		Assert.notNull( userId );
+		this.userRepository.deactivate( userId );
 	}
 	
 	/**
@@ -109,7 +205,7 @@ public class AccountService
 	 * @param filters
 	 * @return
 	 */
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Page<Usuario> listUsersByFilters( String filter, PageRequest pageable )
 	{
 		return this.userRepository.listByFilters( filter, pageable );

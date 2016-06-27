@@ -36,7 +36,7 @@ public class Estado extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@Column( length = 50, nullable = false, unique = true )
-	private String name;
+	private String nome;
 	
 	/**
 	 * 
@@ -68,10 +68,10 @@ public class Estado extends AbstractEntity implements Serializable
 	 * @param name
 	 * @param pais
 	 */
-	public Estado( Long id, String name, Pais pais )
+	public Estado( Long id, String nome, Pais pais )
 	{
 		super( id );
-		this.name = name;
+		this.nome = nome;
 		this.pais = pais;
 	}
 	
@@ -87,7 +87,7 @@ public class Estado extends AbstractEntity implements Serializable
 	{
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
+		result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
 		result = prime * result + ( ( pais == null ) ? 0 : pais.hashCode() );
 		return result;
 	}
@@ -102,11 +102,11 @@ public class Estado extends AbstractEntity implements Serializable
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		Estado other = ( Estado ) obj;
-		if ( name == null )
+		if ( nome == null )
 		{
-			if ( other.name != null ) return false;
+			if ( other.nome != null ) return false;
 		}
-		else if ( !name.equals( other.name ) ) return false;
+		else if ( !nome.equals( other.nome ) ) return false;
 		if ( pais == null )
 		{
 			if ( other.pais != null ) return false;
@@ -122,17 +122,17 @@ public class Estado extends AbstractEntity implements Serializable
 	/**
 	 * @return the name
 	 */
-	public String getName()
+	public String getNome()
 	{
-		return name;
+		return nome;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName( String name )
+	public void setNome( String nome )
 	{
-		this.name = name;
+		this.nome = nome;
 	}
 
 	/**

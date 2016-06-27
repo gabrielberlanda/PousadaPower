@@ -5,6 +5,7 @@ package com.digows.blank.domain.entity.pessoa;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -42,6 +43,7 @@ public class Hospede extends Pessoa implements Serializable
 	/**
 	 * 
 	 */
+	@Column( length = 500 )
 	private String observacao;
 
 	/*-------------------------------------------------------------------
@@ -75,7 +77,7 @@ public class Hospede extends Pessoa implements Serializable
 	public Hospede( Long id, String nome, String email, String telefone, Cidade cidade )
 	{
 		super ( id );
-		this.setName( nome );
+		this.setNome( nome );
 		this.setEmail( email );
 		this.setTelefone( telefone );
 		

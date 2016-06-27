@@ -7,45 +7,55 @@
  * @param $state
  */
 angular.module('home')
-	   .controller('HospedeController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog, $mdSidenav ) {
+	   .controller('HospedeController', function( $q, $rootScope, $scope, $state, $importService, $mdToast, $mdDialog, $mdSidenav, $translate, $timeout, $filter ) {
 
 	   
 		    $importService("pessoaService");
+		    $importService("enderecoService");
 		 
 		    /*-------------------------------------------------------------------
 		     *                          ATTRIBUTES
 		     *-------------------------------------------------------------------*/
 		    
-		    $scope.NOVO_HOSPEDE_STATE        = "hospede.novo";
-		    $scope.EDITAR_HOSPEDE_STATE      = "hospede.editar";
-		    $scope.DETALHE_HOSPEDE_STATE   	 = "hospede.detalhe";
-		    $scope.LISTA_HOSPEDE_STATE     	 = "hospede.lista";
+		    $scope.NEW_HOSPEDE_STATE        = "hospede.novo";
+		    $scope.EDIT_HOSPEDE_STATE      = "hospede.editar";
+		    $scope.DETAIL_HOSPEDE_STATE   	 = "hospede.detalhe";
+		    $scope.LIST_HOSPEDE_STATE     	 = "hospede.lista";
 		 
 		     /**
 		      *
 		      */
 		    $scope.model = {
 		 
-		        hospede : {
+		        entity : {
 		            
 		        },
 		 
 		        query : {
-		            filter  : {name : null,
-		                status : "",
+		            filter  : {
+		            	name : null,
 		            }
 		        },
-		 
-		        pageRequest : {//PageImpl
-		            content : null,
-		            pageable : {//PageRequest
-		                page : 1,
-		                size : 15,
-		                sort : {
-		                    direction: 'ASC', properties: ['id']
-		                },
-		            }
-		        }
+		        pageRequest: {//PageImpl 
+		           	content: [],
+		           	pageable :{ size: 9,
+		           	page: 0,
+		               	sort:null
+		               	}
+		           },
+	           sort: [{//Sort
+	               	direction: 'ASC', properties: 'id', nullHandlingHint:null
+               	}],
+//		        pageRequest : {//PageImpl
+//		            content : null,
+//		            pageable : {//PageRequest
+//		                page : 1,
+//		                size : 15,
+//		                sort : {
+//		                    direction: 'ASC', properties: ['id']
+//		                },
+//		            }
+//		        }
 		    };
 		 
 		    /**
@@ -53,7 +63,7 @@ angular.module('home')
 		     */
 		    $scope.$watch( "[model.pageRequest.pageable.size, model.pageRequest.pageable.page]" , function( value, oldValue ){
 		        if( $scope.model.pageRequest.content ) {
-		            $scope.listUsersByFilters ( $scope.model.query.filter.name, $scope.model.query.filter.status);
+		            $scope.listHospedesByFilters ( $scope.model.query.filter.name );
 		        }
 		    }, true);
 		 
@@ -71,18 +81,18 @@ angular.module('home')
 		      */
 		     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 		 
-		        $scope.model.hospede = {
+		        $scope.model.entity = {
 
 		        };
 		 
 		        switch( toState.name ){
-		            case $scope.LISTA_HOSPEDE_STATE :
-		                $scope.listHospedesByFilters( null, null );
+		            case $scope.LIST_HOSPEDE_STATE :
+		                $scope.listHospedesByFilters( null );
 		            break;
-		            case $scope.EDITAR_HOSPEDE_STATE :
+		            case $scope.EDIT_HOSPEDE_STATE :
 		                $scope.findHospedeById( toParams.id );
 		            break;
-		            case $scope.DETALHE_HOSPEDE_STATE :
+		            case $scope.DETAIL_HOSPEDE_STATE :
 		                $scope.findHospedeById ( toParams.id );
 		            break;
 		        };
@@ -95,7 +105,7 @@ angular.module('home')
 		      * @param user
 		      */
 		     $scope.changeToEdit = function( ev, hospede ) {
-		         $state.go( $scope.EDITAR_HOSPEDE_STATE, {id: hospede.id} );
+		         $state.go( $scope.EDIT_HOSPEDE_STATE, {id: hospede.id} );
 		     }
 		 
 		     /**
@@ -106,87 +116,122 @@ angular.module('home')
 		     $scope.changeToDetail = function( ev, hospede ) {
 		         var tagName = ev.target.tagName.toLowerCase();
 		         if ( tagName != "button" && tagName != "md-icon" ) {
-		             $state.go( $scope.DETALHE_HOSPEDE_STATE, {id: hospede.id} );
+		             $state.go( $scope.DETAIL_HOSPEDE_STATE, {id: hospede.id} );
 		         }
 		     }
 		 
 		     /**
 		     *
 		     */
-		    $scope.listHospedesByFilters = function ( filter, status ) {
-		    	alert('listagem de hospede');
-//		        //TODO conseguir setar o valor null pelo select da interface
-//		        if ( status == "" ) {
-//		            status = null;
-//		        }
-//		 
-//		         var pageable = angular.copy($scope.model.pageRequest.pageable);
-//		         if ( pageable.page > 0 ) {
-//		             pageable.page = pageable.page -1;
-//		         }
-//		 
-//		         accountService.listUsersByFilters( filter, status, pageable, {
-//		             callback: function (result) {
-//		                 $scope.model.pageRequest = {//PageImpl
-//		                    content : result.content,
-//		                    total   : result.total,
-//		                    pageable : {//PageRequest
-//		                        page : result.pageable.page+1,
-//		                        size : result.pageable.size,
-//		                        sort : {//Sort
-//		                            direction: result.pageable.sort.orders[0].direction, properties: [ result.pageable.sort.orders[0].property ]
-//		                        },
-//		                    }
-//		                };
-//		                  
+		    $scope.listHospedesByFilters = function ( filter ) {
+		 
+		         var pageable = angular.copy($scope.model.pageRequest.pageable);
+		         if ( pageable.page > 0 ) {
+		             pageable.page = pageable.page -1;
+		         }
+		 
+		         pessoaService.listHospedesByFilters( filter, pageable, {
+		             callback: function (result) {
+		            	 console.log(result.content);
+		            	 $scope.model.pageRequest.content = result.content; 
+		                  
 //		                // Retorna um page se o content for 0 e possuir mais de 1 page, isto ocorre quando é excluido o ultimo item do page na tela de detalhe
 //		                if( $scope.model.pageRequest.content.length == 0 && $scope.model.pageRequest.pageable.page > 0 ) {
 //		                    $scope.model.pageRequest.pageable.page--;
 //		                } 
-//		                //FIXME Dwr não dispara evento de finização da chamada
-//		                $rootScope.progress(false);
-//		                $scope.$apply();
-//		             }
-//		         });
+		                //FIXME Dwr não dispara evento de finização da chamada
+		                $scope.$apply();
+		             }
+		         });
 		 
 		     };
 		 
-		 
-		 
+		     /**
+		      * 
+		      */
+		     $scope.listPaisByFilters = function( filter ) {
+		    	 var deferred = $q.defer();
+		    	 
+		         enderecoService.listPaisByFilters ( filter, null, {
+		        	 callback : function( result ) { 
+		    			 deferred.resolve(result.content); 
+		    			 $scope.$apply(); 
+		    		}, errorHandler : function(message, exception) { 
+		    			deferred.reject(message); 
+		    			$scope.$apply(); 
+		    			} 
+		    		}); 
+		    	 return deferred.promise; 
+		     }
+		     
+		     /**
+		      * 
+		      */
+		     $scope.listEstadoByFilters = function( filter, paisId ) {
+		    	 var deferred = $q.defer();
+		    	 
+		         enderecoService.listEstadoByFilters ( filter, paisId, null, {
+		        	 callback : function( result ) { 
+		    			 deferred.resolve(result.content); 
+		    			 $scope.$apply(); 
+		    		}, errorHandler : function(message, exception) { 
+		    			deferred.reject(message); 
+		    			$scope.$apply(); 
+		    			} 
+		    		}); 
+		    	 return deferred.promise; 
+		     }
+		     
+		     /**
+		      * 
+		      */
+		     $scope.listCidadeByFilters = function( filter, estadoId ) {
+		    	 var deferred = $q.defer();
+		    	 
+		         enderecoService.listCidadeByFilters ( filter, estadoId, null, {
+		        	 callback : function( result ) { 
+		    			 deferred.resolve(result.content); 
+		    			 $scope.$apply(); 
+		    		}, errorHandler : function(message, exception) { 
+		    			deferred.reject(message); 
+		    			$scope.$apply(); 
+		    			} 
+		    		}); 
+		    	 return deferred.promise; 
+		     }
+
 		     /**
 		     *
 		     */
 		    $scope.findHospedeById = function ( id ) {
-		    	alert("find by id");
-//		         accountService.findUserById( id, {
-//		             callback: function (result) {
-//		                 $scope.model.entity = result;
-//		                 $scope.model.entity.newPassword = null;
-//		                 $scope.$apply();
-//		             }
-//		         });
+		         pessoaService.findHospedeById( id, {
+		             callback: function (result) {
+		                 $scope.model.entity = result;
+		                 $scope.$apply();
+		             }
+		         });
 		 
 		     };
 		 
-		     $scope.removerHospede = function( ev, user ) {
+		     $scope.removeHospede = function( ev, hospede ) {
 		 
 		         var confirmConfig = {
-		             title   : $translate("removeUser"),
-		             content : $translate("user.removeUserConfirm", user.name),
-		             ok      : $translate("remove")
+		             title   : "Remover Hospede",
+		             content : "Você realmente deseja remover o hospede " + hospede.nome + "?",
+		             ok      : "Remover"
 		         }
 		 
 		         $rootScope.confirmDialog( ev, confirmConfig )
 		 
 		             .then(function() {
-		                 accountService.removeUser ( user.id, {
+		            	 pessoaService.removeHospede ( hospede.id, {
 		                     callback: function ( result ){
-		                         $rootScope.toast($translate("user.removeUserSuccess"), "green");
-		                         if ( $state.current.name == $scope.DETAIL_USER_STATE ) {
-		                             $state.go( $scope.LIST_USER_STATE );
+		                         $rootScope.toast("hospede removido com sucesso!", "green");
+		                         if ( $state.current.name == $scope.DETAIL_HOSPEDE_STATE ) {
+		                             $state.go( $scope.LIST_HOSPEDE_STATE );
 		                         }
-		                         if ( $scope.model.pageRequest.content.indexOf(user) > -1 ) {
-		                             $scope.model.pageRequest.content.splice( $scope.model.pageRequest.content.indexOf(user), 1);
+		                         if ( $scope.model.pageRequest.content.indexOf(hospede) > -1 ) {
+		                             $scope.model.pageRequest.content.splice( $scope.model.pageRequest.content.indexOf(hospede), 1);
 		 
 		                             $scope.model.pageRequest.total--;
 		                             if( $scope.model.pageRequest.content.length == 0 ) {
@@ -204,32 +249,31 @@ angular.module('home')
 		     /**
 		      *
 		      */
-		     $scope.save = function( user ){
-		 
-		         if ( user ) {
-		             if ( !user.id ) {
-		                 accountService.insertUser ( user, {
+		     $scope.save = function( hospede ){
+		    	 var hospedeForm = angular.element( document.querySelector('#hospedeForm') ).scope()['hospedeForm'];
+		    	 if ( hospede && hospedeForm.$valid ) {
+		             if ( !hospede.id ) {
+		            	 pessoaService.insertHospede ( hospede, {
 		                     callback: function ( result ) {
-		                         $rootScope.toast($translate("user.SaveUserSuccess"), "green");
-		                         $state.go ( $scope.LIST_USER_STATE );
+		                         $rootScope.toast("Hospede inserido com sucesso!", "green");
+		                         $state.go ( $scope.LIST_HOSPEDE_STATE );
 		                         $scope.$apply ();
 		                     }, errorHandler: function ( message, exception ) {
-		                             $rootScope.toast($translate("emailUniqueViolation"), "red");
-		                             document.getElementById("email").focus();
+		                             $rootScope.toast(message, "red");
 		                     }
 		                 })
 		             }else {
-		                 accountService.updateUserByAdmin( user.id, user.name, user.email, user.newPassword, user.role, user.language, {
+		            	 pessoaService.updateHospede( hospede, {
 		                     callback: function ( result ) {
-		                         $rootScope.toast($translate("user.updateSuccess"), "green");
-		                         $state.go ( $scope.LIST_USER_STATE );
+		                         $rootScope.toast("As informações do hospede foram atualizadas", "green");
+		                         $state.go ( $scope.LIST_HOSPEDE_STATE );
 		                         $scope.$apply ();
 		                     }
 		                 })
 		 
-		             }
+		             } 
 		         }else {
-		             $rootScope.toast( $translate("user.invalidUser"), "red" );
+		             $rootScope.toast( "Formulário inválido!", "red" );
 		         }
 		     }
 		 
@@ -245,7 +289,7 @@ angular.module('home')
 		        }
 		 
 		        $scope.model.pageRequest.pageable.sort.properties[0] = order;
-		        $scope.listUsersByFilters ( $scope.model.query.filter.name, $scope.model.query.filter.status );
+		        $scope.listHospedeSByFilters ( $scope.model.query.filter.name );
 		    };
 		 
 		 

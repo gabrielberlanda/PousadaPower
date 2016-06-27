@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.fornecedor
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome_fantasia=""
+		razao_social=""
+		telefone=""
+		cnpj=""
+		inscricao_estadual=""
+		bairro=""
+		endereco=""
+		numero=""
+		observacao=""
+		cidade_id=""
+		email=""
+		/>
+	
+</dataset>
+  

@@ -52,7 +52,7 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 	})
 	public void insertUserMustPass()
 	{
-		Usuario usuario = new Usuario( null, "Testing user", "test@user.com", true, PermissaoUsuario.USER, "user" );
+		Usuario usuario = new Usuario( null, "Testing user", "test@user.com", true, PermissaoUsuario.CAIXA, "user" );
 		usuario = this.accountService.insertUser( usuario );
 
 		Assert.assertNotNull( usuario );
@@ -68,6 +68,7 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 		"/dataset/account/UserDataSet.xml",
+		
     })
 	public void findUserByIdMustPass()
 	{

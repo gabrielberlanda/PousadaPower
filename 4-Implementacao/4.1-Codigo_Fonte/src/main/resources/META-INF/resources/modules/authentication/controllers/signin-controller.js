@@ -7,7 +7,7 @@
  * @param $state
  */
 angular.module('authentication')
-	   .controller('SigninController', function( $scope, $http, $mdToast, $window, $translate ) {
+	   .controller('SigninController', function( $scope, $http, $mdToast, $window, $translate, $rootScope ) {
 
     /*-------------------------------------------------------------------
      * 		 				 	ATTRIBUTES
@@ -39,6 +39,7 @@ angular.module('authentication')
 			$http.post( "./authenticate", $.param($scope.model.entity), config)
 				.success( function( data, status, headers, config ) {
 					$window.location.href = "./";
+					$rootScope.$user = data;
 				})
 				.error( function( data, status, headers, config ){
 					$mdToast.showSimple( (data && data.message) ? data.message : data );

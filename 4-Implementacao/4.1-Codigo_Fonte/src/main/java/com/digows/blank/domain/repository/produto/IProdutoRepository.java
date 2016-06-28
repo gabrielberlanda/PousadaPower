@@ -30,6 +30,7 @@ public interface IProdutoRepository extends JpaRepository<Produto, Long>
 				+ "OR FILTER( produto.tipoProduto, :filter ) = TRUE "
 				+ "OR FILTER( fornecedor.nomeFantasia, :filter ) = TRUE "
 				+ "OR FILTER( fornecedor.razaoSocial, :filter ) = TRUE "
+				+ "OR FILTER( produto.precoUnitario, :filter ) = TRUE "
 				+ "OR FILTER( produto.precoCusto, :filter ) = TRUE )")
 	public Page<Produto> listByFilters ( @Param("filter") String filter, Pageable page );
 	

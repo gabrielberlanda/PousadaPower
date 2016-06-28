@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="pgadmin" id="Project_3878706b" html="y" template="Default" database="PostgreSQL" >
+	<schema name="public" catalogname="pousada-power" schemaname="public" >
+		<table name="cidade" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="nome" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="estado_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="cidade_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="uk_cidade_nome" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+			<fk name="fk_cidade_estado_id" to_schema="public" to_table="estado" >
+				<fk_column name="estado_id" pk="id" />
+			</fk>
+		</table>
+		<table name="estado" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="nome" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="pais_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="estado_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="uk_estado_nome" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+			<fk name="fk_estado_pais_id" to_schema="public" to_table="pais" >
+				<fk_column name="pais_id" pk="id" />
+			</fk>
+		</table>
+		<table name="fornecedor" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="bairro" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="cnpj" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="email" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="endereco" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="inscricao_estadual" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="nome_fantasia" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="numero" type="integer" length="10" decimal="0" jt="4" />
+			<column name="observacao" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="razao_social" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="telefone" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="cidade_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="fornecedor_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_fornecedor_cidade_id" to_schema="public" to_table="cidade" >
+				<fk_column name="cidade_id" pk="id" />
+			</fk>
+		</table>
+		<table name="pais" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="cpf_requerido" type="bool" length="1" decimal="0" jt="-7" />
+			<column name="nome" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<index name="pais_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="uk_pais_nome" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+		</table>
+		<table name="pessoa" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="tipo" type="varchar" length="31" decimal="0" jt="12" mandatory="y" />
+			<column name="created" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="bairro" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="celular" type="varchar" length="25" decimal="0" jt="12" />
+			<column name="cep" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="complemento" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="cpf" type="varchar" length="11" decimal="0" jt="12" />
+			<column name="data_nascimento" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="email" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="nome" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="numero" type="integer" length="10" decimal="0" jt="4" />
+			<column name="passaporte" type="varchar" length="20" decimal="0" jt="12" />
+			<column name="rg" type="varchar" length="9" decimal="0" jt="12" />
+			<column name="sexo" type="integer" length="10" decimal="0" jt="4" />
+			<column name="telefone" type="varchar" length="25" decimal="0" jt="12" mandatory="y" />
+			<column name="modelo_veiculo" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="observacao" type="varchar" length="500" decimal="0" jt="12" />
+			<column name="placa" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="cidade_id" type="bigint" length="19" decimal="0" jt="-5" />
+			<index name="pessoa_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="uk_pessoa_cpf" unique="UNIQUE" >
+				<column name="cpf" />
+			</index>
+			<index name="uk_pessoa_passaporte" unique="UNIQUE" >
+				<column name="passaporte" />
+			</index>
+			<index name="uk_pessoa_rg" unique="UNIQUE" >
+				<column name="rg" />
+			</index>
+			<fk name="fk_pessoa_cidade_id" to_schema="public" to_table="cidade" >
+				<fk_column name="cidade_id" pk="id" />
+			</fk>
+		</table>
+		<table name="produto" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="descricao" type="varchar" length="200" decimal="0" jt="12" />
+			<column name="nome" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="preco_custo" type="float8" length="17" decimal="17" jt="6" mandatory="y" />
+			<column name="preco_unitario" type="float8" length="17" decimal="17" jt="6" mandatory="y" />
+			<column name="quantidade_estoque" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="quantidade_minima" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="tipo_produto" type="integer" length="10" decimal="0" jt="4" />
+			<column name="fornecedor_id" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="produto_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="uk_produto_nome" unique="UNIQUE" >
+				<column name="nome" />
+			</index>
+			<fk name="fk_produto_fornecedor_id" to_schema="public" to_table="fornecedor" >
+				<fk_column name="fornecedor_id" pk="id" />
+			</fk>
+		</table>
+		<table name="schema_version" >
+			<column name="version" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="version_rank" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="installed_rank" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="description" type="varchar" length="200" decimal="0" jt="12" mandatory="y" />
+			<column name="type" type="varchar" length="20" decimal="0" jt="12" mandatory="y" />
+			<column name="script" type="varchar" length="1000" decimal="0" jt="12" mandatory="y" />
+			<column name="checksum" type="integer" length="10" decimal="0" jt="4" />
+			<column name="installed_by" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="installed_on" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" >
+				<defo>now()</defo>
+			</column>
+			<column name="execution_time" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="success" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="schema_version_pk" unique="PRIMARY_KEY" >
+				<column name="version" />
+			</index>
+			<index name="schema_version_ir_idx" unique="NORMAL" >
+				<column name="installed_rank" />
+			</index>
+			<index name="schema_version_s_idx" unique="NORMAL" >
+				<column name="success" />
+			</index>
+			<index name="schema_version_vr_idx" unique="NORMAL" >
+				<column name="version_rank" />
+			</index>
+		</table>
+		<table name="usuario" >
+			<column name="id" type="bigserial" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="created" type="timestamp" length="29" decimal="6" jt="93" mandatory="y" />
+			<column name="updated" type="timestamp" length="29" decimal="6" jt="93" />
+			<column name="email" type="varchar" length="144" decimal="0" jt="12" mandatory="y" />
+			<column name="enabled" type="bool" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="name" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<column name="password" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<column name="role" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="last_login" type="timestamp" length="29" decimal="6" jt="93" />
+			<index name="user_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="uk_user_email" unique="UNIQUE" >
+				<column name="email" />
+			</index>
+		</table>
+		<sequence name="cidade_id_seq" start="1" />
+		<sequence name="estado_id_seq" start="1" />
+		<sequence name="fornecedor_id_seq" start="1" />
+		<sequence name="pais_id_seq" start="1" />
+		<sequence name="pessoa_id_seq" start="1" />
+		<sequence name="produto_id_seq" start="1" />
+		<sequence name="usuario_id_seq" start="1" />
+	</schema>
+	<connector name="pgadmin" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-9.4.1208.jar" host="localhost" port="5432" instance="project-manager" user="projectmanager" />
+	<layout name="Default" id="Layout_33a53aa6" show_relation_columns="y" >
+		<entity schema="public" name="cidade" color="b3ccf5" x="240" y="465" />
+		<entity schema="public" name="estado" color="bef5b3" x="765" y="45" />
+		<entity schema="public" name="fornecedor" color="b3ccf5" x="390" y="465" />
+		<entity schema="public" name="pais" color="bef5b3" x="900" y="45" />
+		<entity schema="public" name="pessoa" color="b3ccf5" x="60" y="45" />
+		<entity schema="public" name="produto" color="b3ccf5" x="45" y="645" />
+		<entity schema="public" name="schema_version" color="bef5b3" x="900" y="225" />
+		<entity schema="public" name="usuario" color="bef5b3" x="615" y="225" />
+	</layout>
+	<layout name="Demo Grouping Layout" id="Layout_8969a2b" show_relation_columns="y" >
+		<entity schema="public" name="cidade" color="b3ccf5" x="240" y="465" />
+		<entity schema="public" name="estado" color="bef5b3" x="765" y="45" />
+		<entity schema="public" name="fornecedor" color="b3ccf5" x="390" y="465" />
+		<entity schema="public" name="pais" color="bef5b3" x="900" y="45" />
+		<entity schema="public" name="pessoa" color="b3ccf5" x="60" y="45" />
+		<entity schema="public" name="produto" color="b3ccf5" x="45" y="645" />
+		<entity schema="public" name="schema_version" color="bef5b3" x="900" y="225" />
+		<entity schema="public" name="usuario" color="bef5b3" x="615" y="225" />
+		<callout x="240" y="345" pointer="NO" >
+			<comment><![CDATA[This layout demonstrates the grouping of tables and creation of multiple layouts.
+One table may show in multiple layouts.
+Double-click any table header, columns or foreign key lines to edit.]]></comment>
+		</callout>
+		<group name="cidade" color="f0f3f7" >
+			<entity schema="public" name="cidade" />
+			<entity schema="public" name="fornecedor" />
+			<entity schema="public" name="produto" />
+			<entity schema="public" name="pessoa" />
+		</group>
+		<group name="estado" color="f1f7f0" >
+			<entity schema="public" name="estado" />
+			<entity schema="public" name="pais" />
+			<entity schema="public" name="schema_version" />
+			<entity schema="public" name="usuario" />
+		</group>
+	</layout>
+	<layout name="Demo Relational Data Browse Layout" id="Layout_2862176d" show_relation_columns="y" >
+		<entity schema="public" name="cidade" color="b3ccf5" x="240" y="465" />
+		<entity schema="public" name="estado" color="bef5b3" x="765" y="45" />
+		<entity schema="public" name="fornecedor" color="b3ccf5" x="390" y="465" />
+		<entity schema="public" name="pais" color="bef5b3" x="900" y="45" />
+		<entity schema="public" name="pessoa" color="b3ccf5" x="60" y="45" />
+		<entity schema="public" name="produto" color="b3ccf5" x="45" y="645" />
+		<entity schema="public" name="schema_version" color="bef5b3" x="900" y="225" />
+		<entity schema="public" name="usuario" color="bef5b3" x="615" y="225" />
+		<callout x="240" y="345" pointer="NO" >
+			<comment><![CDATA[Bellow is a Relational Data Browse for exploring data from multiple tables bind by foreign keys.
+Right-click table header to set filters.
+Press the foreign key ( arrow icon) near title to descend into further tables.
+If your schema misses foreign keys create virtual foreign keys in the layout.]]></comment>
+		</callout>
+		<browser id="Browse_38de15d" name="Sample Relational Data Browse" >
+			<browse_table schema="public" entity="cidade" x="10" y="10" width="400" height="300" >
+				<browse_table schema="public" entity="estado" fk="fk_cidade_estado_id" x="420" y="10" width="400" height="300" record_view="y" />
+			</browse_table>
+		</browser>
+	</layout>
+</project>

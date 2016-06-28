@@ -3,18 +3,35 @@
 	<public.fornecedor
 		id="1000"
 		created="2015-03-30 00:00:00"
-		nome_fantasia=""
-		razao_social=""
-		telefone=""
-		cnpj=""
-		inscricao_estadual=""
-		bairro=""
-		endereco=""
-		numero=""
-		observacao=""
-		cidade_id=""
-		email=""
+		nome_fantasia="Fornecedor de bebida"
+		razao_social="Fornecedor de bebida"
+		telefone="333333333"
+		cnpj="72381189000110"
+		inscricao_estadual="12421421"
+		bairro="bairro"
+		endereco="endereco"
+		numero="123"
+		observacao="123"
+		cidade_id="1000"
+		email="fornecedor@bebida.com"
 		/>
+		
+	<public.fornecedor
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome_fantasia="Fornecedor de comida"
+		razao_social="Fornecedor de comida"
+		telefone="333333333"
+		cnpj="9911270000129"
+		inscricao_estadual="12222222"
+		bairro="bairro"
+		endereco="endereco"
+		numero="1234"
+		observacao="observacao"
+		cidade_id="1000"
+		email="fornecedor@comida.com"
+		/>
+	
 	
 </dataset>
   

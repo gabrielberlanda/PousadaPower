@@ -63,7 +63,7 @@ public class AccountService
 	 * 
 	 * @param event
 	 */
-	@PreAuthorize("isAuthenticated() && #user.id == principal.id")
+	@PreAuthorize("isAuthenticated() && #usuario.id == principal.id")
 	public void updateLastUserLogin( Usuario usuario )
 	{
 		Assert.notNull( usuario );
@@ -134,6 +134,7 @@ public class AccountService
 	 * @param confirmPassword
 	 * @return
 	 */
+	@PreAuthorize("#userId == principal.id")
 	public Usuario updateProfile( Long userId, String name, String email, String currentPassword, String password, String confirmPassword )
 	{
 		Usuario usuario = this.userRepository.findOne( userId );
@@ -159,9 +160,8 @@ public class AccountService
 			}
 		}
 
-		this.userRepository.saveAndFlush( usuario );
 		
-		return null;
+		return this.userRepository.saveAndFlush( usuario );
 
 	}
 

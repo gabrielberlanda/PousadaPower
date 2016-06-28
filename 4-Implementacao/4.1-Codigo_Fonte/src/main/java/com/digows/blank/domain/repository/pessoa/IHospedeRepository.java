@@ -30,6 +30,7 @@ public interface IHospedeRepository extends JpaRepository<Hospede, Long>
 				+ "OR FILTER( hospede.telefone, :filter ) = TRUE "
 				+ "OR FILTER( hospede.cpf, :filter ) = TRUE "
 				+ "OR FILTER( hospede.rg, :filter ) = TRUE "
+				+ "OR FILTER( hospede.modeloVeiculo, :filter ) = TRUE "
 				+ "OR FILTER( hospede.passaporte, :filter ) = TRUE "
 				+ "OR FILTER( hospede.placa, :filter ) = TRUE "
 				+ "OR FILTER( cidade.nome, :filter ) = TRUE ) " )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<public.user
+	<public.usuario
 		id="9999"
 		created="2015-03-30 00:00:00"
 		enabled="true"
@@ -8,7 +8,7 @@
 		password="d1bd2f08fead38a982aed9d4ca060152400b1b8f"
 		name="Administrator"
 		role="0"/>
-	<public.user
+	<public.usuario
 		id="1000"
 		created="2015-03-30 00:00:00"
 		enabled="false"
@@ -16,7 +16,7 @@
 		password="d1bd2f08fead38a982aed9d4ca060152400b1b8f"
 		name="User 001"
 		role="0"/>
-	<public.user
+	<public.usuario
 		id="1001"
 		created="2015-03-30 00:00:00"
 		enabled="false"
@@ -24,7 +24,7 @@
 		password="d1bd2f08fead38a982aed9d4ca060152400b1b8f"
 		name="User 002"
 		role="1"/>
-	<public.user
+	<public.usuario
 		id="1002"
 		created="2015-03-30 00:00:00"
 		enabled="false"

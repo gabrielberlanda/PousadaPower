@@ -1,1 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.produto
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome="Coca cola"
+		descricao="Coca cola lata 365ml"
+		preco_custo="2.5"
+		preco_unitario="3.5"
+		quantidade_estoque="10"
+		quantidade_minima="2"
+		tipo_produto="0"
+		fornecedor_id="1000" />
+	<public.produto
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome="Batata chips"
+		descricao="Batata chips 80g"
+		preco_custo="3"
+		preco_unitario="5"
+		quantidade_estoque="15"
+		quantidade_minima="2"
+		tipo_produto="1"
+		fornecedor_id="1001" />
+	<public.produto
+		id="1002"
+		created="2015-03-30 00:00:00"
+		nome="Doritos"
+		descricao="Batata chips 80g"
+		preco_custo="3.5"
+		preco_unitario="5.5"
+		quantidade_estoque="20"
+		quantidade_minima="2"
+		tipo_produto="1"
+		fornecedor_id="1001" />
+</dataset>
+  

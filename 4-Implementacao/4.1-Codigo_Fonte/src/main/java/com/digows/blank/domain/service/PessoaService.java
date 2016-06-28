@@ -75,7 +75,7 @@ public class PessoaService
 		
 		hospede = this.hospedeRepository.findOne( hospedeId );
 		
-		Assert.notNull( hospede.getId(), "Hospede não encontrado" );
+		Assert.notNull( hospede, "Hospede não encontrado" );
 		
 		return hospede;
 		

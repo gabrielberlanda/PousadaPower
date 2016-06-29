@@ -10,17 +10,17 @@ angular.module('home')
 	   .controller('FornecedorController', function( $q, $rootScope, $scope, $state, $importService, $mdToast, $mdDialog, $mdSidenav, $translate, $timeout, $filter ) {
 
 	   
-		    $importService("pessoaService");
+		    $importService("fornecedorService");
 		    $importService("enderecoService");
 		 
 		    /*-------------------------------------------------------------------
 		     *                          ATTRIBUTES
 		     *-------------------------------------------------------------------*/
 		    
-		    $scope.NEW_HOSPEDE_STATE        = "hospede.novo";
-		    $scope.EDIT_HOSPEDE_STATE      = "hospede.editar";
-		    $scope.DETAIL_HOSPEDE_STATE   	 = "hospede.detalhe";
-		    $scope.LIST_HOSPEDE_STATE     	 = "hospede.lista";
+		    $scope.NEW_FORNECEDOR_STATE         = "fornecedor.novo";
+		    $scope.EDIT_FORNECEDOR_STATE     	 = "fornecedor.editar";
+		    $scope.DETAIL_FORNECEDOR_STATE   	 = "fornecedor.detalhe";
+		    $scope.LIST_FORNECEDOR_STATE     	 = "fornecedor.lista";
 		 
 		     /**
 		      *
@@ -46,16 +46,7 @@ angular.module('home')
 	           sort: [{//Sort
 	               	direction: 'ASC', properties: 'id', nullHandlingHint:null
                	}],
-//		        pageRequest : {//PageImpl
-//		            content : null,
-//		            pageable : {//PageRequest
-//		                page : 1,
-//		                size : 15,
-//		                sort : {
-//		                    direction: 'ASC', properties: ['id']
-//		                },
-//		            }
-//		        }
+
 		    };
 		 
 		    /**
@@ -63,7 +54,7 @@ angular.module('home')
 		     */
 		    $scope.$watch( "[model.pageRequest.pageable.size, model.pageRequest.pageable.page]" , function( value, oldValue ){
 		        if( $scope.model.pageRequest.content ) {
-		            $scope.listHospedesByFilters ( $scope.model.query.filter.name );
+		            $scope.listFornecedoresByFilters ( $scope.model.query.filter.name );
 		        }
 		    }, true);
 		 
@@ -86,14 +77,14 @@ angular.module('home')
 		        };
 		 
 		        switch( toState.name ){
-		            case $scope.LIST_HOSPEDE_STATE :
-		                $scope.listHospedesByFilters( null );
+		            case $scope.LIST_FORNECEDOR_STATE :
+		                $scope.listFornecedoresByFilters( null );
 		            break;
-		            case $scope.EDIT_HOSPEDE_STATE :
-		                $scope.findHospedeById( toParams.id );
+		            case $scope.EDIT_FORNECEDOR_STATE :
+		                $scope.findFornecedorById( toParams.id );
 		            break;
-		            case $scope.DETAIL_HOSPEDE_STATE :
-		                $scope.findHospedeById ( toParams.id );
+		            case $scope.DETAIL_FORNECEDOR_STATE :
+		                $scope.findFornecedorById ( toParams.id );
 		            break;
 		        };
 		 
@@ -104,8 +95,8 @@ angular.module('home')
 		      * @param ev
 		      * @param user
 		      */
-		     $scope.changeToEdit = function( ev, hospede ) {
-		         $state.go( $scope.EDIT_HOSPEDE_STATE, {id: hospede.id} );
+		     $scope.changeToEdit = function( ev, fornecedor ) {
+		         $state.go( $scope.EDIT_FORNECEDOR_STATE, {id: fornecedor.id} );
 		     }
 		 
 		     /**
@@ -113,33 +104,27 @@ angular.module('home')
 		      * @param ev
 		      * @param user
 		      */
-		     $scope.changeToDetail = function( ev, hospede ) {
+		     $scope.changeToDetail = function( ev, fornecedor ) {
 		         var tagName = ev.target.tagName.toLowerCase();
 		         if ( tagName != "button" && tagName != "md-icon" ) {
-		             $state.go( $scope.DETAIL_HOSPEDE_STATE, {id: hospede.id} );
+		             $state.go( $scope.DETAIL_FORNECEDOR_STATE, {id: fornecedor.id} );
 		         }
 		     }
 		 
 		     /**
 		     *
 		     */
-		    $scope.listHospedesByFilters = function ( filter ) {
+		    $scope.listFornecedoresByFilters = function ( filter ) {
 		 
 		         var pageable = angular.copy($scope.model.pageRequest.pageable);
 		         if ( pageable.page > 0 ) {
 		             pageable.page = pageable.page -1;
 		         }
 		 
-		         pessoaService.listHospedesByFilters( filter, pageable, {
+		         fornecedorService.listFornecedoresByFilters( filter, pageable, {
 		             callback: function (result) {
-		            	 console.log(result.content);
 		            	 $scope.model.pageRequest.content = result.content; 
-		                  
-//		                // Retorna um page se o content for 0 e possuir mais de 1 page, isto ocorre quando é excluido o ultimo item do page na tela de detalhe
-//		                if( $scope.model.pageRequest.content.length == 0 && $scope.model.pageRequest.pageable.page > 0 ) {
-//		                    $scope.model.pageRequest.pageable.page--;
-//		                } 
-		                //FIXME Dwr não dispara evento de finização da chamada
+
 		                $scope.$apply();
 		             }
 		         });
@@ -203,8 +188,8 @@ angular.module('home')
 		     /**
 		     *
 		     */
-		    $scope.findHospedeById = function ( id ) {
-		         pessoaService.findHospedeById( id, {
+		    $scope.findFornecedorById = function ( id ) {
+		    	fornecedorService.findFornecedorById( id, {
 		             callback: function (result) {
 		                 $scope.model.entity = result;
 		                 $scope.$apply();
@@ -289,7 +274,7 @@ angular.module('home')
 		        }
 		 
 		        $scope.model.pageRequest.pageable.sort.properties[0] = order;
-		        $scope.listHospedeSByFilters ( $scope.model.query.filter.name );
+		        $scope.listFornecedoresByFilters ( $scope.model.query.filter.name );
 		    };
 		 
 		 

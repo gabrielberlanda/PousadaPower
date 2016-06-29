@@ -28,7 +28,7 @@ angular.module('home')
 		    $scope.model = {
 		 
 		        entity : {
-		            
+		            cidade : null
 		        },
 		 
 		        query : {
@@ -46,16 +46,7 @@ angular.module('home')
 	           sort: [{//Sort
 	               	direction: 'ASC', properties: 'id', nullHandlingHint:null
                	}],
-//		        pageRequest : {//PageImpl
-//		            content : null,
-//		            pageable : {//PageRequest
-//		                page : 1,
-//		                size : 15,
-//		                sort : {
-//		                    direction: 'ASC', properties: ['id']
-//		                },
-//		            }
-//		        }
+
 		    };
 		 
 		    /**
@@ -82,7 +73,7 @@ angular.module('home')
 		     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 		 
 		        $scope.model.entity = {
-
+		        		cidade : null
 		        };
 		 
 		        switch( toState.name ){
@@ -207,6 +198,10 @@ angular.module('home')
 		         pessoaService.findHospedeById( id, {
 		             callback: function (result) {
 		                 $scope.model.entity = result;
+		                 if ( $scope.model.entity.cidade.id ) {
+		                	 $scope.model.entity.estado = $scope.model.entity.cidade.estado;
+		                	 $scope.model.entity.pais = $scope.model.entity.cidade.estado.pais;
+		                 }
 		                 $scope.$apply();
 		             }
 		         });
@@ -245,6 +240,59 @@ angular.module('home')
 		             }, function() {
 		             });
 		     }
+		     
+		     $scope.validarCPF = function ( cpf ) {
+		    	 
+		    	 var hospedeForm = angular.element( document.querySelector('#hospedeForm') ).scope()['hospedeForm'];
+		    	 if ( cpf ) {
+		    		 cpf = cpf.replace(/[^\d]+/g,'');    
+		    		 if(cpf == '') {
+		    			 hospedeForm.cpfInput.$setValidity( "cpfValido", true );
+		    			 return true;
+		    		 }
+		    		 // Elimina CPFs invalidos conhecidos    
+		    		 if (cpf.length != 11 || 
+		    				 cpf == "00000000000" || 
+		    				 cpf == "11111111111" || 
+		    				 cpf == "22222222222" || 
+		    				 cpf == "33333333333" || 
+		    				 cpf == "44444444444" || 
+		    				 cpf == "55555555555" || 
+		    				 cpf == "66666666666" || 
+		    				 cpf == "77777777777" || 
+		    				 cpf == "88888888888" || 
+		    				 cpf == "99999999999") {
+		    			 hospedeForm.cpfInput.$setValidity( "cpfValido", false );       
+		    			 return false;
+		    		 }
+		    		 // Valida 1o digito 
+		    		 var add = 0;    
+		    		 for (var i=0; i < 9; i ++)       
+		    			 add += parseInt(cpf.charAt(i)) * (10 - i);  
+		    		 var rev = 11 - (add % 11);  
+		    		 if (rev == 10 || rev == 11)     
+		    			 rev = 0;    
+		    		 if (rev != parseInt(cpf.charAt(9))) {
+		    			 hospedeForm.cpfInput.$setValidity( "cpfValido", false );      
+		    			 return false;
+		    		 }     
+		    		 // Valida 2o digito 
+		    		 add = 0;    
+		    		 for (var i = 0; i < 10; i ++)        
+		    			 add += parseInt(cpf.charAt(i)) * (11 - i);  
+		    		 var rev = 11 - (add % 11);  
+		    		 if (rev == 10 || rev == 11) 
+		    			 rev = 0;    
+		    		 if (rev != parseInt(cpf.charAt(10))) {
+		    			 hospedeForm.cpfInput.$setValidity( "cpfValido", false ); 
+		    			 return false;
+		    		 }
+		    		 
+		    		 hospedeForm.cpfInput.$setValidity( "cpfValido", true ); 
+		    	 }else {
+		    		 hospedeForm.cpfInput.$setValidity( "cpfValido", true ); 
+		    	 } 
+		    	}
 		 
 		     /**
 		      *
@@ -252,26 +300,32 @@ angular.module('home')
 		     $scope.save = function( hospede ){
 		    	 var hospedeForm = angular.element( document.querySelector('#hospedeForm') ).scope()['hospedeForm'];
 		    	 if ( hospede && hospedeForm.$valid ) {
-		             if ( !hospede.id ) {
-		            	 pessoaService.insertHospede ( hospede, {
-		                     callback: function ( result ) {
-		                         $rootScope.toast("Hospede inserido com sucesso!", "green");
-		                         $state.go ( $scope.LIST_HOSPEDE_STATE );
-		                         $scope.$apply ();
-		                     }, errorHandler: function ( message, exception ) {
-		                             $rootScope.toast(message, "red");
-		                     }
-		                 })
-		             }else {
-		            	 pessoaService.updateHospede( hospede, {
-		                     callback: function ( result ) {
-		                         $rootScope.toast("As informações do hospede foram atualizadas", "green");
-		                         $state.go ( $scope.LIST_HOSPEDE_STATE );
-		                         $scope.$apply ();
-		                     }
-		                 })
-		 
-		             } 
+		    		 if ( ( hospede.pais || hospede.estado ) && !hospede.cidade ) {
+		    			 $rootScope.toast( "Informe uma cidade", "red" );
+		    		 } else {
+		    			 
+		    			 if ( !hospede.id ) {
+		    				 pessoaService.insertHospede ( hospede, {
+		    					 callback: function ( result ) {
+		    						 $rootScope.toast("Hospede inserido com sucesso!", "green");
+		    						 $state.go ( $scope.LIST_HOSPEDE_STATE );
+		    						 $scope.$apply ();
+		    					 }, errorHandler: function ( message, exception ) {
+		    						 $rootScope.toast(message, "red");
+		    					 }
+		    				 })
+		    			 }else {
+		    				 pessoaService.updateHospede( hospede, {
+		    					 callback: function ( result ) {
+		    						 $rootScope.toast("As informações do hospede foram atualizadas", "green");
+		    						 $state.go ( $scope.LIST_HOSPEDE_STATE );
+		    						 $scope.$apply ();
+		    					 }
+		    				 })
+		    				 
+		    			 } 
+		    		 }
+		    		 
 		         }else {
 		             $rootScope.toast( "Formulário inválido!", "red" );
 		         }

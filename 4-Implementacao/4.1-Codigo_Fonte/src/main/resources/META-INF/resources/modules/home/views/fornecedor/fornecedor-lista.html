@@ -6,16 +6,16 @@
 	<form>
 	   <eits-hbox>
 	       <md-input-container width="300" class="md-block">
-	         <label>Filtro de Hospedes</label>
+	         <label>Filtro de Fornecedores</label>
 	         <input ng-model="model.query.filter.name">
 	       </md-input-container>
-	       <md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listHospedesByFilters( model.query.filter.name )"> Filtrar </md-button>
+	       <md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listFornecedoresByFilters( model.query.filter.name )"> Filtrar </md-button>
 	   </eits-hbox>
 	</form>
 	
 <md-toolbar class="md-table-toolbar md-primary">
   <div class="md-toolbar-tools">
-    <span>Hospedes</span>
+    <span>Fornecedores</span>
   </div>
 </md-toolbar>
 
@@ -23,22 +23,26 @@
   <table md-table>
     <thead md-head >
       <tr md-row>
-        <th md-column style="width: 40%" ><span>Nome</span></th>
-        <th md-column style="width: 30%"><span>Email</span></th>
+        <th md-column style="width: 30%" ><span>Nome Fantasia</span></th>
+        <th md-column style="width: 30%"><span>Razão Social</span></th>
+        <th md-column style="width: 10%">CNPJ</th>
         <th md-column style="width: 10%">Telefone</th>
+        <th md-column style="width: 10%">Email</th>
         <th md-column style="width: 20%">Ações</th>
       </tr>
     </thead>
     <tbody md-body>
-      <tr md-row  md-auto-select ng-click="changeToDetail($event, hospede)" ng-repeat="hospede in model.pageRequest.content">
-        <td md-cell >{{hospede.nome}}</td>
-        <td md-cell>{{hospede.email}}</td>
-        <td md-cell>{{hospede.telefone}}</td>
+      <tr md-row  md-auto-select ng-click="changeToDetail($event, fornecedor)" ng-repeat="fornecedor in model.pageRequest.content">
+        <td md-cell >{{fornecedor.nomeFantasia}}</td>
+        <td md-cell>{{fornecedor.razaoSocial}}</td>
+        <td md-cell>{{fornecedor.cnpj}}</td>
+        <td md-cell>{{fornecedor.telefone}}</td>
+        <td md-cell>{{fornecedor.email}}</td>
         <td md-cell> 
-       	    <md-button ng-click="changeToEdit($event,hospede)" aria-label="remove" class="md-raised table-button">
+       	    <md-button ng-disabled="true" ng-click="changeToEdit($event,hospede)" aria-label="remove" class="md-raised table-button">
             	<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
             </md-button>
-            <md-button ng-click="removeHospede($event, hospede)" aria-label="remove" class="md-raised table-button">
+            <md-button ng-disabled="true" ng-click="removeHospede($event, hospede)" aria-label="remove" class="md-raised table-button">
             	<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
             </md-button>            
         </td>

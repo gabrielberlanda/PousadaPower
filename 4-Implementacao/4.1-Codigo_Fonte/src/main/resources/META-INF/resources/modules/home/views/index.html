@@ -25,6 +25,7 @@
 		<!-- Controllers -->
 		<script type="text/javascript" th:src="@{/modules/home/controllers/home-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/hospede/hospede-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/fornecedor/fornecedor-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/produto/produto-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/profile/profile-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/usuario/usuario-controller.js}"></script>
@@ -107,7 +108,7 @@
 					           <h3>Usuário</h3>
 					         </div>
 					       </md-list-item>
-					       <md-list-item class="md-2-line" ng-click="$state.go('usuario.lista')">
+					       <md-list-item class="md-2-line" ng-click="$state.go('fornecedor.lista')">
 					         <div class="md-list-item-text"  layout="row">
 					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
 					           <h3>Fornecedor</h3>

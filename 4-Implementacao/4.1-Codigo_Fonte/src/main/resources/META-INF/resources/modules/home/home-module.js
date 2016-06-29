@@ -2,7 +2,7 @@
 	'use strict';
 
 	//Start the AngularJS
-	var module = angular.module('home', ['ngMessages', 'ngSanitize', 'ngMaterial', 'ui.router', 'eits-md', 'eits-ng', 'md.data.table' ]);
+	var module = angular.module('home', ['ngMessages', 'ngSanitize', 'ngMaterial', 'ui.router', 'eits-md', 'eits-ng', 'md.data.table', 'ui.mask' ]);
 
 	/**
 	 * 
@@ -98,6 +98,28 @@
 	        .state('produto.editar', {
 	        	url         : "/editar/{id:[0-9]{1,10}}",
 	        	templateUrl	: './modules/home/views/produto/produto-formulario.html',
+	        })
+	        .state('fornecedor', {
+	        	url 		: "/fornecedor",
+	        	templateUrl	: './modules/home/views/fornecedor/fornecedor-index.html',
+	        	controller	: 'FornecedorController',
+	        	abstract 	: true,
+	        })
+	        .state('fornecedor.lista', {
+	        	url 		: "/lista",
+	        	templateUrl	: './modules/home/views/fornecedor/fornecedor-lista.html',
+	        })
+	        .state('fornecedor.detalhe', {
+	        	url 		: "/detalhe/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/fornecedor/fornecedor-detalhe.html',
+	        })
+	        .state('fornecedor.novo', {
+	        	url 		: "/novo",
+	        	templateUrl	: './modules/home/views/fornecedor/fornecedor-formulario.html',
+	        })
+	        .state('fornecedor.editar', {
+	        	url         : "/editar/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/fornecedor/fornecedor-formulario.html',
 	        });
 
 	});

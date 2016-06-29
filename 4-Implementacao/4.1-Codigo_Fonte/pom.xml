@@ -85,7 +85,7 @@
 				
 				<!-- Others -->
 				<mvn.cache.enabled>false</mvn.cache.enabled>
-				<mvn.flyway.enabled>false</mvn.flyway.enabled>
+				<mvn.flyway.enabled>true</mvn.flyway.enabled>
 			</properties>
 		</profile>
 		
@@ -516,6 +516,12 @@
 		    <version>${angularjs.version}</version>
 		</dependency>
 
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>angular-ui-mask</artifactId>
+		    <version>1.8.4</version>
+		</dependency>
+		
 		<!-- Angular Modules -->
 		<dependency>
 			<groupId>org.webjars</groupId>

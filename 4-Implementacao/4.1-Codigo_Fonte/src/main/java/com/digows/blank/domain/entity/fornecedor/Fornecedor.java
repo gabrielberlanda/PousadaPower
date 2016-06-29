@@ -34,22 +34,25 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@Column( length= 50, nullable = false)
+	@Column( length= 50, nullable = false, unique = true )
 	private String nomeFantasia;
 
 	/**
 	 * 
 	 */
+	@Column( length= 50, nullable = false, unique = true )
 	private String razaoSocial;
 	
 	/**
 	 * 
 	 */
+	@Column( length= 100, nullable = false, unique = true )
 	private String email;
 	
 	/**
 	 * 
 	 */
+	@Column( length= 50, nullable = false )
 	private String telefone;
 	
 	/**
@@ -60,6 +63,7 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@Column( length= 14, nullable = false, unique = true )
 	private String cnpj;
 	
 	/**

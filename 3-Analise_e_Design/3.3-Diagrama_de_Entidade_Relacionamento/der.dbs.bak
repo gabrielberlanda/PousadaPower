@@ -194,14 +194,14 @@
 	</schema>
 	<connector name="pgadmin" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-9.4.1208.jar" host="localhost" port="5432" instance="project-manager" user="projectmanager" passwd="cHJvamVjdG1hbmFnZXI=" />
 	<layout name="Default" id="Layout_33a53aa6" show_relation_columns="y" >
-		<comment><![CDATA[Default]]></comment>
 		<entity schema="public" name="pessoa" color="b3ccf5" x="45" y="60" />
 		<entity schema="public" name="cidade" color="b3ccf5" x="255" y="495" />
 		<entity schema="public" name="fornecedor" color="b3ccf5" x="660" y="510" />
 		<entity schema="public" name="estado" color="bef5b3" x="285" y="180" />
 		<entity schema="public" name="pais" color="bef5b3" x="450" y="45" />
 		<entity schema="public" name="produto" color="b3ccf5" x="975" y="525" />
-		<entity schema="public" name="usuario" color="bef5b3" x="810" y="45" />
+		<entity schema="public" name="schema_version" color="bef5b3" x="1035" y="150" />
+		<entity schema="public" name="usuario" color="bef5b3" x="765" y="195" />
 	</layout>
 	<layout name="Demo Grouping Layout" id="Layout_8969a2b" show_relation_columns="y" >
 		<entity schema="public" name="cidade" color="b3ccf5" x="240" y="465" />

@@ -50,3 +50,7 @@
 	background-color: #DDDDDD;
 	cursor: pointer;
 }
+
+.side-nav-index-item-selected {
+	background : #ECECEC;
+}

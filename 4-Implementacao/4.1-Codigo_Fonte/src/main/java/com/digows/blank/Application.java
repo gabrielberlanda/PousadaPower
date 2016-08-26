@@ -20,7 +20,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
@@ -150,6 +155,16 @@ public class Application extends SpringBootServletInitializer
 						.and()
 							.logout()
 								.logoutUrl( "/logout" );
+			// Habilita CORS para autenticar
+            final UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
+            final CorsConfiguration corsConfiguration = new CorsConfiguration();
+            corsConfiguration.setAllowCredentials( true );
+            corsConfiguration.addAllowedOrigin( "*" );
+            corsConfiguration.addAllowedHeader( "*" );
+            corsConfiguration.addAllowedMethod( "*" );
+            corsConfiguration.setMaxAge( 31536000L );
+            corsConfigurationSource.registerCorsConfiguration( "/**", corsConfiguration );
+            httpSecurity.addFilterBefore( new CorsFilter( corsConfigurationSource ), ChannelProcessingFilter.class );
 		}
 	}
 	
@@ -169,6 +184,12 @@ public class Application extends SpringBootServletInitializer
 			final ServletRegistrationBean registration = new ServletRegistrationBean( new DwrSpringServlet(), "/broker/*" );
 			registration.addInitParameter( "debug", "true" );
 			registration.addInitParameter( "scriptCompressed", "true" );
+			
+			//Enable CORS or DWR
+            registration.addInitParameter( "allowScriptTagRemoting", "true" );
+            registration.addInitParameter( "crossDomainSessionSecurity", "false" );
+            registration.addInitParameter( "allowGetForSafariButMakeForgeryEasier", "true" );
+			
 			registration.setName( "dwrSpringServlet" );
 			return registration;
 		}
@@ -209,5 +230,12 @@ public class Application extends SpringBootServletInitializer
 	    {
 	        registry.addInterceptor( this.localeChangeInterceptor() );
 	    }
+	    
+        @Override
+        public void addCorsMappings( CorsRegistry registry ) 
+        {
+            //CORS for all 
+            registry.addMapping( "/**" );
+        }
 	}
 }

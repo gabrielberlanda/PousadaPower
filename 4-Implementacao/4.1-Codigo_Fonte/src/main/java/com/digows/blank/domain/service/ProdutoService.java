@@ -64,6 +64,7 @@ public class ProdutoService
 		
 		produto.validarCampos();
 		
+		
 		return this.produtoRepository.save( produto );
 	}
 	

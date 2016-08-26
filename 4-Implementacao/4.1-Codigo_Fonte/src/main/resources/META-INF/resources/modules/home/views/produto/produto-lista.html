@@ -51,6 +51,16 @@
   </table>
 </md-table-container>
 
+<!-- <div class="default-paginator" layout layout-align="end center" ng-if="model.familia.page.content.length > 0"> -->
+<!-- 	{{ model.familia.page.pageable.page + 1 }} de {{ totalPagesFamilia }} -->
+<!-- 	<md-button class="md-icon-button" ng-disabled="(model.familia.page.pageable.page + 1) < 2" ng-click="onFamiliaPaginationChange(false)"> -->
+<!-- 		<i style="font-size: 20px;" class="zmdi zmdi-chevron-left" ng-style="(model.familia.page.pageable.page + 1) < 2 && {'color': '#BEBEBE'} || ''"></i> -->
+<!-- 	</md-button> -->
+<!-- 	<md-button class="md-icon-button" ng-disabled="(model.familia.page.pageable.page + 1) >= totalPagesFamilia" ng-click="onFamiliaPaginationChange(true)"> -->
+<!-- 		<i style="font-size: 20px;" class="zmdi zmdi-chevron-right" ng-style="(model.familia.page.pageable.page + 1) >= Math.ceil(model.familia.page.total/model.familia.page.pageable.size) && {'color': '#BEBEBE'} || ''"></i> -->
+<!-- 	</md-button> -->
+<!-- 		</div> -->
+
 <md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"  md-on-paginate="getDesserts" md-page-select></md-table-pagination>
 	
 </html>

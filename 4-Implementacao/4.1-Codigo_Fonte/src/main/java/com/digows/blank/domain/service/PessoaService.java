@@ -50,19 +50,26 @@ public class PessoaService
 	public Hospede insertHospede ( Hospede hospede )
 	{
 		Assert.isNull( hospede.getId(), "Hospede já cadastrado" );
-		Assert.notNull( hospede.getNome(), "Campo nome não pode ser nulo" );
-		Assert.notNull( hospede.getEmail(), "Campo email não pode ser nulo" );
-		Assert.notNull( hospede.getTelefone(), "Campo telefone não pode ser Nulo" );
-		
+	
+		if ( hospede.getCidade() != null ) 
+		{
+			if ( hospede.getCidade().getEstado().getPais().isCpfRequerido() ) {
+				Assert.notNull( hospede.getCpf(), "CPF é obrigatório" );
+			}
+		}
 		return this.hospedeRepository.save( hospede );
 	}
 	
 	public Hospede updateHospede ( Hospede hospede )
 	{
 		Assert.notNull( hospede.getId(), "Hospede não cadastrado" );
-		Assert.notNull( hospede.getNome(), "Campo nome não pode ser nulo" );
-		Assert.notNull( hospede.getEmail(), "Campo email não pode ser nulo" );
-		Assert.notNull( hospede.getTelefone(), "Campo telefone não pode ser Nulo" );
+		
+		if ( hospede.getCidade() != null ) 
+		{
+			if ( hospede.getCidade().getEstado().getPais().isCpfRequerido() ) {
+				Assert.notNull( hospede.getCpf(), "CPF é obrigatório" );
+			}
+		}
 		
 		return this.hospedeRepository.save( hospede );
 	}

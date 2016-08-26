@@ -60,6 +60,47 @@ public class FornecedorService
 		Assert.notNull( fornecedor, "Fornecedor não encontrado" );
 		
 		return fornecedor;
+	}
+	
+	/**
+	 * 
+	 * @param fornecedorId
+	 */
+	public void removeFornecedor ( long fornecedorId ) 
+	{
+		this.fornecedorRepository.delete( fornecedorId );
+		this.fornecedorRepository.flush();
+	}
+	
+	/**
+	 * 
+	 * @param fornecedor
+	 * @return
+	 */
+	public Fornecedor insertFornecedor( Fornecedor fornecedor )
+	{
+		Assert.isNull( fornecedor.getId(), "Fornecedor já cadastrado");
+		Assert.notNull( fornecedor.getNomeFantasia() );
+		Assert.notNull( fornecedor.getRazaoSocial() );
+		Assert.notNull( fornecedor.getEmail() );
+		Assert.notNull( fornecedor.getCnpj() );
 		
+		return this.fornecedorRepository.save( fornecedor );
+	}
+	
+	/**
+	 * 
+	 * @param fornecedor
+	 * @return
+	 */
+	public Fornecedor updateFornecedor( Fornecedor fornecedor )
+	{
+		Assert.notNull( fornecedor.getId(), "Id não pode ser nulo" );
+		Assert.notNull( fornecedor.getNomeFantasia() );
+		Assert.notNull( fornecedor.getRazaoSocial() );
+		Assert.notNull( fornecedor.getEmail() );
+		Assert.notNull( fornecedor.getCnpj() );
+		
+		return this.fornecedorRepository.save( fornecedor );
 	}
 }

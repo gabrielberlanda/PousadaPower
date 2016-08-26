@@ -58,6 +58,7 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@Column ( length= 20 )
 	private String inscricaoEstadual;
 
 	/**
@@ -75,11 +76,13 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@Column( length = 50 )
 	private String endereco;
 	
 	/**
 	 * 
 	 */
+	@Column ( length = 50 )
 	private String bairro;
 	
 	/**
@@ -90,6 +93,7 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@Column ( length = 500 )
 	private String observacao;
 
 	/**

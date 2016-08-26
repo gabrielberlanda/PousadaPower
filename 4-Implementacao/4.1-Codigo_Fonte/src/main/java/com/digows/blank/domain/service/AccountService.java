@@ -206,6 +206,7 @@ public class AccountService
 	 * @return
 	 */
 	@Transactional(readOnly = true)
+	@PreAuthorize("hasAnyAuthority('"+PermissaoUsuario.ADMINISTRADOR_VALUE+"')")
 	public Page<Usuario> listUsersByFilters( String filter, PageRequest pageable )
 	{
 		return this.userRepository.listByFilters( filter, pageable );

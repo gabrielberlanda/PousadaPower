@@ -95,26 +95,30 @@
 							
 						<md-divider></md-divider>
 						
-						<md-list flex="">
-					       <md-list-item class="md-2-line" ng-click="$state.go('hospede.lista')">
+						<md-list flex="" >
+					       <md-list-item class="md-2-line" ng-click="$state.go('hospede.lista')"
+					       		 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('hospede') > -1 }">
 					         <div class="md-list-item-text"  layout="row">
 					           <div style="border-radius:50%; height: 17px; width: 17px; background: #607D8B; margin-right: 20px;"></div>
 					           <h3>Hospedes</h3>
 					         </div>
 					       </md-list-item>
-     					   <md-list-item class="md-2-line" ng-click="$state.go('usuario.lista')">
+     					   <md-list-item class="md-2-line" ng-click="$state.go('usuario.lista')"
+     					   		 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('usuario') > -1 }">
 					         <div class="md-list-item-text"  layout="row">
 					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
 					           <h3>Usuário</h3>
 					         </div>
 					       </md-list-item>
-					       <md-list-item class="md-2-line" ng-click="$state.go('fornecedor.lista')">
+					       <md-list-item class="md-2-line" ng-click="$state.go('fornecedor.lista')"
+					       		 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('fornecedor') > -1 }">
 					         <div class="md-list-item-text"  layout="row">
 					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
 					           <h3>Fornecedor</h3>
 					         </div>
 					       </md-list-item>
-					       <md-list-item class="md-2-line" ng-click="$state.go('produto.lista')">
+					       <md-list-item class="md-2-line" ng-click="$state.go('produto.lista')"
+					       				 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('produto') > -1 }">
 					         <div class="md-list-item-text"  layout="row">
 					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
 					           <h3>Produto</h3>

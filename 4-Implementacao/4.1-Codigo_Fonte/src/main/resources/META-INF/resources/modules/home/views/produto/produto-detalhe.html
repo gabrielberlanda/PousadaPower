@@ -32,13 +32,13 @@
 	<eits-hbox>
 		<eits-vbox class="detail">
 			<label>Preço unitário</label>
-			<span>{{model.entity.precoUnitario}}</span>
+			<span>{{model.entity.precoUnitario | currency }}</span>
 			<span ng-if="!model.entity.precoUnitario"> - </span>
 		</eits-vbox>
 
 		<eits-vbox class="detail">
 			<label>Preço Custo</label>
-			<span>{{model.entity.precoCusto}}</span>
+			<span>{{model.entity.precoCusto | currency }}</span>
 			<span ng-if="!model.entity.precoCusto"> - </span>
 		</eits-vbox>
 		

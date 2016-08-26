@@ -17,7 +17,12 @@ import com.digows.blank.domain.entity.fornecedor.Fornecedor;
  */
 public interface IFornecedorRepository extends JpaRepository<Fornecedor, Long>
 {
-
+	/**
+	 * 
+	 * @param filter
+	 * @param page
+	 * @return
+	 */
 	@Query ( value = "SELECT fornecedor "
 			+ "FROM Fornecedor fornecedor "
 			+ "WHERE "

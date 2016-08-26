@@ -17,8 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.directwebremoting.annotations.DataTransferObject;
-import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Assert;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
@@ -56,6 +56,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@NotEmpty(message="Campo nome não pode ser nulo")
 	@Column( nullable = false, length = 50 )
 	private String nome;
 	
@@ -87,12 +88,14 @@ public class Pessoa extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@Email
+	@NotEmpty(message="Campo email não pode ser nulo")
 	@Column( nullable = false, length = 100 )
 	private String email;
 	
 	/**
 	 * 
 	 */
+	@NotEmpty(message="Campo telefone não pode ser nulo")
 	@Column( nullable = false, length = 25 )
 	private String telefone;
 	

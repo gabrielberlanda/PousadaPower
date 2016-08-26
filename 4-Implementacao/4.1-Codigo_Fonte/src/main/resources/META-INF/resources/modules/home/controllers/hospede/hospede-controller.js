@@ -17,18 +17,22 @@ angular.module('home')
 		     *                          ATTRIBUTES
 		     *-------------------------------------------------------------------*/
 		    
-		    $scope.NEW_HOSPEDE_STATE        = "hospede.novo";
-		    $scope.EDIT_HOSPEDE_STATE      = "hospede.editar";
+		    $scope.NEW_HOSPEDE_STATE         = "hospede.novo";
+		    $scope.EDIT_HOSPEDE_STATE     	 = "hospede.editar";
 		    $scope.DETAIL_HOSPEDE_STATE   	 = "hospede.detalhe";
 		    $scope.LIST_HOSPEDE_STATE     	 = "hospede.lista";
-		 
+		    $scope.today = new Date();
 		     /**
 		      *
 		      */
 		    $scope.model = {
-		 
+	    		filtroEstado : null,
+	    		filtroCidade : null,
+	    		filtroPais : null,
 		        entity : {
-		            cidade : null
+		            cidade : null,
+		            pais: null,
+		            estado : null
 		        },
 		 
 		        query : {
@@ -73,7 +77,9 @@ angular.module('home')
 		     $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 		 
 		        $scope.model.entity = {
-		        		cidade : null
+		        		cidade : null,
+		        		pais : null,
+		        		estado : null
 		        };
 		 
 		        switch( toState.name ){

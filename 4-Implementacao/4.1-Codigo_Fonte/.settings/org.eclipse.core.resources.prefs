@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/resources/META-INF/resources/modules/home/views/fornecedor/fornecedor-formulario.html=UTF-8
 encoding//src/main/resources/META-INF/resources/modules/home/views/hospede/hospede-formulario.html=UTF-8
 encoding//src/main/resources/META-INF/resources/modules/home/views/hospede/hospede-lista.html=UTF-8
 encoding//src/main/resources/META-INF/resources/modules/home/views/usuario/usuario-detalhe.html=UTF-8

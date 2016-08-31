@@ -31,7 +31,22 @@
 		cidade_id="1000"
 		email="fornecedor@comida.com"
 		/>
-	
+		
+	<public.fornecedor
+		id="1002"
+		created="2015-03-30 00:00:00"
+		nome_fantasia="Fornecedor de souvenier"
+		razao_social="Fornecedor de souvenier"
+		telefone="333333333"
+		cnpj="12345678907896"
+		inscricao_estadual="656565478"
+		bairro="bairro"
+		endereco="endereco"
+		numero="1234"
+		observacao="observacao"
+		cidade_id="1000"
+		email="fornecedor@souvenier.com"
+		/>	
 	
 </dataset>
   

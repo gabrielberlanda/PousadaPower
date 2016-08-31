@@ -11,7 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import org.directwebremoting.annotations.DataTransferObject;
-import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.digows.blank.domain.entity.pessoa.Cidade;
 
@@ -34,36 +34,41 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@NotEmpty( message ="Nome fantasia é obrigatório." )
 	@Column( length= 50, nullable = false, unique = true )
 	private String nomeFantasia;
 
 	/**
 	 * 
 	 */
+	@NotEmpty( message = "Razão social é obrigatório.")
 	@Column( length= 50, nullable = false, unique = true )
 	private String razaoSocial;
 	
 	/**
 	 * 
 	 */
+	@NotEmpty( message= "Email é obrigatório." )
 	@Column( length= 100, nullable = false, unique = true )
 	private String email;
 	
 	/**
 	 * 
 	 */
+	@NotEmpty( message = "Telefone é obrigatório.")
 	@Column( length= 50, nullable = false )
 	private String telefone;
 	
 	/**
 	 * 
 	 */
-	@Column ( length= 20 )
+	@Column ( length= 50 )
 	private String inscricaoEstadual;
 
 	/**
 	 * 
 	 */
+	@NotEmpty( message="CNPJ é obrigatório." )
 	@Column( length= 14, nullable = false, unique = true )
 	private String cnpj;
 	

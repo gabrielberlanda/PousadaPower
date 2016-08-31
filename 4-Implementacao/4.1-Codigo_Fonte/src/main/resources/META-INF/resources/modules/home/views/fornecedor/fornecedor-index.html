@@ -9,7 +9,7 @@
             <!-- LIST -->
             <div ng-switch-when="fornecedor.lista" class="navbar-title" layout="row" layout-align="start center">
                 <div flex=>Listagem de Fornecedores</div>
-                <md-button ui-sref="fornecedor.novo" aria-label="create fornecedor" ng-disabled="true" class="md-raised md-hue-1">Novo Fornecedor</md-button>
+                <md-button ui-sref="fornecedor.novo" aria-label="create fornecedor" class="md-raised md-hue-1">Novo Fornecedor</md-button>
             </div>
  
             <!-- CREATE -->
@@ -37,8 +37,8 @@
                     <md-icon md-font-set="zmdi zmdi-close zmdi-arrow-back zmdi-hc-lg"></md-icon>
                 </md-button>
                 <div flex="">Detalhe do Fornecedor</div>
-                <md-button class="md-raised button-blue" aria-label="back to edit" ng-disabled="true" ng-click="changeToEdit($event, model.entity)">Editar</md-button>
-                <md-button class="md-raised button-red" ng-disabled="true" ng-click="removeFornecedor($event, model.entity)">Remover</md-button>
+                <md-button class="md-raised button-blue" aria-label="back to edit"  ng-click="changeToEdit($event, model.entity)">Editar</md-button>
+                <md-button class="md-raised button-red"  ng-click="removeFornecedor($event, model.entity)">Remover</md-button>
             </div>
              
         </div>

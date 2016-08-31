@@ -39,10 +39,10 @@
         <td md-cell>{{fornecedor.telefone}}</td>
         <td md-cell>{{fornecedor.email}}</td>
         <td md-cell> 
-       	    <md-button ng-disabled="true" ng-click="changeToEdit($event,hospede)" aria-label="remove" class="md-raised table-button">
+       	    <md-button ng-click="changeToEdit($event,fornecedor)" aria-label="remove" class="md-raised table-button">
             	<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
             </md-button>
-            <md-button ng-disabled="true" ng-click="removeHospede($event, hospede)" aria-label="remove" class="md-raised table-button">
+            <md-button ng-click="removeFornecedor($event, fornecedor)" aria-label="remove" class="md-raised table-button">
             	<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
             </md-button>            
         </td>

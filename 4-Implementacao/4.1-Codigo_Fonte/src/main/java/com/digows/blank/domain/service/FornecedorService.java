@@ -80,10 +80,6 @@ public class FornecedorService
 	public Fornecedor insertFornecedor( Fornecedor fornecedor )
 	{
 		Assert.isNull( fornecedor.getId(), "Fornecedor já cadastrado");
-		Assert.notNull( fornecedor.getNomeFantasia() );
-		Assert.notNull( fornecedor.getRazaoSocial() );
-		Assert.notNull( fornecedor.getEmail() );
-		Assert.notNull( fornecedor.getCnpj() );
 		
 		return this.fornecedorRepository.save( fornecedor );
 	}
@@ -96,10 +92,6 @@ public class FornecedorService
 	public Fornecedor updateFornecedor( Fornecedor fornecedor )
 	{
 		Assert.notNull( fornecedor.getId(), "Id não pode ser nulo" );
-		Assert.notNull( fornecedor.getNomeFantasia() );
-		Assert.notNull( fornecedor.getRazaoSocial() );
-		Assert.notNull( fornecedor.getEmail() );
-		Assert.notNull( fornecedor.getCnpj() );
 		
 		return this.fornecedorRepository.save( fornecedor );
 	}

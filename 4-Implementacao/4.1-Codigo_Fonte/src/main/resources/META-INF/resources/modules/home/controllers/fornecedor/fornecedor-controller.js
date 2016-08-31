@@ -198,25 +198,25 @@ angular.module('home')
 		 
 		     };
 		 
-		     $scope.removeHospede = function( ev, hospede ) {
+		     $scope.removeFornecedor = function( ev, fornecedor ) {
 		 
 		         var confirmConfig = {
-		             title   : "Remover Hospede",
-		             content : "Você realmente deseja remover o hospede " + hospede.nome + "?",
+		             title   : "Remover Fornecedor",
+		             content : "Você realmente deseja remover o fornecedor " + fornecedor.nomeFantasia + "?",
 		             ok      : "Remover"
 		         }
 		 
 		         $rootScope.confirmDialog( ev, confirmConfig )
 		 
 		             .then(function() {
-		            	 pessoaService.removeHospede ( hospede.id, {
+		            	 fornecedorService.removeFornecedor ( fornecedor.id, {
 		                     callback: function ( result ){
-		                         $rootScope.toast("hospede removido com sucesso!", "green");
-		                         if ( $state.current.name == $scope.DETAIL_HOSPEDE_STATE ) {
-		                             $state.go( $scope.LIST_HOSPEDE_STATE );
+		                         $rootScope.toast("Fornecedor removido com sucesso!", "green");
+		                         if ( $state.current.name == $scope.DETAIL_FORNECEDOR_STATE ) {
+		                             $state.go( $scope.LIST_FORNECEDOR_STATE );
 		                         }
-		                         if ( $scope.model.pageRequest.content.indexOf(hospede) > -1 ) {
-		                             $scope.model.pageRequest.content.splice( $scope.model.pageRequest.content.indexOf(hospede), 1);
+		                         if ( $scope.model.pageRequest.content.indexOf(fornecedor) > -1 ) {
+		                             $scope.model.pageRequest.content.splice( $scope.model.pageRequest.content.indexOf(fornecedor), 1);
 		 
 		                             $scope.model.pageRequest.total--;
 		                             if( $scope.model.pageRequest.content.length == 0 ) {
@@ -224,34 +224,103 @@ angular.module('home')
 		                             }
 		                         }
 		                         $scope.$apply();
-		 
 		                     }
 		                 } )
 		             }, function() {
 		             });
 		     }
 		 
+		     $scope.validarCNPJ = function ( cnpj ) {
+		          
+		         cnpj = cnpj.replace(/[^\d]+/g,'');
+		       
+		         var fornecedorForm = angular.element( document.querySelector('#fornecedorForm') ).scope()['fornecedorForm'];
+		          
+		         var input = fornecedorForm.cnpj;
+		         
+		         if(cnpj == '') {
+		             input.$setValidity( "cnpj", false );
+		             return false;
+		         }
+		           
+		         if (cnpj.length != 14) {
+		             input.$setValidity( "cnpj", false );            
+		             return false;
+		         }
+		       
+		         // Elimina CNPJs invalidos conhecidos
+		         if (cnpj == "00000000000000" || 
+		             cnpj == "11111111111111" || 
+		             cnpj == "22222222222222" || 
+		             cnpj == "33333333333333" || 
+		             cnpj == "44444444444444" || 
+		             cnpj == "55555555555555" || 
+		             cnpj == "66666666666666" || 
+		             cnpj == "77777777777777" || 
+		             cnpj == "88888888888888" || 
+		             cnpj == "99999999999999") {
+		             input.$setValidity( "cnpj", false );
+		             return false;
+		         }
+		               
+		         // Valida DVs
+		         var tamanho = cnpj.length - 2;
+		         var numeros = cnpj.substring(0,tamanho);
+		         var digitos = cnpj.substring(tamanho);
+		         var soma = 0;
+		         var pos = tamanho - 7;
+		         for (var i = tamanho; i >= 1; i--) {
+		           soma += numeros.charAt(tamanho - i) * pos--;
+		           if (pos < 2)
+		                 pos = 9;
+		         }
+		         var resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+		         if (resultado != digitos.charAt(0)) {
+		             input.$setValidity( "cnpj", false );
+		             return false;
+		         }
+		               
+		         tamanho = tamanho + 1;
+		         numeros = cnpj.substring(0,tamanho);
+		         soma = 0;
+		         pos = tamanho - 7;
+		         for (var i = tamanho; i >= 1; i--) {
+		           soma += numeros.charAt(tamanho - i) * pos--;
+		           if (pos < 2)
+		                 pos = 9;
+		         }
+		         resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+		         if (resultado != digitos.charAt(1)) {
+		             input.$setValidity( "cnpj", false );
+		             return false;
+		         }
+		         input.$setValidity( "cnpj", true );       
+		         return true;
+		          
+		     }
+
+		     
 		     /**
 		      *
 		      */
-		     $scope.save = function( hospede ){
-		    	 var hospedeForm = angular.element( document.querySelector('#hospedeForm') ).scope()['hospedeForm'];
-		    	 if ( hospede && hospedeForm.$valid ) {
-		             if ( !hospede.id ) {
-		            	 pessoaService.insertHospede ( hospede, {
+		     $scope.save = function( fornecedor ){
+		    	 var fornecedorForm = angular.element( document.querySelector('#fornecedorForm') ).scope()['fornecedorForm'];
+		    	 if ( fornecedor && fornecedorForm.$valid ) {
+		             if ( !fornecedor.id ) {
+		            	 fornecedorService.insertFornecedor ( fornecedor, {
 		                     callback: function ( result ) {
-		                         $rootScope.toast("Hospede inserido com sucesso!", "green");
-		                         $state.go ( $scope.LIST_HOSPEDE_STATE );
+		                         $rootScope.toast("Fornecedor inserido com sucesso!", "green");
+		                         $state.go ( $scope.LIST_FORNECEDOR_STATE );
 		                         $scope.$apply ();
 		                     }, errorHandler: function ( message, exception ) {
 		                             $rootScope.toast(message, "red");
 		                     }
 		                 })
 		             }else {
-		            	 pessoaService.updateHospede( hospede, {
+		            	 fornecedorService.updateFornecedor( fornecedor, {
 		                     callback: function ( result ) {
-		                         $rootScope.toast("As informações do hospede foram atualizadas", "green");
-		                         $state.go ( $scope.LIST_HOSPEDE_STATE );
+		                         $rootScope.toast("As informações do fornecedor foram atualizadas", "green");
+		                         $state.go ( $scope.LIST_FORNECEDOR_STATE );
 		                         $scope.$apply ();
 		                     }
 		                 })

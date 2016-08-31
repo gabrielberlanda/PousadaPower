@@ -2,22 +2,21 @@
 <html xmlns:ng="http://angularjs.org" 
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 
-		<form name="hospedeForm" id="hospedeForm" >
+		<form name="fornecedorForm" id="fornecedorForm" >
 		
 			<eits-hbox>
 		          <md-input-container width="300" class="md-block" >
-		            <label>Nome</label>
-		            <input required="true" name="nome" ng-model="model.entity.nome">
-		            <div ng-messages="hospedeForm.nome.$error" md-auto-hide="false"> 
+		            <label>Nome Fantasia</label>
+		            <input required="true" name="nomeFantasia" ng-model="model.entity.nomeFantasia">
+		            <div ng-messages="fornecedorForm.nomeFantasia.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório 
 		            	</div>
 		            </div>
 		          </md-input-container>
-
 		          <md-input-container width="300" class="md-block" >
-		            <label>Email</label>
-		            <input required="true" name="email" ng-model="model.entity.email">
-        		    <div ng-messages="hospedeForm.email.$error" md-auto-hide="false"> 
+		            <label>Razão Social</label>
+		            <input required="true" name="razaoSocial" ng-model="model.entity.razaoSocial">
+		            <div ng-messages="fornecedorForm.razaoSocial.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório 
 		            	</div>
 		            </div>
@@ -27,57 +26,44 @@
 	          <eits-hbox> 
 		          <md-input-container width="200">
 		            <label>Telefone</label>
-		            <input required="true" ng-model="model.entity.telefone" name="telefone">
-		            <div ng-messages="hospedeForm.telefone.$error" md-auto-hide="false"> 
+		            <input required="true" ui-mask="(99) 9999-9999" ng-model="model.entity.telefone" name="telefone">
+		            <div ng-messages="fornecedorForm.telefone.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório 
 		            	</div>
 		            </div>
 		          </md-input-container>
-		          
-		          <md-input-container width="200">
-		            <label>Celular</label>
-		            <input ng-model="model.entity.celular">
-		          </md-input-container>
+				<md-input-container width="300" class="md-block" >
+		            <label>Email</label>
+		            <input required="true" name="email" type="email" ng-model="model.entity.email">
+        		    <div ng-messages="fornecedorForm.email.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+		            	<div ng-message="email"> Informe um e-mail válido 
+		            	</div>
+		            </div>
+		          </md-input-container>			          
 	          </eits-hbox>
 			
 			<eits-hbox>
 		          <md-input-container width="300" class="md-block">
-		            <label>RG</label>
-		            <input ng-model="model.entity.rg">
-		          </md-input-container>
-		          
-		          <md-input-container width="300" class="md-block">
-		            <label>CPF</label>
-		            <input ng-model="model.entity.cpf" ng-disabled="!model.entity.pais.cpfRequerido">
+		            <label>CNPJ</label>
+		            <input ng-model="model.entity.cnpj" name="cnpj"  ui-mask="99.999.999/9999-99"  ng-blur="validarCNPJ( model.entity.cnpj, this )" required >
+		            <div ng-messages="fornecedorForm.cnpj.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório 
+		            	</div>
+           	        	<div ng-message="cnpj"> CPF inválido 
+		            	</div>
+		            </div>
 		          </md-input-container>
                   <md-input-container width="300" class="md-block">
-		            <label>Passaporte</label>
-		            <input ng-disabled="model.entity.pais.cpfRequerido" ng-model="model.entity.passaporte">
+		            <label>Inscrição Estadual</label>
+		            <input ng-model="model.entity.inscricaoEstadual">
 		          </md-input-container>
 			</eits-hbox>
           
 	          <eits-hbox>
-		          <eits-vbox style="margin-right: 20px;">
-		              <span>Data de Nascimento</span>
-		              <md-datepicker style="margin-right: 0px !important" ng-model="model.entity.dataNascimento" />
-		          </eits-vbox>
-	                 <md-input-container width="200">
-				       <label>Sexo</label>
-				       <md-select ng-model="model.entity.sexo">
-				         <md-option  value="MASCULINO" >
-				           Masculino
-				         </md-option>
-	    			     <md-option  value="FEMININO" >
-				           Feminino
-				         </md-option>
-				       </md-select>
-				     </md-input-container>
-			    
-	          </eits-hbox>
 
-	          <eits-hbox>
-
-					<md-autocomplete  width="200" style="margin-top: 8px; margin-left: 20px;"
+					<md-autocomplete  width="200" style="margin-top: 8px;"
 						maxlength="100"
 					    md-input-name="pais"
 					    md-no-cache="true"

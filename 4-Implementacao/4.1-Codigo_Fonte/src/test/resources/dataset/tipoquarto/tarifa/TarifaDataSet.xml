@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<!-- 	Tarifa Padrão do Quarto 1000L -->
+	<public.tarifa
+		id="1000"
+		created="2015-03-30 00:00:00"
+		dia="0"
+		preco="300"
+		tipo_quarto_id="1000"
+		/>
+	<public.tarifa
+		id="1001"
+		created="2015-03-30 00:00:00"
+		dia="1"
+		preco="300"
+		tipo_quarto_id="1000"
+		/>	
+	<public.tarifa
+		id="1002"
+		created="2015-03-30 00:00:00"
+		dia="2"
+		preco="300"
+		tipo_quarto_id="1000"
+		/>
+	<public.tarifa
+		id="1003"
+		created="2015-03-30 00:00:00"
+		dia="3"
+		preco="300"
+		tipo_quarto_id="1000"
+		/>
+	<public.tarifa
+		id="1004"
+		created="2015-03-30 00:00:00"
+		dia="4"
+		preco="300"
+		tipo_quarto_id="1000"
+		/>	
+	<public.tarifa
+		id="1005"
+		created="2015-03-30 00:00:00"
+		dia="5"
+		preco="300"
+		tipo_quarto_id="1000"
+		/>
+	<public.tarifa
+		id="1006"
+		created="2015-03-30 00:00:00"
+		dia="6"
+		preco="300"
+		tipo_quarto_id="1000"
+		/>
+		
+	<!-- 	Tarifa Padrão do Quarto 1001L -->
+	
+	<public.tarifa
+		id="1007"
+		created="2015-03-30 00:00:00"
+		dia="0"
+		preco="200"
+		tipo_quarto_id="1001"
+		/>
+	<public.tarifa
+		id="1008"
+		created="2015-03-30 00:00:00"
+		dia="1"
+		preco="200"
+		tipo_quarto_id="1001"
+		/>	
+	<public.tarifa
+		id="1009"
+		created="2015-03-30 00:00:00"
+		dia="2"
+		preco="200"
+		tipo_quarto_id="1001"
+		/>
+	<public.tarifa
+		id="1010"
+		created="2015-03-30 00:00:00"
+		dia="3"
+		preco="200"
+		tipo_quarto_id="1001"
+		/>
+	<public.tarifa
+		id="1011"
+		created="2015-03-30 00:00:00"
+		dia="4"
+		preco="200"
+		tipo_quarto_id="1001"
+		/>	
+	<public.tarifa
+		id="1012"
+		created="2015-03-30 00:00:00"
+		dia="5"
+		preco="200"
+		tipo_quarto_id="1001"
+		/>
+	<public.tarifa
+		id="1013"
+		created="2015-03-30 00:00:00"
+		dia="6"
+		preco="200"
+		tipo_quarto_id="1001"
+		/>
+		
+	<!-- 	Tarifa Padrão do Quarto 1002L -->
+
+	<public.tarifa
+		id="1014"
+		created="2015-03-30 00:00:00"
+		dia="0"
+		preco="250"
+		tipo_quarto_id="1002"
+		/>
+	<public.tarifa
+		id="1015"
+		created="2015-03-30 00:00:00"
+		dia="1"
+		preco="250"
+		tipo_quarto_id="1002"
+		/>	
+	<public.tarifa
+		id="1016"
+		created="2015-03-30 00:00:00"
+		dia="2"
+		preco="250"
+		tipo_quarto_id="1002"
+		/>
+	<public.tarifa
+		id="1017"
+		created="2015-03-30 00:00:00"
+		dia="3"
+		preco="250"
+		tipo_quarto_id="1002"
+		/>
+	<public.tarifa
+		id="1018"
+		created="2015-03-30 00:00:00"
+		dia="4"
+		preco="250"
+		tipo_quarto_id="1002"
+		/>	
+	<public.tarifa
+		id="1019"
+		created="2015-03-30 00:00:00"
+		dia="5"
+		preco="250"
+		tipo_quarto_id="1002"
+		/>
+	<public.tarifa
+		id="1020"
+		created="2015-03-30 00:00:00"
+		dia="6"
+		preco="250"
+		tipo_quarto_id="1002"
+		/>
+		
+	<!-- 	"Tarifa de Natal 2016 - Triplo"	 -->
+	<!-- 	Sab, domingo, segunda -->
+	<public.tarifa
+		id="1021"
+		created="2015-03-30 00:00:00"
+		dia="6"
+		preco="500"
+		tarifa_excecao_id="1000"
+		/>
+	<public.tarifa
+		id="1022"
+		created="2015-03-30 00:00:00"
+		dia="0"
+		preco="550"
+		tarifa_excecao_id="1000"
+		/>
+	<public.tarifa
+		id="1023"
+		created="2015-03-30 00:00:00"
+		dia="1"
+		preco="500"
+		tarifa_excecao_id="1000"
+		/>
+		
+	<!-- 	Tarifa de Fim de Ano 2016/2017 - Duplo -->
+	<!-- 	Sexta sabado domingo segunda -->
+	<public.tarifa
+		id="1024"
+		created="2015-03-30 00:00:00"
+		dia="5"
+		preco="530"
+		tarifa_excecao_id="1001"
+		/>
+	<public.tarifa
+		id="1025"
+		created="2015-03-30 00:00:00"
+		dia="6"
+		preco="560"
+		tarifa_excecao_id="1001"
+		/>
+	<public.tarifa
+		id="1026"
+		created="2015-03-30 00:00:00"
+		dia="0"
+		preco="550"
+		tarifa_excecao_id="1001"
+		/>
+	<public.tarifa
+		id="1027"
+		created="2015-03-30 00:00:00"
+		dia="1"
+		preco="500"
+		tarifa_excecao_id="1001"
+		/>
+		
+	<!-- Tarifa de Férias de Junho - Duplo -->
+	<!-- Todos os Dias na semana -->
+	<public.tarifa
+		id="1028"
+		created="2015-03-30 00:00:00"
+		dia="0"
+		preco="500"
+		tarifa_excecao_id="1002"
+		/>
+	<public.tarifa
+		id="1029"
+		created="2015-03-30 00:00:00"
+		dia="1"
+		preco="500"
+		tarifa_excecao_id="1002"
+		/>
+	<public.tarifa
+		id="1030"
+		created="2015-03-30 00:00:00"
+		dia="2"
+		preco="500"
+		tarifa_excecao_id="1002"
+		/>	
+	<public.tarifa
+		id="1031"
+		created="2015-03-30 00:00:00"
+		dia="3"
+		preco="500"
+		tarifa_excecao_id="1002"
+		/>	
+	<public.tarifa
+		id="1032"
+		created="2015-03-30 00:00:00"
+		dia="4"
+		preco="500"
+		tarifa_excecao_id="1002"
+		/>
+	<public.tarifa
+		id="1033"
+		created="2015-03-30 00:00:00"
+		dia="5"
+		preco="550"
+		tarifa_excecao_id="1002"
+		/>
+	<public.tarifa
+		id="1034"
+		created="2015-03-30 00:00:00"
+		dia="6"
+		preco="550"
+		tarifa_excecao_id="1002"
+		/>
+		
+</dataset>

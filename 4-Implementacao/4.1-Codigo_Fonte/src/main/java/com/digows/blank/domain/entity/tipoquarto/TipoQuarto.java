@@ -10,11 +10,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.directwebremoting.annotations.DataTransferObject;
+import org.hibernate.validator.constraints.Length;
 
 import com.digows.blank.domain.entity.tipoquarto.tarifa.Tarifa;
 
@@ -58,7 +61,12 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@Size.List ({
+	    @Size(min=7, message="A tarifa padrão deve conter 7 tarifas"),
+	    @Size(max=7, message="A tarifa padrão deve conter 7 tarifas")
+	})
 	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@JoinColumn(name="tipo_quarto_id")
 	private List<Tarifa> tarifasPadrao;
 
 	/**
@@ -121,7 +129,6 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 		return true;
 	}
 	
-
 
 	/**
 	 * @return the nome

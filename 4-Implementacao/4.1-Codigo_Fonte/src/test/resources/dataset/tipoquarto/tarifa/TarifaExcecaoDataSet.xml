@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<!-- 	Sab, domingo, segunda -->
+	<public.tarifa_excecao
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome="Tarifa de Natal 2016 - Triplo"
+		data_inicio="2016-12-24 00:00:00"
+		data_fim="2016-12-26 00:00:00"
+		tipo_quarto_id="1000"
+	/>
+	
+<!-- 	Sexta sabado domingo segunda -->
+	<public.tarifa_excecao
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome="Tarifa de Fim de Ano 2016/2017 - Duplo"
+		data_inicio="2016-12-30 00:00:00"
+		data_fim="2017-01-02 00:00:00"
+		tipo_quarto_id="1001"
+	/>
+	
+	<public.tarifa_excecao
+		id="1002"
+		created="2015-03-30 00:00:00"
+		nome="Tarifa de Férias de Junho - Duplo"
+		data_inicio="2016-06-01 00:00:00"
+		data_fim="2016-06-20 00:00:00"
+		tipo_quarto_id="1001"
+	/>
+	
+		
+</dataset>

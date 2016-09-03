@@ -11,6 +11,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -63,6 +65,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	 */
 	@NotNull( message = "Informe as tarifas")
 	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@JoinColumn(name="tarifa_excecao_id")
 	private List<Tarifa> tarifas;
 	
 	/**
@@ -78,7 +81,6 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	public TarifaExcecao()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -87,8 +89,8 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	public TarifaExcecao( Long id )
 	{
 		super( id );
-		// TODO Auto-generated constructor stub
 	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -101,6 +103,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 		result = prime * result + ( ( dataFim == null ) ? 0 : dataFim.hashCode() );
 		result = prime * result + ( ( dataInicio == null ) ? 0 : dataInicio.hashCode() );
 		result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
+		result = prime * result + ( ( tipoQuarto == null ) ? 0 : tipoQuarto.hashCode() );
 		return result;
 	}
 
@@ -129,6 +132,11 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 			if ( other.nome != null ) return false;
 		}
 		else if ( !nome.equals( other.nome ) ) return false;
+		if ( tipoQuarto == null )
+		{
+			if ( other.tipoQuarto != null ) return false;
+		}
+		else if ( !tipoQuarto.equals( other.tipoQuarto ) ) return false;
 		return true;
 	}
 
@@ -145,11 +153,27 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	public TarifaExcecao validarTotalTarifa()
+	public TarifaExcecao validarTarifas()
 	{
-		final Integer quantidadeDia;
+		final int MILLIS_IN_DAY = 86400000;
+		final int quantidadeDia = ( int ) ( this.dataFim.getTimeInMillis() - this.dataInicio.getTimeInMillis() ) / MILLIS_IN_DAY ;
+
+		if ( quantidadeDia < Tarifa.QUANTIDADE_DIAS_SEMANA ) 
+        {
+        	Assert.isTrue( this.tarifas.size() == quantidadeDia+1 ); //É somado +1 pois é necessário a tarifa do primeiro dia também.
+        	Tarifa.validarTarifasDeExcecao( this.tarifas, this.dataInicio, this.dataFim );
+        } 
+        else
+        {
+        	Assert.isTrue( this.tarifas.size() == Tarifa.QUANTIDADE_DIAS_SEMANA );
+        	Tarifa.validarTarifaParaCadaDiaDaSemana( this.tarifas );
+        }
+        
 		return this;
 	}
+	
+
+	
 	/**
 	 * @return the nome
 	 */
@@ -212,6 +236,22 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	public void setTarifas( List<Tarifa> tarifas )
 	{
 		this.tarifas = tarifas;
+	}
+
+	/**
+	 * @return the tipoQuarto
+	 */
+	public TipoQuarto getTipoQuarto()
+	{
+		return tipoQuarto;
+	}
+
+	/**
+	 * @param tipoQuarto the tipoQuarto to set
+	 */
+	public void setTipoQuarto( TipoQuarto tipoQuarto )
+	{
+		this.tipoQuarto = tipoQuarto;
 	}
 	
 }

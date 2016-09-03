@@ -4,6 +4,7 @@
 package com.digows.blank.domain.entity.tipoquarto.tarifa;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,6 +31,8 @@ public class Tarifa extends AbstractEntity implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 7940508173178417798L;
+	
+	public static final int QUANTIDADE_DIAS_SEMANA = 7;
 	
 	/**
 	 * 
@@ -95,15 +98,50 @@ public class Tarifa extends AbstractEntity implements Serializable
 		else if ( !preco.equals( other.preco ) ) return false;
 		return true;
 	}
-	
-	public void validarTarifas ( List<Tarifa> tarifas )
-	{
-		Assert.isTrue( tarifas
-						.stream()
-						.filter( t -> t.getDia().equals( this.dia ) )
-						.count() <= 1 );
-	}
 
+	/**
+	 * Validamos as tarifas, verificamos se possui as 7 tarifas da semana.
+	 * @param tarifas
+	 */
+	public static void validarTarifaParaCadaDiaDaSemana( List<Tarifa> tarifas )
+	{
+		Assert.isTrue( tarifas.size() == Tarifa.QUANTIDADE_DIAS_SEMANA );
+		
+		for( Dia dia : Dia.getDiasOrdenados() ) 
+		{
+			Assert.isTrue( Tarifa.possuiTarifaParaODia( dia, tarifas ), "O quarto não possui tarifa para todos os dias da semana" );
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public static void validarTarifasDeExcecao( List<Tarifa> tarifas, Calendar dataInicial, Calendar dataFinal)
+	{
+		Calendar _dataInicial = Calendar.getInstance();
+		_dataInicial.setTime( dataInicial.getTime() );
+        while (_dataInicial.get(Calendar.DAY_OF_MONTH) <= dataFinal.get(Calendar.DAY_OF_MONTH)){    
+        	int diaIndex = _dataInicial.get( Calendar.DAY_OF_WEEK );
+        	
+        	Dia dia = Dia.getDiasOrdenados().get( diaIndex-1 );
+
+        	Assert.isTrue( Tarifa.possuiTarifaParaODia( dia, tarifas ) );
+        	
+        	_dataInicial.add(Calendar.DAY_OF_MONTH, 1);    
+        }    
+	}
+	
+	/**
+	 * 
+	 * @param dia
+	 * @param tarifas
+	 * @return
+	 */
+	public static boolean possuiTarifaParaODia( Dia dia, List<Tarifa> tarifas )
+	{
+		return tarifas.stream().filter( t -> t.getDia().equals( dia ) ).count() == 1;
+	}
+	
 	/**
 	 * @return the preco
 	 */

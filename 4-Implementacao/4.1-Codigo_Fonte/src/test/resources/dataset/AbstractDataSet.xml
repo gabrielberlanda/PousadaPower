@@ -7,4 +7,7 @@
 	<public.pessoa/>
 	<public.fornecedor/>
 	<public.produto/>
+	<public.tipo_quarto/>
+	<public.tarifa_excecao/>
+	<public.tarifa/>
 </dataset>

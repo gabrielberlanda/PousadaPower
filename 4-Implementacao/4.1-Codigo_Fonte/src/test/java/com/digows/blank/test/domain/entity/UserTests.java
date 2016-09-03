@@ -1,4 +1,6 @@
-package com.digows.blank.test.domain.entity.account;
+package com.digows.blank.test.domain.entity;
+
+import java.util.Calendar;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,5 +37,6 @@ public class UserTests extends AbstractUnitTests
 		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.ADMINISTRADOR ) );
 		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.CAIXA ) );
 		Assert.assertTrue( usuario.getAuthorities().contains( PermissaoUsuario.RECEPCIONISTA ) );
+		
 	}
 }

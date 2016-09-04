@@ -3,8 +3,13 @@
  */
 package com.digows.blank.test.domain.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.validation.ValidationException;
 
@@ -821,4 +826,60 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		
 		Assert.fail();
 	}
+	
+	@Test()
+	@WithUserDetails("admin@email.com")
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/account/UserDataSet.xml",
+		"/dataset/endereco/PaisDataSet.xml",
+		"/dataset/endereco/EstadoDataSet.xml",
+		"/dataset/endereco/CidadeDataSet.xml",
+		"/dataset/fornecedor/FornecedorDataSet.xml",
+		"/dataSet/tipoquarto/TipoQuartoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaExcecaoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaDataSet.xml",
+	})
+	public void findTarifaExcecaoByIdMustPass()
+	{
+		TarifaExcecao tarifaExcecao = this.tipoQuartoService.findTarifaExcecaoById( 1000L );
+
+		Calendar dataInicio = new GregorianCalendar();
+		Calendar dataFim = new GregorianCalendar();	
+		
+		dataInicio.set( 2016, 11, 24, 00, 00, 00 );
+		dataFim.set( 2016, 11, 26, 00, 00, 00 );
+
+		Assert.assertEquals( "Tarifa de Natal 2016 - Triplo", tarifaExcecao.getNome() );
+		
+		Assert.assertEquals( dataInicio.get( Calendar.YEAR ), tarifaExcecao.getDataInicio().get( Calendar.YEAR ) );
+		Assert.assertEquals( dataInicio.get( Calendar.MONTH ), tarifaExcecao.getDataInicio().get( Calendar.MONTH ) );
+		Assert.assertEquals( dataInicio.get( Calendar.DAY_OF_MONTH ), tarifaExcecao.getDataInicio().get( Calendar.DAY_OF_MONTH ) );
+		
+		Assert.assertEquals( dataFim.get( Calendar.YEAR ), tarifaExcecao.getDataFim().get( Calendar.YEAR ) );
+		Assert.assertEquals( dataFim.get( Calendar.MONTH ), tarifaExcecao.getDataFim().get( Calendar.MONTH ) );
+		Assert.assertEquals( dataFim.get( Calendar.DAY_OF_MONTH ), tarifaExcecao.getDataFim().get( Calendar.DAY_OF_MONTH ) );
+		
+		Assert.assertNotNull( tarifaExcecao.getTarifas() );
+		System.out.println( tarifaExcecao.getTarifas().size() );
+		
+	}
+
+	@Test()
+	@WithUserDetails("admin@email.com")
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/account/UserDataSet.xml",
+		"/dataset/endereco/PaisDataSet.xml",
+		"/dataset/endereco/EstadoDataSet.xml",
+		"/dataset/endereco/CidadeDataSet.xml",
+		"/dataset/fornecedor/FornecedorDataSet.xml",
+		"/dataSet/tipoquarto/TipoQuartoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaExcecaoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaDataSet.xml",
+	})
+	public void findTarifaExcecaoByIdMustFailWithInvalidId()
+	{
+	
+		Assert.fail();
+	}
+
 }

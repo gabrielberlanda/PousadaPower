@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -63,6 +64,10 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@Size.List ({
+	    @Size(min=1, message="A tarifa de execeção deve conter no minimo 1 tarifa"),
+	    @Size(max=7, message="A tarifa de execeção deve conter no maximo 7 tarifa")
+	})
 	@NotNull( message = "Informe as tarifas")
 	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
 	@JoinColumn(name="tarifa_excecao_id")
@@ -91,6 +96,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 		super( id );
 	}
 
+//	TarifaExcecao( tarifaExcecao.id, tarifaExcecao.nome, tarifaExcecao.dataInicio, tarifaExcecao.dataFim )"
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

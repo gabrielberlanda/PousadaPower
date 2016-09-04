@@ -166,8 +166,11 @@ public class TipoQuartoService
 	 * @param tarifaExcecao
 	 * @return
 	 */
-	public TarifaExcecao findTarifaExcecaoById ( TarifaExcecao tarifaExcecao )
+	public TarifaExcecao findTarifaExcecaoById ( long tarifaExcecaoId )
 	{
+		TarifaExcecao tarifaExcecao = this.tarifaExceccaoRepository.findOne( tarifaExcecaoId );
+		Assert.notNull( tarifaExcecao );
+		Assert.notNull( tarifaExcecao.getTarifas() );
 		return tarifaExcecao;
 	}
 	

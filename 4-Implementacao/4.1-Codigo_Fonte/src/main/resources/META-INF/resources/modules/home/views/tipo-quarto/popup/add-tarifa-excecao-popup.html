@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org"
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+	<md-dialog aria-label="Tarifa de Exce��o form"  flex>
+		<form name="tarifaExcecaoForm" id="tarifaExcecaoForm" ng-init="iniciarTarifas()">
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<h2>{{::model.popupConfig.title}}</h2>
+					<span flex></span>
+					<md-button class="md-icon-button" ng-click="close()">
+						<md-icon md-font-set="zmdi zmdi-close zmdi-close zmdi-hc-lg"></md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-dialog-content>
+				<div class="md-dialog-content">
+					<md-input-container width="300" class="md-block" >
+						<label>Nome</label>
+						<input required="true" name="nome" ng-model="model.entity.nome">
+						<div ng-messages="tarifaExcecaoForm.nome.$error" md-auto-hide="false">
+							<div ng-message="required"> Campo obrigatório
+							</div>
+						</div>
+					</md-input-container>
+					<eits-hbox>
+					
+					    <md-input-container>
+							<label>Data de Início</label>
+							<md-datepicker ng-model="model.entity.dataInicio" ng-change="listTarifasByDataInicioAndDataFim()" name="dataInicio"
+								 md-min-date="TODAY" md-max-date="model.entity.dataFim" required></md-datepicker>
+							<div ng-messages="tarifaExcecaoForm.dataInicio.$error">
+								<div ng-message="valid">Informe uma data correta</div>
+								<div ng-message="required">Campo obrigatório</div>
+								<div ng-message="mindate">Date is too early!</div>
+								<div ng-message="maxdate">Date is too late!</div>
+							</div>
+						</md-input-container>
+					    <md-input-container>
+							<label>Data de Fim</label>
+							<md-datepicker ng-model="model.entity.dataFim" ng-change="listTarifasByDataInicioAndDataFim()" name="dataFim"
+								 md-min-date="model.entity.dataInicio"  required></md-datepicker>
+							<div ng-messages="tarifaExcecaoForm.dataFim.$error">
+								<div ng-message="valid">Informe uma data correta</div>
+								<div ng-message="required">Campo obrigatório</div>
+								<div ng-message="mindate">Date is too early!</div>
+								<div ng-message="maxdate">Date is too late!</div>
+							</div>
+						</md-input-container>
+					
+			      	</eits-hbox>
+			      	<div style="margin-top:30px; margin-left:30px;" layout-padding>
+			    	<eits-hbox> 
+			    		<span width="200">Dia da Semana</span>
+			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
+			    	</eits-hbox>
+			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifas | orderBy:'indice'" >
+			    		<label width="200" style="font-size: small;"> {{::tarifa.label}}</label>
+			    		<md-input-container  width="100" md-no-float style="margin-top:-15px; margin-left: 10px; height: 26px !important;" >
+							<input ng-model="tarifa.preco" type="number"  aria-label="tarifa preço"  required="true" step="1" min="1">
+						</md-input-container>
+			    	</eits-hbox>
+			    </div>
+			      	
+      			</div>
+			</md-dialog-content>
+			<md-dialog-actions layout="row">
+				<span flex></span>
+				<md-button aria-label="close" ng-click="close()">{{::model.popupConfig.cancel}}</md-button>
+				<md-button aria-label="save tarifa" ng-click="save( model.entity )">{{::model.popupConfig.ok}}</md-button>
+			</md-dialog-actions>
+		</form>
+	</md-dialog>
+</html>

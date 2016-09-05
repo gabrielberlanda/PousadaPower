@@ -4,6 +4,7 @@
 package com.digows.blank.domain.entity.tipoquarto.tarifa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -55,7 +56,6 @@ public class Tarifa extends AbstractEntity implements Serializable
 	public Tarifa()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -64,7 +64,6 @@ public class Tarifa extends AbstractEntity implements Serializable
 	public Tarifa( Long id )
 	{
 		super( id );
-		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -141,6 +140,40 @@ public class Tarifa extends AbstractEntity implements Serializable
 	public static boolean possuiTarifaParaODia( Dia dia, Set<Tarifa> tarifas )
 	{
 		return tarifas.stream().filter( t -> t.getDia().equals( dia ) ).count() == 1;
+	}
+	
+	public static List<Tarifa> listTarifasByDataInicioAndDataFim( Calendar dataInicio, Calendar dataFim )
+	{
+		final int MILLIS_IN_DAY = 86400000;
+		final int quantidadeDia = ( int ) ( dataFim.getTimeInMillis() - dataInicio.getTimeInMillis() ) / MILLIS_IN_DAY;
+		
+		List<Tarifa> tarifas = new ArrayList<Tarifa>();
+		if ( quantidadeDia < Tarifa.QUANTIDADE_DIAS_SEMANA ) 
+        {
+	        while (dataInicio.get(Calendar.DAY_OF_MONTH) <= dataFim.get(Calendar.DAY_OF_MONTH)){    
+	        	int diaIndex = dataInicio.get( Calendar.DAY_OF_WEEK );
+	        	
+	        	Dia dia = Dia.getDiasOrdenados().get( diaIndex-1 );
+
+	        	Tarifa tarifa = new Tarifa();
+	        	tarifa.setDia( dia );
+	        	tarifas.add( tarifa );
+	        	
+	        	dataInicio.add(Calendar.DAY_OF_MONTH, 1);    
+	        } 
+        } 
+		else
+		{
+			for ( Dia dia : Dia.getDiasOrdenados() )
+			{
+				Tarifa tarifa = new Tarifa();
+				tarifa.setDia( dia );
+				tarifas.add( tarifa );
+			}
+		}
+		
+		return tarifas;
+		
 	}
 	
 	/**

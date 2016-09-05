@@ -5,6 +5,7 @@ package com.digows.blank.domain.service;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -198,5 +199,16 @@ public class TipoQuartoService
 	public void removeTarifaExcecao ( long tarifaExecaoId )
 	{
 		
+	}
+	
+	/**
+	 * 
+	 * @param dataInicio
+	 * @param dataFim
+	 * @return
+	 */
+	public List<Tarifa> listTarifasByDataInicioAndDataFim( Calendar dataInicio, Calendar dataFim )
+	{
+		return Tarifa.listTarifasByDataInicioAndDataFim( dataInicio, dataFim );
 	}
 }

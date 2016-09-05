@@ -21,11 +21,14 @@ angular.module('home')
 		    $scope.DETAIL_TIPO_QUARTO_STATE   	 = "tipoQuarto.detalhe";
 		    $scope.LIST_TIPO_QUARTO_STATE     	 = "tipoQuarto.lista";
 		 
+		    $scope.TODAY = new Date();
+		    
 		     /**
 		      *
 		      */
 		    $scope.model = {
-		 
+		    		
+	    		tarifasExcecoes : [],
 		        entity : {
 		        	nome : "",
 		        	ocupacaoMaxima: null,
@@ -113,30 +116,37 @@ angular.module('home')
 			        	                {
 			        	                	dia: "SEGUNDA",
 			        	                	preco: null,
+			        	                	label:"Segunda-Feira",
 			        	                },
 			        	                {
 			        	                	dia: "TERCA",
 			        	                	preco: null,
+			        	                	label:"Terça-Feira",
 			        	                },
 			        	                {
 			        	                	dia: "QUARTA",
 			        	                	preco: null,
+			        	                	label:"Quarta-Feira",
 			        	                },
 			        	                {
 			        	                	dia: "QUINTA",
 			        	                	preco: null,
+			        	                	label:"Quinta-Feira",
 			        	                },
 			        	                {
 			        	                	dia: "SEXTA",
 			        	                	preco: null,
+			        	                	label:"Sexta-Feira",
 			        	                },
 			        	                {
 			        	                	dia: "SABADO",
 			        	                	preco: null,
+			        	                	label:"Sábado",
 			        	                },
 			        	                {
 			        	                	dia: "DOMINGO",
 			        	                	preco: null,
+			        	                	label:"Domingo",
 			        	                },
 			        	                
 			        	                ],
@@ -204,24 +214,31 @@ angular.module('home')
 		    		switch (tarifa.dia) {
 					case "SEGUNDA":
 						tarifa.indice = 0;
+						tarifa.label="Segunda-Feira";
 						break;
 					case "TERCA":
 						tarifa.indice = 1;
+						tarifa.label="Terça-Feira";
 						break;
 					case "QUARTA":
 						tarifa.indice = 2;
+						tarifa.label="Quarta-Feira";
 						break;
 					case "QUINTA":
 						tarifa.indice = 3;
+						tarifa.label="Quinta-Feira";
 						break;
 					case "SEXTA":
 						tarifa.indice = 4;
+						tarifa.label="Sexta-Feira";
 						break;
 					case "SABADO":
 						tarifa.indice = 5;
+						tarifa.label="Sábado";
 						break;
 					case "DOMINGO":
 						tarifa.indice = 6;
+						tarifa.label="Domingo";
 						break;
 					default:
 						break;
@@ -321,6 +338,41 @@ angular.module('home')
 		         }
 		     }
 		 
+		     $scope.openAddTarifaExcecaoPopup = function( ev, tarifaExcecao ) {
+		         
+		         var popupConfig = {
+		                 title   : tarifaExcecao && tarifaExcecao.id ? "Alterar tarifa de exceção" : "Inserir tarifa de exceção",
+		                 ok : tarifaExcecao && tarifaExcecao.id ? "Alterar" : "Salvar",
+		         }
+		          
+		         var data = {
+		        	tarifaExcecao : tarifaExcecao
+		         };
+		  
+		         
+		        $rootScope.popupDialog( ev, "./modules/home/views/tipo-quarto/popup/add-tarifa-excecao-popup.html", addTarifaExcecaoPopupController, popupConfig, data )
+		             .then(function( tipoExcecao ) {
+		                 var found = false;
+		                 
+		                 for ( var k= 0; k < $scope.model.tarifasExcecoes.length; k++ ) {
+		                     if ( $scope.model.tarifasExcecoes[k].id == tipoExcecao.id ) {
+		                         found = true;
+		                         $scope.model.tarifasExcecoes[k] = tipoExcecao;
+		                     }
+		                 }
+		                 
+		                 if ( !found ) {
+		                	 $scope.model.tarifasExcecoes.push(tipoExcecao);
+		                     $rootScope.toast("Tarifa de exceção inserida com sucesso!" ,"green");
+		                 }
+		                 else
+		                 {
+		                     $rootScope.toast("Tarifa de exceção alterada com sucesso!" ,"green"); 
+		                 }
+		                  
+		             });
+		    }
+		     
 		    /**
 		     *
 		     */

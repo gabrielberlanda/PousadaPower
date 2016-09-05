@@ -37,7 +37,7 @@
 			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
 			    	</eits-hbox>
 			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index < 4">
-			    		<label width="200" style="font-size: small;"> {{::tarifa.dia}}</label>
+			    		<label width="200" style="font-size: small;"> {{::tarifa.label}}</label>
 			    		<md-input-container  width="100" md-no-float style="margin-top:-15px; margin-left: 10px; height: 26px !important;" >
 							<input ng-model="tarifa.preco" type="number"  aria-label="preço tarifa"  required="true" step="1.00" min="1">
 						</md-input-container>
@@ -49,7 +49,7 @@
 			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
 			    	</eits-hbox>
 			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index >= 4">
-			    		<label width="200" style="font-size: small;"> {{::tarifa.dia}}</label>
+			    		<label width="200" style="font-size: small;"> {{::tarifa.label}}</label>
 			    		<md-input-container  width="100" md-no-float style="margin-top:-15px; margin-left: 10px; height: 26px !important;" >
 							<input ng-model="tarifa.preco" type="number"  aria-label="tarifa preço"  required="true" step="1" min="1">
 						</md-input-container>
@@ -58,9 +58,13 @@
 		    </eits-hbox>
 		    
 		    <div>
-   			    <span >Tarifa Padrão</span>
+		    	<eits-hbox>
+	   			    <span >Tarifa de Exceção</span> 
+	   			    <div flex></div>
+	   			    <md-button class="md-raised" ng-click="openAddTarifaExcecaoPopup( $event, null)">Nova</md-button>
+		    	</eits-hbox>
 		    	<md-divider></md-divider>
-		    	<md-table-container class="table" style="border: 1px #DDDDDD solid">
+		    	<md-table-container class="table" style="border: 1px #DDDDDD solid; margin-top: 20px;"> 
 				  <table md-table>
 				    <thead md-head >
 				      <tr md-row>
@@ -76,7 +80,7 @@
 				        <td md-cell>{{tarifaExcecao.dataInicio | date}}</td>
 				        <td md-cell>{{tarifaExcecao.dataFim | date}}</td>
 				        <td md-cell> 
-				       	    <md-button ng-click="changeToEdit($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
+				       	    <md-button ng-click="openAddTarifaExcecaoPopup( $event, tarifaExcecao)" aria-label="remove" class="md-raised table-button">
 				            	<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
 				            </md-button>
 				            <md-button ng-click="removeTipoQuarto($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">

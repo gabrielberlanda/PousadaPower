@@ -5,6 +5,7 @@ package com.digows.blank.domain.entity.tipoquarto;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -67,7 +68,7 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	})
 	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
 	@JoinColumn(name="tipo_quarto_id")
-	private List<Tarifa> tarifasPadrao;
+	private Set<Tarifa> tarifasPadrao;
 
 	/**
 	 * 
@@ -181,7 +182,7 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	/**
 	 * @return the tarifasPadrao
 	 */
-	public List<Tarifa> getTarifasPadrao()
+	public Set<Tarifa> getTarifasPadrao()
 	{
 		return tarifasPadrao;
 	}
@@ -189,7 +190,7 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	/**
 	 * @param tarifasPadrao the tarifasPadrao to set
 	 */
-	public void setTarifasPadrao( List<Tarifa> tarifasPadrao )
+	public void setTarifasPadrao( Set<Tarifa> tarifasPadrao )
 	{
 		this.tarifasPadrao = tarifasPadrao;
 	}

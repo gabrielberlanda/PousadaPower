@@ -158,7 +158,24 @@ public class TipoQuartoService
 	 */
 	public TarifaExcecao updateTarifaExcecao ( TarifaExcecao tarifaExcecao )
 	{
-		return tarifaExcecao;
+		Assert.notNull( tarifaExcecao );
+		Assert.notNull( tarifaExcecao.getId(), "Tarifa não cadastrada" );
+		Assert.notNull( tarifaExcecao.getTarifas() );
+		Assert.notNull( tarifaExcecao.getTipoQuarto() );
+
+		Page<TarifaExcecao> tarifas = this.listTarifaExcecoesByFiltersAndTipoQuartoId( null, tarifaExcecao.getDataInicio(), tarifaExcecao.getDataFim(), tarifaExcecao.getTipoQuarto().getId(), null );
+
+		
+		Assert.isTrue( tarifas.getContent().size() <= 1, "O tipo de quarto já possui outra tarifa de exceção entre esta data." );
+		
+		if ( tarifas.getContent().size() == 1 )
+		{
+			Assert.isTrue( tarifas.getContent().get( 0 ).getId().equals( tarifaExcecao.getId() ) , "O tipo de quarto já possui outra tarifa de exceção entre esta data." );
+		}
+		
+		tarifaExcecao.validarDatas().validarTarifas();
+		
+		return this.tarifaExceccaoRepository.save( tarifaExcecao );
 	}
 	
 	/**

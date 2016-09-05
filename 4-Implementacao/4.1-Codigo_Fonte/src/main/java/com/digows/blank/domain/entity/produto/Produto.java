@@ -13,7 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import org.directwebremoting.annotations.DataTransferObject;
-import org.hibernate.envers.Audited;
 import org.springframework.util.Assert;
 
 import com.digows.blank.domain.entity.fornecedor.Fornecedor;

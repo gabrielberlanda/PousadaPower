@@ -6,6 +6,7 @@ package com.digows.blank.domain.entity.tipoquarto.tarifa;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -103,7 +104,7 @@ public class Tarifa extends AbstractEntity implements Serializable
 	 * Validamos as tarifas, verificamos se possui as 7 tarifas da semana.
 	 * @param tarifas
 	 */
-	public static void validarTarifaParaCadaDiaDaSemana( List<Tarifa> tarifas )
+	public static void validarTarifaParaCadaDiaDaSemana( Set<Tarifa> tarifas )
 	{
 		Assert.isTrue( tarifas.size() == Tarifa.QUANTIDADE_DIAS_SEMANA );
 		
@@ -116,7 +117,7 @@ public class Tarifa extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	public static void validarTarifasDeExcecao( List<Tarifa> tarifas, Calendar dataInicial, Calendar dataFinal)
+	public static void validarTarifasDeExcecao( Set<Tarifa> tarifas, Calendar dataInicial, Calendar dataFinal)
 	{
 		Calendar _dataInicial = Calendar.getInstance();
 		_dataInicial.setTime( dataInicial.getTime() );
@@ -137,7 +138,7 @@ public class Tarifa extends AbstractEntity implements Serializable
 	 * @param tarifas
 	 * @return
 	 */
-	public static boolean possuiTarifaParaODia( Dia dia, List<Tarifa> tarifas )
+	public static boolean possuiTarifaParaODia( Dia dia, Set<Tarifa> tarifas )
 	{
 		return tarifas.stream().filter( t -> t.getDia().equals( dia ) ).count() == 1;
 	}

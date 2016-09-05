@@ -5,7 +5,9 @@ package com.digows.blank.test.domain.entity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -67,7 +69,7 @@ public class TarifaExcecaoTests extends AbstractUnitTests
 		tarifaExcecao.getDataFim().set( Calendar.DAY_OF_MONTH, 23 );
 		
 		final double valorPadrao = 350.00;
-		List<Tarifa> tarifas = new ArrayList<Tarifa>();
+		Set<Tarifa> tarifas = new HashSet<Tarifa>();
 		
 		Calendar dataInicial = Calendar.getInstance();
 		dataInicial.setTime( tarifaExcecao.getDataInicio().getTime() );
@@ -102,7 +104,7 @@ public class TarifaExcecaoTests extends AbstractUnitTests
 		tarifaExcecao.getDataFim().set( Calendar.DAY_OF_MONTH, 27 );
 		
 		final double valorPadrao = 350.00;
-		List<Tarifa> tarifas = new ArrayList<Tarifa>();
+		Set<Tarifa> tarifas = new HashSet<Tarifa>();
 		
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -130,7 +132,7 @@ public class TarifaExcecaoTests extends AbstractUnitTests
 		tarifaExcecao.getDataFim().set( Calendar.DAY_OF_MONTH, 27 );
 		
 		final double valorPadrao = 350.00;
-		List<Tarifa> tarifas = new ArrayList<Tarifa>();
+		Set<Tarifa> tarifas = new HashSet<Tarifa>();
 		
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -140,9 +142,12 @@ public class TarifaExcecaoTests extends AbstractUnitTests
 			
 			tarifas.add( tarifa );
 		}
-         
-        tarifas.get( 0 ).setDia( tarifas.get( 1 ).getDia() ); //Estou invertendo uma tarifa para o teste falhar.
-        
+		
+		List<Tarifa> tarifasList = new ArrayList<Tarifa>( tarifas );
+		tarifasList.get( 0 ).setDia( tarifasList.get( 2 ).getDia() );
+		
+		tarifas = new HashSet<Tarifa>( tarifasList );
+		
         tarifaExcecao.setTarifas(tarifas);
         tarifaExcecao.validarTarifas();
         

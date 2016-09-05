@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+		<form name="tipoQuartoForm" id="tipoQuartoForm" >
+			
+			<eits-hbox>
+		          <md-input-container width="300" class="md-block" >
+		            <label>Nome</label>
+		            <input required="true" name="nome" ng-model="model.entity.nome">
+		            <div ng-messages="tipoQuartoForm.nome.$error" md-auto-hide="false"> 
+		            	<div ng-message="required"> Campo obrigatório
+		            	</div>
+		            </div>
+		          </md-input-container>
+			</eits-hbox>
+			<md-input-container width="300" class="md-block">
+				<label>Ocupçãoo máxima</label>
+				<input ng-model="model.entity.ocupacaoMaxima" type="number" name="ocupacaoMaxima" required="true" min="1" max="10">
+	            <div ng-messages="tipoQuartoForm.ocupacaoMaxima.$error" md-auto-hide="false"> 
+	            	<div ng-message="required"> Campo obrigatório</div>
+	            	<div ng-message="min"> O valor minímo é 1</div>
+	            	<div ng-message="max"> O valor máximo é 10</div>
+	            </div>
+			</md-input-container>
+       		<md-input-container style="width: 70%"  class="md-block" >
+	            <label>Observação</label>
+	            <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+          	</md-input-container>
+		    
+		    <span >Tarifa Padrão</span>
+		    <md-divider></md-divider>  
+		    <eits-hbox>  
+			    <div style="margin-top:30px;" layout-padding>
+			    	<eits-hbox> 
+			    		<span width="200">Dia da Semana</span>
+			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
+			    	</eits-hbox>
+			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index < 4">
+			    		<label width="200" style="font-size: small;"> {{::tarifa.dia}}</label>
+			    		<md-input-container  width="100" md-no-float style="margin-top:-15px; margin-left: 10px; height: 26px !important;" >
+							<input ng-model="tarifa.preco" type="number"  aria-label="preço tarifa"  required="true" step="1.00" min="1">
+						</md-input-container>
+			    	</eits-hbox>
+			    </div>
+	   		    <div style="margin-top:30px; margin-left:30px;" layout-padding>
+			    	<eits-hbox> 
+			    		<span width="200">Dia da Semana</span>
+			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
+			    	</eits-hbox>
+			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index >= 4">
+			    		<label width="200" style="font-size: small;"> {{::tarifa.dia}}</label>
+			    		<md-input-container  width="100" md-no-float style="margin-top:-15px; margin-left: 10px; height: 26px !important;" >
+							<input ng-model="tarifa.preco" type="number"  aria-label="tarifa preço"  required="true" step="1" min="1">
+						</md-input-container>
+			    	</eits-hbox>
+			    </div>
+		    </eits-hbox>
+		    
+		    <div>
+   			    <span >Tarifa Padrão</span>
+		    	<md-divider></md-divider>
+		    	<md-table-container class="table" style="border: 1px #DDDDDD solid">
+				  <table md-table>
+				    <thead md-head >
+				      <tr md-row>
+				        <th md-column style="width: 40%" ><span>Nome</span></th>
+				        <th md-column style="width: 20%"><span>Data de Inicio</span></th>
+				        <th md-column style="width: 20%"><span>Data Final</span></th>
+				        <th md-column style="width: 20%">Ações</th>
+				      </tr>
+				    </thead>
+				    <tbody md-body>
+				      <tr md-row  md-auto-select  ng-repeat="tarifaExcecao in model.tarifasExcecoes">
+				        <td md-cell>{{tarifaExcecao.nome}}</td>
+				        <td md-cell>{{tarifaExcecao.dataInicio | date}}</td>
+				        <td md-cell>{{tarifaExcecao.dataFim | date}}</td>
+				        <td md-cell> 
+				       	    <md-button ng-click="changeToEdit($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
+				            	<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
+				            </md-button>
+				            <md-button ng-click="removeTipoQuarto($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
+				            	<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+				            </md-button>            
+				        </td>
+				      </tr>
+				    </tbody>
+				  </table>
+				</md-table-container>  
+		    </div>
+		</form>
+</html>

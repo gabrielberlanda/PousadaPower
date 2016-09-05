@@ -3,17 +3,12 @@
  */
 package com.digows.blank.test.domain.service;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 
 import javax.validation.ValidationException;
 
-import org.dbunit.Assertion;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -237,7 +232,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		
 		tipoQuarto.setNome( "Tripo super luxo" );
 		tipoQuarto.setOcupacaoMaxima( 3 );
-		tipoQuarto.setTarifasPadrao( new ArrayList<Tarifa>() );
+		tipoQuarto.setTarifasPadrao( new HashSet<Tarifa>() );
 		
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -256,7 +251,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		Assert.assertNotNull( tipoQuarto.getId() );
 		
 		Assert.assertNotNull( tipoQuarto.getTarifasPadrao() );
-		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().get( 0 ).getId() );
+		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().iterator().next().getId() );
 	}
 	
 	@Test( expected = IllegalArgumentException.class )
@@ -280,7 +275,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		
 		tipoQuarto.setNome( "Tripo super luxo" );
 		tipoQuarto.setOcupacaoMaxima( 3 );
-		tipoQuarto.setTarifasPadrao( new ArrayList<Tarifa>() );
+		tipoQuarto.setTarifasPadrao( new HashSet<Tarifa>() );
 		
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -291,7 +286,8 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 			tipoQuarto.getTarifasPadrao().add( tarifa );
 		}
 		
-		tipoQuarto.getTarifasPadrao().remove( 0 );
+		
+		tipoQuarto.getTarifasPadrao().remove( tipoQuarto.getTarifasPadrao().iterator().next() );
 		
 		Assert.assertTrue( tipoQuarto.getTarifasPadrao().size() == 6 );
 		
@@ -320,7 +316,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		
 		tipoQuarto.setNome( "Tripo super luxo" );
 		tipoQuarto.setOcupacaoMaxima( 3 );
-		tipoQuarto.setTarifasPadrao( new ArrayList<Tarifa>() );
+		tipoQuarto.setTarifasPadrao( new HashSet<Tarifa>() );
 		
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -333,7 +329,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 
 		Tarifa oitavaTarifa = new Tarifa();
 		oitavaTarifa.setDia( Dia.DOMINGO );
-		oitavaTarifa.setPreco( new Double(300) );
+		oitavaTarifa.setPreco( new Double(380) );
 		
 		tipoQuarto.getTarifasPadrao().add( oitavaTarifa );
 		
@@ -346,7 +342,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		Assert.assertNotNull( tipoQuarto.getId() );
 		
 		Assert.assertNotNull( tipoQuarto.getTarifasPadrao() );
-		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().get( 0 ).getId() );
+		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().iterator().next().getId() );
 		Assert.fail();
 	}
 	
@@ -371,17 +367,18 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		
 		tipoQuarto.setNome( "Tripo super luxo" );
 		tipoQuarto.setOcupacaoMaxima( 3 );
-		tipoQuarto.setTarifasPadrao( new ArrayList<Tarifa>() );
+		tipoQuarto.setTarifasPadrao( new HashSet<Tarifa>() );
 		
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
 			Tarifa tarifa = new Tarifa();
-			tarifa.setDia( null );
+			tarifa.setDia( dia );
 			tarifa.setPreco( new Double( 300 ) );
 			
 			tipoQuarto.getTarifasPadrao().add( tarifa );
 		}
 
+		tipoQuarto.getTarifasPadrao().iterator().next().setDia( null );
 		Assert.assertTrue( tipoQuarto.getTarifasPadrao().size() == 7 );
 		
 		tipoQuarto = this.tipoQuartoService.insertTipoQuarto( tipoQuarto );
@@ -390,7 +387,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		Assert.assertNotNull( tipoQuarto.getId() );
 		
 		Assert.assertNotNull( tipoQuarto.getTarifasPadrao() );
-		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().get( 0 ).getId() );
+		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().iterator().next().getId() );
 		Assert.fail();
 	}
 	
@@ -415,7 +412,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		
 		tipoQuarto.setNome( "Tripo super luxo" );
 		tipoQuarto.setOcupacaoMaxima( 3 );
-		tipoQuarto.setTarifasPadrao( new ArrayList<Tarifa>() );
+		tipoQuarto.setTarifasPadrao( new HashSet<Tarifa>() );
 		
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -434,7 +431,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		Assert.assertNotNull( tipoQuarto.getId() );
 		
 		Assert.assertNotNull( tipoQuarto.getTarifasPadrao() );
-		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().get( 0 ).getId() );
+		Assert.assertNotNull( tipoQuarto.getTarifasPadrao().iterator().next().getId() );
 		
 		Assert.fail();
 	}
@@ -460,8 +457,8 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		tipoQuarto.setNome( "Tipo de quarto alterado." );
 		tipoQuarto.setOcupacaoMaxima( 5 );
 		//FIXME  Não está atualizando a tarifa.
-		tipoQuarto.getTarifasPadrao().get( 0 ).setPreco( new Double (450) );
-		Dia dia = tipoQuarto.getTarifasPadrao().get( 0 ).getDia();
+		tipoQuarto.getTarifasPadrao().iterator().next().setPreco( new Double (450) );
+		Dia dia = tipoQuarto.getTarifasPadrao().iterator().next().getDia();
 		
 		this.tipoQuartoService.updateTipoQuarto( tipoQuarto );
 		
@@ -527,8 +524,8 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		tipoQuarto.setNome( "Tipo de quarto alterado." );
 		tipoQuarto.setOcupacaoMaxima( 5 );
 		
-		tipoQuarto.getTarifasPadrao().get( 0 ).setPreco( null );
-		tipoQuarto.getTarifasPadrao().get( 1 ).setDia( null );
+		tipoQuarto.getTarifasPadrao().iterator().next().setPreco( null );
+		tipoQuarto.getTarifasPadrao().iterator().next().setDia( null );
 		
 		this.tipoQuartoService.updateTipoQuarto( tipoQuarto );
 		
@@ -669,7 +666,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		tarifaSabado.setDia( Dia.SABADO );
 		tarifaSabado.setPreco( new Double(500) );
 		
-		tarifaExcecao.setTarifas( new ArrayList<Tarifa>() );
+		tarifaExcecao.setTarifas( new HashSet<Tarifa>() );
 		tarifaExcecao.getTarifas().add( tarifaSexta );
 		tarifaExcecao.getTarifas().add( tarifaSabado );
 		
@@ -718,7 +715,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		tarifaSabado.setDia( Dia.SEGUNDA );
 		tarifaSabado.setPreco( new Double(500) );
 		
-		tarifaExcecao.setTarifas( new ArrayList<Tarifa>() );
+		tarifaExcecao.setTarifas( new HashSet<Tarifa>() );
 		tarifaExcecao.getTarifas().add( tarifaSexta );
 		tarifaExcecao.getTarifas().add( tarifaSabado );
 		
@@ -760,7 +757,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		tarifaExcecao.setDataFim( dataFim );
 		tarifaExcecao.setTipoQuarto( new TipoQuarto( 1000L ) );
 
-		tarifaExcecao.setTarifas( new ArrayList<Tarifa>() );
+		tarifaExcecao.setTarifas( new HashSet<Tarifa>() );
 
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -807,7 +804,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		tarifaExcecao.setDataFim( dataFim );
 		tarifaExcecao.setTipoQuarto( new TipoQuarto( 1000L ) );
 
-		tarifaExcecao.setTarifas( new ArrayList<Tarifa>() );
+		tarifaExcecao.setTarifas( new HashSet<Tarifa>() );
 
 		for ( Dia dia : Dia.getDiasOrdenados() )
 		{
@@ -818,7 +815,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 			tarifaExcecao.getTarifas().add( tarifa );
 		}
 		
-		tarifaExcecao.getTarifas().remove( 0 );
+		tarifaExcecao.getTarifas().remove( tarifaExcecao.getTarifas().iterator().next() );
 		tarifaExcecao = this.tipoQuartoService.insertTarifaExcecao( tarifaExcecao );
 		
 		Assert.assertNotNull( tarifaExcecao );
@@ -864,7 +861,7 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		
 	}
 
-	@Test()
+	@Test( expected = IllegalArgumentException.class )
 	@WithUserDetails("admin@email.com")
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 		"/dataset/account/UserDataSet.xml",
@@ -878,8 +875,139 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 	})
 	public void findTarifaExcecaoByIdMustFailWithInvalidId()
 	{
-	
+		TarifaExcecao tarifaExcecao = this.tipoQuartoService.findTarifaExcecaoById( 1895L );
+		
 		Assert.fail();
 	}
+	
+	@Test()
+	@WithUserDetails("admin@email.com")
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/account/UserDataSet.xml",
+		"/dataset/endereco/PaisDataSet.xml",
+		"/dataset/endereco/EstadoDataSet.xml",
+		"/dataset/endereco/CidadeDataSet.xml",
+		"/dataset/fornecedor/FornecedorDataSet.xml",
+		"/dataSet/tipoquarto/TipoQuartoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaExcecaoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaDataSet.xml",
+	})
+	public void updateTarifaExcecaoMustPass()
+	{
+		TarifaExcecao tarifaExcecao = this.tipoQuartoService.findTarifaExcecaoById( 1000L );
+		
+		Assert.assertNotNull( tarifaExcecao );
+		Assert.assertNotNull( tarifaExcecao.getTarifas() );
+		
+		Assert.assertEquals( "Tarifa de Natal 2016 - Triplo", tarifaExcecao.getNome() );
+		Assert.assertEquals( tarifaExcecao.getDataInicio().get( Calendar.DAY_OF_MONTH ), 24 );
+		Assert.assertEquals( tarifaExcecao.getDataInicio().get( Calendar.MONTH ), 11 );
+		
+		Assert.assertEquals( tarifaExcecao.getDataFim().get( Calendar.DAY_OF_MONTH ), 26 );
+		Assert.assertEquals( tarifaExcecao.getDataFim().get( Calendar.MONTH ), 11 );
+		
+		Assert.assertTrue( tarifaExcecao.getTarifas().size() == 3 ); 
+		
+		//Dia 26 é uma segunda feira, logo se eu inserir mais um dia no final será necessário uma tarifa para terça
+		
+		tarifaExcecao.getDataFim().set( Calendar.DAY_OF_MONTH, 27 );
+		tarifaExcecao.setNome( "Tarifa de natal atualizada!" );
+
+		Tarifa tarifaDeTerca = new Tarifa();
+		tarifaDeTerca.setDia( Dia.TERCA );
+		tarifaDeTerca.setPreco( new Double ( 340) );
+		
+		tarifaExcecao.getTarifas().add( tarifaDeTerca );
+		
+		this.tipoQuartoService.updateTarifaExcecao( tarifaExcecao );
+		
+		tarifaExcecao = this.tipoQuartoService.findTarifaExcecaoById( 1000L );
+		
+		Assert.assertEquals( "Tarifa de natal atualizada!", tarifaExcecao.getNome() );
+		Assert.assertEquals( 27, tarifaExcecao.getDataFim().get( Calendar.DAY_OF_MONTH ) );
+		Assert.assertTrue( tarifaExcecao.getTarifas().size() == 4 );
+	}
+
+	@Test( expected = IllegalArgumentException.class )
+	@WithUserDetails("admin@email.com")
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/account/UserDataSet.xml",
+		"/dataset/endereco/PaisDataSet.xml",
+		"/dataset/endereco/EstadoDataSet.xml",
+		"/dataset/endereco/CidadeDataSet.xml",
+		"/dataset/fornecedor/FornecedorDataSet.xml",
+		"/dataSet/tipoquarto/TipoQuartoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaExcecaoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaDataSet.xml",
+	})
+	public void updateTarifaExcecaoMustFailAddingADayAndDontAddTarifa()
+	{
+		TarifaExcecao tarifaExcecao = this.tipoQuartoService.findTarifaExcecaoById( 1000L );
+		
+		Assert.assertNotNull( tarifaExcecao );
+		Assert.assertNotNull( tarifaExcecao.getTarifas() );
+		
+		Assert.assertEquals( "Tarifa de Natal 2016 - Triplo", tarifaExcecao.getNome() );
+		Assert.assertEquals( tarifaExcecao.getDataInicio().get( Calendar.DAY_OF_MONTH ), 24 );
+		Assert.assertEquals( tarifaExcecao.getDataInicio().get( Calendar.MONTH ), 11 );
+		
+		Assert.assertEquals( tarifaExcecao.getDataFim().get( Calendar.DAY_OF_MONTH ), 26 );
+		Assert.assertEquals( tarifaExcecao.getDataFim().get( Calendar.MONTH ), 11 );
+		
+		Assert.assertTrue( tarifaExcecao.getTarifas().size() == 3 ); 
+		
+		//Dia 26 é uma segunda feira, logo se eu inserir mais um dia no final será necessário uma tarifa para terça
+		
+		tarifaExcecao.getDataFim().set( Calendar.DAY_OF_MONTH, 27 );
+		tarifaExcecao.setNome( "Tarifa de natal atualizada!" );
+		
+		this.tipoQuartoService.updateTarifaExcecao( tarifaExcecao );
+		
+		Assert.fail();
+	}
+	
+	@Test( expected= IllegalArgumentException.class )
+	@WithUserDetails("admin@email.com")
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/account/UserDataSet.xml",
+		"/dataset/endereco/PaisDataSet.xml",
+		"/dataset/endereco/EstadoDataSet.xml",
+		"/dataset/endereco/CidadeDataSet.xml",
+		"/dataset/fornecedor/FornecedorDataSet.xml",
+		"/dataSet/tipoquarto/TipoQuartoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaExcecaoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaDataSet.xml",
+	})
+	public void updateTarifaExcecaoMustFailWithWrongDay()
+	{
+		TarifaExcecao tarifaExcecao = this.tipoQuartoService.findTarifaExcecaoById( 1000L );
+		
+		Assert.assertNotNull( tarifaExcecao );
+		Assert.assertNotNull( tarifaExcecao.getTarifas() );
+		
+		Assert.assertEquals( "Tarifa de Natal 2016 - Triplo", tarifaExcecao.getNome() );
+		Assert.assertEquals( tarifaExcecao.getDataInicio().get( Calendar.DAY_OF_MONTH ), 24 );
+		Assert.assertEquals( tarifaExcecao.getDataInicio().get( Calendar.MONTH ), 11 );
+		
+		Assert.assertEquals( tarifaExcecao.getDataFim().get( Calendar.DAY_OF_MONTH ), 26 );
+		Assert.assertEquals( tarifaExcecao.getDataFim().get( Calendar.MONTH ), 11 );
+		
+		Assert.assertTrue( tarifaExcecao.getTarifas().size() == 3 ); 
+		
+		//Dia 26 é uma segunda feira, logo se eu inserir mais um dia no final será necessário uma tarifa para terça
+		
+		tarifaExcecao.getDataFim().set( Calendar.DAY_OF_MONTH, 27 );
+		tarifaExcecao.setNome( "Tarifa de natal atualizada!" );
+
+		Tarifa tarifaDeTerca = new Tarifa();
+		tarifaDeTerca.setDia( Dia.QUARTA );
+		tarifaDeTerca.setPreco( new Double ( 340) );
+		
+		tarifaExcecao.getTarifas().add( tarifaDeTerca );
+		
+		this.tipoQuartoService.updateTarifaExcecao( tarifaExcecao );
+		Assert.fail();
+	}
+
 
 }

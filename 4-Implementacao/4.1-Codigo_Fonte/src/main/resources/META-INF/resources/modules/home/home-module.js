@@ -120,6 +120,28 @@
 	        .state('fornecedor.editar', {
 	        	url         : "/editar/{id:[0-9]{1,10}}",
 	        	templateUrl	: './modules/home/views/fornecedor/fornecedor-formulario.html',
+	        })
+	        .state('tipoQuarto', {
+	        	url 		: "/tipo-quarto",
+	        	templateUrl	: './modules/home/views/tipo-quarto/tipo-quarto-index.html',
+	        	controller	: 'TipoQuartoController',
+	        	abstract 	: true,
+	        })
+	        .state('tipoQuarto.lista', {
+	        	url 		: "/lista",
+	        	templateUrl	: './modules/home/views/tipo-quarto/tipo-quarto-lista.html',
+	        })
+	        .state('tipoQuarto.detalhe', {
+	        	url 		: "/detalhe/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/tipo-quarto/tipo-quarto-detalhe.html',
+	        })
+	        .state('tipoQuarto.novo', {
+	        	url 		: "/novo",
+	        	templateUrl	: './modules/home/views/tipo-quarto/tipo-quarto-formulario.html',
+	        })
+	        .state('tipoQuarto.editar', {
+	        	url         : "/editar/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/tipo-quarto/tipo-quarto-formulario.html',
 	        });
 
 	});

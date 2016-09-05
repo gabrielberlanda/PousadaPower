@@ -19,14 +19,7 @@ import com.digows.blank.domain.entity.tipoquarto.tarifa.TarifaExcecao;
  */
 public interface ITarifaExcecaoRepository extends JpaRepository<TarifaExcecao, Long>
 {
-//
 
-//	
-//	@Query("FROM TarifaExcecao tarifaExcecao "
-//			+ "WHERE FILTER( tarifaExcecao.nome, :filter) = TRUE "
-//			+ "AND ( :dataInicio != NULL OR :dataInicio = NULL ) "
-//			+ "AND ( :dataFim != NULL OR :dataFim = NULL ) "
-//			+ "AND ( tarifaExcecao.tipoQuarto.id = :tipoQuartoId )")
 	@Query("FROM TarifaExcecao tarifaExcecao "
 			+ "WHERE FILTER( tarifaExcecao.nome, :filter) = TRUE "
 			+ "AND ( tarifaExcecao.dataInicio >= :dataInicio  OR CAST(:dataInicio as date) = NULL ) "

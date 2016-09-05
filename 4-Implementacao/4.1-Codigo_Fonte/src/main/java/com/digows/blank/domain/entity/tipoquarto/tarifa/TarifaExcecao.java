@@ -6,6 +6,7 @@ package com.digows.blank.domain.entity.tipoquarto.tarifa;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -71,7 +72,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	@NotNull( message = "Informe as tarifas")
 	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
 	@JoinColumn(name="tarifa_excecao_id")
-	private List<Tarifa> tarifas;
+	private Set<Tarifa> tarifas;
 	
 	/**
 	 * 
@@ -231,7 +232,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	/**
 	 * @return the tarifas
 	 */
-	public List<Tarifa> getTarifas()
+	public Set<Tarifa> getTarifas()
 	{
 		return tarifas;
 	}
@@ -239,7 +240,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	/**
 	 * @param tarifas the tarifas to set
 	 */
-	public void setTarifas( List<Tarifa> tarifas )
+	public void setTarifas( Set<Tarifa> tarifas )
 	{
 		this.tarifas = tarifas;
 	}

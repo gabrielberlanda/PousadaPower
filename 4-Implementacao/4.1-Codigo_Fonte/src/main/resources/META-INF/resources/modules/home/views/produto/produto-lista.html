@@ -21,7 +21,7 @@
 
 <md-table-container class="table" style="border: 1px #DDDDDD solid">
   <table md-table>
-    <thead md-head >
+    <thead md-head ng-if="model.pageRequest.content.length">
       <tr md-row>
         <th md-column style="width: 40%" ><span>Nome</span></th>
         <th md-column style="width: 10%"><span>Tipo</span></th>
@@ -47,6 +47,9 @@
             </md-button>            
         </td>
       </tr>
+      <div style="height: 57px; margin-left:20px;" layout="row" layout-align="start center" ng-if="!model.pageRequest.content.length">
+      	 <span>Nenhum registro foi encontrado.</span>
+      </div>
     </tbody>
   </table>
 </md-table-container>

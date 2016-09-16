@@ -142,10 +142,14 @@
 			</eits-hbox>
           
 	          <eits-hbox>
-		          <eits-vbox style="margin-right: 20px;">
-		              <span>Data de Nascimento</span>
-		              <md-datepicker style="margin-right: 0px !important" md-max-date="today" ng-model="model.entity.dataNascimento" />
-		          </eits-vbox>
+          			<md-input-container width="200">
+						<label>Data de Nascimento</label>
+						<md-datepicker md-max-date="today" name="dataNascimento" ng-model="model.entity.dataNascimento" />
+						<div ng-messages="hospedeForm.dataNascimento.$error" md-auto-hide="false">
+							<div ng-message="valid">Informe uma data correta</div>
+						</div>
+					</md-input-container>
+
 	                 <md-input-container width="200">
 				       <label>Sexo</label>
 				       <md-select ng-model="model.entity.sexo">
@@ -177,7 +181,7 @@
 
 		          <md-input-container style="width: 70%" class="md-block" >
 		            <label>Observação</label>
-		            <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="10" md-select-on-focus></textarea>
+		            <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="2" md-select-on-focus></textarea>
 		          </md-input-container>
 		</form>
 </html>

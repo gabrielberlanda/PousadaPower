@@ -11,48 +11,96 @@
 		</eits-vbox>
 		
 		<eits-vbox class="detail"> 
-			<label>Descrição</label>
-			<span>{{model.entity.descricao}}</span>
-			<span ng-if="!model.entity.descricao"> - </span>
+			<label>Status</label>
+			<span>{{model.entity.status ? 'Ativo' : 'Desativado' }}</span>
+			<span ng-if="!model.entity.status"> - </span>
 		</eits-vbox>
 		
-		<eits-vbox class="detail">
-			<label>Quantidade Estoque</label>
-			<span>{{model.entity.quantidadeEstoque}}</span>
-			<span ng-if="!model.entity.quantidadeEstoque"> - </span>
-		</eits-vbox>
-		
-		<eits-vbox class="detail">
-			<label>Quantidade Miníma</label>
-			<span>{{model.entity.quantidadeMinima}}</span>
-			<span ng-if="!model.entity.quantidadeMinima"> - </span>
-		</eits-vbox>
-		
-	</eits-hbox>
-	<eits-hbox>
-		<eits-vbox class="detail">
-			<label>Preço unitário</label>
-			<span>{{model.entity.precoUnitario | currency }}</span>
-			<span ng-if="!model.entity.precoUnitario"> - </span>
-		</eits-vbox>
-
-		<eits-vbox class="detail">
-			<label>Preço Custo</label>
-			<span>{{model.entity.precoCusto | currency }}</span>
-			<span ng-if="!model.entity.precoCusto"> - </span>
-		</eits-vbox>
-		
-		<eits-vbox class="detail">
-			<label>Tipo Produto</label>
-			<span>{{model.entity.tipoProduto}}</span>
-			<span ng-if="!model.entity.tipoProduto"> - </span>
-		</eits-vbox>
-		<eits-vbox class="detail">
-			<label>Fornecedor</label>
-			<span>{{model.entity.fornecedor.nomeFantasia}}</span>
-			<span ng-if="!model.entity.fornecedor.nomeFantasia"> - </span>
-		</eits-vbox>
-		
-	</eits-hbox>
+	</eits-hbox>	
+	<eits-vbox class="detail">
+		<label>Ocupação máxima</label>
+		<span>{{model.entity.ocupacaoMaxima}}</span>
+		<span ng-if="!model.entity.ocupacaoMaxima"> - </span>
+	</eits-vbox>
+	<eits-vbox class="detail">
+		<label>Observação</label>
+		<span>{{model.entity.observacao}}</span>
+		<span ng-if="!model.entity.observacao"> - </span>
+	</eits-vbox>
+	<div style="margin-top: 20px;">
+		<span>Tarifa Padrão</span>
+		<md-divider></md-divider>
+	</div>
 	
+	<eits-hbox>
+		<div style="margin-top:30px;" layout-padding>
+	    	<eits-hbox> 
+	    		<span width="200">Dia da Semana</span>
+	    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
+	    	</eits-hbox>
+	    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index < 4">
+	    		<label width="200" style="font-size: small;"> {{::tarifa.label}} <span style="color: red">*</span></label>
+	    		<span  width="100" md-no-float style=" margin-left: 10px; height: 26px !important;" ng-bind="tarifa.preco" >
+				</span>
+	    	</eits-hbox>
+	    </div>
+   		<div style="margin-top:30px;" layout-padding>
+	    	<eits-hbox> 
+	    		<span width="200">Dia da Semana</span>
+	    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
+	    	</eits-hbox>
+	    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index >= 4">
+	    		<label width="200" style="font-size: small;"> {{::tarifa.label}} <span style="color: red">*</span></label>
+	    		<span  width="100" md-no-float style=" margin-left: 10px; height: 26px !important;" ng-bind="tarifa.preco" >
+				</span>
+	    	</eits-hbox>
+	    </div>		
+	</eits-hbox>
+	<div style="margin-top: 20px;">
+		<span>Tarifas de Exceção</span>
+		<md-divider></md-divider>
+		<div style="margin-top: 20px;">
+			<div id="accordion" ng-repeat="tarifaExcecao in model.tarifasExcecoes">
+				<md-toolbar id="accordion-head"  ng-click="tarifaExcecao.isExpand = !tarifaExcecao.isExpand" style="border: solid 1px black; min-height: 40px !important; width: 100%" layout="row" layout-align="start center"> 
+					<div style="margin-left: 20px">
+						<md-icon ng-if="!tarifaExcecao.isExpand"  md-font-set="zmdi zmdi-caret-up zmdi-hc-lg"></md-icon>
+						<md-icon ng-if="tarifaExcecao.isExpand" md-font-set="zmdi zmdi-caret-down zmdi-hc-lg"></md-icon>
+						<span>{{::tarifaExcecao.nome}}</span> 
+					</div>
+				</md-toolbar>
+				<md-content id="accordion-content" ng-if="tarifaExcecao.isExpand"  style="border: solid 1px #DDDDDD; border-top: none; padding: 20px 20px 20px 20px; width: 100%; min-height: 50px;">
+					<eits-vbox class="detail">
+						<label>Nome</label>
+						<span ng-if="tarifaExcecao.nome">{{tarifaExcecao.nome}}</span>
+						<span ng-if="!tarifaExcecao.nome"> - </span>
+					</eits-vbox>
+					<eits-hbox>
+						<eits-vbox class="detail">
+							<label>Data de Inicio</label>
+							<span ng-if="tarifaExcecao.dataInicio">{{tarifaExcecao.dataInicio | date}}</span>
+							<span ng-if="!tarifaExcecao.dataInicio"> - </span>
+						</eits-vbox>
+						<eits-vbox class="detail">
+							<label>Data Final</label>
+							<span ng-if="tarifaExcecao.dataFim">{{tarifaExcecao.dataFim | date}}</span>
+							<span ng-if="!tarifaExcecao.dataFim"> - </span>
+						</eits-vbox>
+					</eits-hbox>
+					
+					<span>Tarifas</span>
+					<md-divider></md-divider>
+					<div style="margin-top:30px;" layout-padding>
+			    	<eits-hbox> 
+			    		<span width="200">Dia da Semana</span>
+			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
+			    	</eits-hbox>
+			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in tarifaExcecao.tarifas | orderBy:'indice'" >
+			    		<label width="200" style="font-size: small;"> {{::tarifa.label}} <span style="color: red">*</span></label>
+			    		<span  width="100" md-no-float style=" margin-left: 10px; height: 26px !important;" ng-bind="tarifa.preco" >
+						</span>
+			    	</eits-hbox>
+				</md-content>
+			</div>
+		</div>
+	</div>
 </html>

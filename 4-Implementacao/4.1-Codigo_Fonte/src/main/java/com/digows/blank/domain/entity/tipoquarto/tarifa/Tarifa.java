@@ -16,6 +16,8 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.springframework.util.Assert;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
@@ -145,7 +147,8 @@ public class Tarifa extends AbstractEntity implements Serializable
 	public static List<Tarifa> listTarifasByDataInicioAndDataFim( Calendar dataInicio, Calendar dataFim )
 	{
 		final int MILLIS_IN_DAY = 86400000;
-		final int quantidadeDia = ( int ) ( dataFim.getTimeInMillis() - dataInicio.getTimeInMillis() ) / MILLIS_IN_DAY;
+		
+		final int quantidadeDia = Days.daysBetween( new DateTime( dataInicio ), new DateTime ( dataFim ) ).getDays();
 		
 		List<Tarifa> tarifas = new ArrayList<Tarifa>();
 		if ( quantidadeDia < Tarifa.QUANTIDADE_DIAS_SEMANA ) 

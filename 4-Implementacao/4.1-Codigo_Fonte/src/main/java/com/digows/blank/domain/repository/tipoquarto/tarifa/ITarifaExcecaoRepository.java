@@ -22,8 +22,13 @@ public interface ITarifaExcecaoRepository extends JpaRepository<TarifaExcecao, L
 
 	@Query("FROM TarifaExcecao tarifaExcecao "
 			+ "WHERE FILTER( tarifaExcecao.nome, :filter) = TRUE "
-			+ "AND ( tarifaExcecao.dataInicio >= :dataInicio  OR CAST(:dataInicio as date) = NULL ) "
-			+ "AND ( tarifaExcecao.dataFim <= :dataFim OR CAST(:dataFim as date) = NULL ) "
+			+ "AND ( "
+				+ " ( CAST(:dataInicio as date ) = NULL AND CAST(:dataFim as date ) = NULL ) OR "
+				+ "	( tarifaExcecao.dataInicio <= :dataInicio AND tarifaExcecao.dataFim >= :dataFim ) OR "
+				+ " ( (tarifaExcecao.dataInicio >= :dataInicio AND tarifaExcecao.dataInicio <= :dataFim ) AND tarifaExcecao.dataFim >= dataFim ) OR "
+				+ " ( tarifaExcecao.dataInicio <= :dataInicio AND ( tarifaExcecao.dataFim <= :dataFim AND tarifaExcecao.dataFim >= :dataInicio ) ) OR "
+				+ " ( tarifaExcecao.dataInicio >= :dataInicio AND tarifaExcecao.dataFim <= :dataFim )"
+			+ ")"
 			+ "AND ( tarifaExcecao.tipoQuarto.id = :tipoQuartoId )")
 	public Page<TarifaExcecao> listByFiltersAndTipoQuartoId ( @Param("filter") String filter, @Param("dataInicio") Calendar dataInicio, 
 				@Param("dataFim") Calendar dataFim, @Param("tipoQuartoId") Long tipoQuartoId, Pageable page );

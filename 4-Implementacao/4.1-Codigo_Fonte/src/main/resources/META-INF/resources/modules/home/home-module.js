@@ -7,7 +7,7 @@
 	/**
 	 * 
 	 */
-	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider ) {
+	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider, $mdDateLocaleProvider ) {
 		//-------
 		//Broker configuration
 		//-------
@@ -143,6 +143,11 @@
 	        	url         : "/editar/{id:[0-9]{1,10}}",
 	        	templateUrl	: './modules/home/views/tipo-quarto/tipo-quarto-formulario.html',
 	        });
+        
+        $mdDateLocaleProvider.formatDate = function(date) {
+   	     var m = moment(date);
+   	     return m.isValid() ? m.format('L') : '';
+       };
 
 	});
 
@@ -163,6 +168,7 @@
 		$rootScope.$stateParams = $stateParams;
 	});
 
+    
 	/**
 	 * 
 	 */

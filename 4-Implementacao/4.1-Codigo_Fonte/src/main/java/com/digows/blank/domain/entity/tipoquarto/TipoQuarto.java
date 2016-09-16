@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.digows.blank.domain.entity.tipoquarto.tarifa.Tarifa;
 
@@ -42,9 +43,13 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@NotNull ( message= "Nome é obrigatório")
+	@NotBlank ( message= "Nome é obrigatório")
 	@Column( nullable = false, unique = true, length = 50)
 	private String nome;
+	
+	@NotNull (message ="Status do tipo de quarto não pode ser nulo") 
+	@Column ( nullable = false )
+	private Boolean status;
 	
 	/**
 	 * 
@@ -193,6 +198,22 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	public void setTarifasPadrao( Set<Tarifa> tarifasPadrao )
 	{
 		this.tarifasPadrao = tarifasPadrao;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public Boolean getStatus()
+	{
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus( Boolean status )
+	{
+		this.status = status;
 	}
 	
 	

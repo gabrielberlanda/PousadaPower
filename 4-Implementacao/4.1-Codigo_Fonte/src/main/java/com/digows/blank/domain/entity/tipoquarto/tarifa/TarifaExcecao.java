@@ -21,6 +21,8 @@ import javax.validation.constraints.Size;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.springframework.util.Assert;
 
 import com.digows.blank.domain.entity.tipoquarto.TipoQuarto;
@@ -153,7 +155,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	 */
 	public TarifaExcecao validarDatas ()
 	{
-		Assert.isTrue( this.dataInicio.before( this.dataFim )  );
+		Assert.isTrue( this.dataInicio.before( this.dataFim ) || this.dataInicio.equals( this.dataFim ), "Datas inválidas"  );
 		return this;
 	}
 	
@@ -163,8 +165,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	public TarifaExcecao validarTarifas()
 	{
 		final int MILLIS_IN_DAY = 86400000;
-		final int quantidadeDia = ( int ) ( this.dataFim.getTimeInMillis() - this.dataInicio.getTimeInMillis() ) / MILLIS_IN_DAY ;
-
+		final int quantidadeDia = Days.daysBetween( new DateTime( dataInicio ), new DateTime ( dataFim ) ).getDays();
 		if ( quantidadeDia < Tarifa.QUANTIDADE_DIAS_SEMANA ) 
         {
         	Assert.isTrue( this.tarifas.size() == quantidadeDia+1 ); //É somado +1 pois é necessário a tarifa do primeiro dia também.

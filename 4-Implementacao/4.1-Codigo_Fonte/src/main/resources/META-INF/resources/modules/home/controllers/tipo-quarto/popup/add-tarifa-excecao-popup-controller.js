@@ -123,6 +123,7 @@ var addTarifaExcecaoPopupController = ["$scope", "$mdDialog", "popupConfig", "da
      if(tarifaExcecao && tarifaExcecaoForm.$valid) {
           
          if(!tarifaExcecao.id){
+        	tarifaExcecao.tipoQuarto = data.tipoQuarto;
             tipoQuartoService.insertTarifaExcecao ( tarifaExcecao, {
                  callback: function (result) {
                     $mdDialog.hide( result );

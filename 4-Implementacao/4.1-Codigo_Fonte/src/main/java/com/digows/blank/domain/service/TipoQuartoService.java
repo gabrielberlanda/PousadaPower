@@ -59,6 +59,8 @@ public class TipoQuartoService
 		
 		Tarifa.validarTarifaParaCadaDiaDaSemana( tipoQuarto.getTarifasPadrao() );
 		
+		tipoQuarto.setStatus( true );
+		
 		return this.tipoQuartoRepository.save( tipoQuarto );
 	}
 	
@@ -198,7 +200,7 @@ public class TipoQuartoService
 	 */
 	public void removeTarifaExcecao ( long tarifaExecaoId )
 	{
-		
+		this.tarifaExceccaoRepository.delete( tarifaExecaoId );
 	}
 	
 	/**
@@ -211,4 +213,25 @@ public class TipoQuartoService
 	{
 		return Tarifa.listTarifasByDataInicioAndDataFim( dataInicio, dataFim );
 	}
+	
+	/**
+	 * 
+	 * @param tipoQuartoId
+	 * @return
+	 */
+	public void desativarTipoQuarto ( long tipoQuartoId )
+	{
+		this.tipoQuartoRepository.desativarTipoQuarto( tipoQuartoId );
+	}
+	
+	/**
+	 * 
+	 * @param tipoQuartoId
+	 * @return
+	 */
+	public void ativarTipoQuarto ( long tipoQuartoId )
+	{
+		this.tipoQuartoRepository.ativarTipoQuarto( tipoQuartoId );
+	}
+	
 }

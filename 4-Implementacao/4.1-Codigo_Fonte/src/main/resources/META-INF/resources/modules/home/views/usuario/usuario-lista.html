@@ -21,7 +21,7 @@
 
 <md-table-container class="table" style="border: 1px #DDDDDD solid">
   <table md-table>
-    <thead md-head >
+    <thead md-head ng-if="model.pageRequest.content.length">
       <tr md-row>
         <th md-column style="width: 40%" ><span>Nome</span></th>
         <th md-column style="width: 30%"><span>Email</span></th>
@@ -46,9 +46,11 @@
             <md-button ng-if="usuario.enabled == true" ng-click="deactivateUser($event, usuario)" aria-label="deactivate" class="md-raised table-button">
             	<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg"></md-icon>
             </md-button> 
-                       
         </td>
       </tr>
+      <div style="height: 57px; margin-left:20px;" layout="row" layout-align="start center" ng-if="!model.pageRequest.content.length">
+      	 <span>Nenhum registro foi encontrado.</span>
+      </div>
     </tbody>
   </table>
 </md-table-container>

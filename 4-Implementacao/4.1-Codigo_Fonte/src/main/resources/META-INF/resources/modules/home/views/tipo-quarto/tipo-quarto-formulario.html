@@ -3,7 +3,6 @@
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 
 		<form name="tipoQuartoForm" id="tipoQuartoForm" >
-			
 			<eits-hbox>
 		          <md-input-container width="300" class="md-block" >
 		            <label>Nome</label>
@@ -13,7 +12,19 @@
 		            	</div>
 		            </div>
 		          </md-input-container>
+			        <md-input-container ng-if="model.entity.id">
+			          <label>Status</label>
+			          <md-select ng-model="model.entity.status">
+			            <md-option ng-value="true">
+			              Ativo
+			            </md-option>
+			          	<md-option ng-value="false">
+			              Desativado
+			            </md-option>
+			          </md-select>
+			        </md-input-container>
 			</eits-hbox>
+			
 			<md-input-container width="300" class="md-block">
 				<label>Ocupçãoo máxima</label>
 				<input ng-model="model.entity.ocupacaoMaxima" type="number" name="ocupacaoMaxima" required="true" min="1" max="10">
@@ -25,7 +36,7 @@
 			</md-input-container>
        		<md-input-container style="width: 70%"  class="md-block" >
 	            <label>Observação</label>
-	            <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+	            <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="2" md-select-on-focus></textarea>
           	</md-input-container>
 		    
 		    <span >Tarifa Padrão</span>
@@ -37,7 +48,7 @@
 			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
 			    	</eits-hbox>
 			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index < 4">
-			    		<label width="200" style="font-size: small;"> {{::tarifa.label}}</label>
+			    		<label width="200" style="font-size: small;"> {{::tarifa.label}} <span style="color: red">*</span></label>
 			    		<md-input-container  width="100" md-no-float style="margin-top:-15px; margin-left: 10px; height: 26px !important;" >
 							<input ng-model="tarifa.preco" type="number"  aria-label="preço tarifa"  required="true" step="1.00" min="1">
 						</md-input-container>
@@ -49,7 +60,7 @@
 			    		<span width="200" style="margin-left: 10px;">Preço (R$)</span>
 			    	</eits-hbox>
 			    	<eits-hbox style="margin-top:10px;" ng-repeat="tarifa in model.entity.tarifasPadrao | orderBy:'indice'" ng-if="$index >= 4">
-			    		<label width="200" style="font-size: small;"> {{::tarifa.label}}</label>
+			    		<label width="200" style="font-size: small;"> {{::tarifa.label}} <span style="color: red">*</span></label>
 			    		<md-input-container  width="100" md-no-float style="margin-top:-15px; margin-left: 10px; height: 26px !important;" >
 							<input ng-model="tarifa.preco" type="number"  aria-label="tarifa preço"  required="true" step="1" min="1">
 						</md-input-container>
@@ -57,16 +68,16 @@
 			    </div>
 		    </eits-hbox>
 		    
-		    <div>
+		    <div ng-if="model.entity.id">
 		    	<eits-hbox>
-	   			    <span >Tarifa de Exceção</span> 
+	   			    <span style="height: 20px; margin-top: 20px;" >Tarifa de Exceção</span> 
 	   			    <div flex></div>
 	   			    <md-button class="md-raised" ng-click="openAddTarifaExcecaoPopup( $event, null)">Nova</md-button>
 		    	</eits-hbox>
 		    	<md-divider></md-divider>
 		    	<md-table-container class="table" style="border: 1px #DDDDDD solid; margin-top: 20px;"> 
 				  <table md-table>
-				    <thead md-head >
+				    <thead md-head ng-if="model.tarifasExcecoes.length">
 				      <tr md-row>
 				        <th md-column style="width: 40%" ><span>Nome</span></th>
 				        <th md-column style="width: 20%"><span>Data de Inicio</span></th>
@@ -83,11 +94,15 @@
 				       	    <md-button ng-click="openAddTarifaExcecaoPopup( $event, tarifaExcecao)" aria-label="remove" class="md-raised table-button">
 				            	<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
 				            </md-button>
-				            <md-button ng-click="removeTipoQuarto($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
+				            <md-button ng-click="removeTarifaExcecao($event, tarifaExcecao)" aria-label="remove" class="md-raised table-button">
 				            	<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
 				            </md-button>            
 				        </td>
 				      </tr>
+				      
+		            	<div style="height: 57px; margin-left:20px;" layout="row" layout-align="start center" ng-if="!model.tarifasExcecoes.length">
+				      	 <span>Não possui tarifas de exceção.</span>
+				      </div>
 				    </tbody>
 				  </table>
 				</md-table-container>  

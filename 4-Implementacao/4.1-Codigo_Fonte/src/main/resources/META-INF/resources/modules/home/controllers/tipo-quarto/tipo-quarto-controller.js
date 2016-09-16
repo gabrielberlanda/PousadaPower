@@ -12,6 +12,7 @@ angular.module('home')
 	   
 		    $importService("tipoQuartoService");
 		 
+		    $importService("tipoQuartoService");
 		    /*-------------------------------------------------------------------
 		     *                          ATTRIBUTES
 		     *-------------------------------------------------------------------*/
@@ -74,7 +75,7 @@ angular.module('home')
 		        },
 		        pageRequest: {//PageImpl 
 		           	content: [],
-		           	pageable :{ size: 9,
+		           	pageable :{ size: 1,
 		           	page: 0,
 		               	sort:null
 		               	}
@@ -152,6 +153,8 @@ angular.module('home')
 			        	                ],
 			        	
 		        };
+		        
+		        $scope.model.tarifasExcecoes = [];
 		 
 		        switch( toState.name ){
 		            case $scope.LIST_TIPO_QUARTO_STATE :
@@ -264,25 +267,25 @@ angular.module('home')
 		 
 		     };
 		 
-		     $scope.removeFornecedor = function( ev, fornecedor ) {
+		     $scope.removeTipoQuarto = function( ev, tipoQuarto ) {
 		 
 		         var confirmConfig = {
-		             title   : "Remover Fornecedor",
-		             content : "Você realmente deseja remover o fornecedor " + fornecedor.nomeFantasia + "?",
+		             title   : "Remover Tipo de Quarto",
+		             content : "Você realmente deseja remover o tipo de quarto " + tipoQuarto.nome + "?",
 		             ok      : "Remover"
 		         }
 		 
 		         $rootScope.confirmDialog( ev, confirmConfig )
 		 
 		             .then(function() {
-		            	 fornecedorService.removeFornecedor ( fornecedor.id, {
+		            	 tipoQuartoService.removeTipoQuarto ( tipoQuarto.id, {
 		                     callback: function ( result ){
-		                         $rootScope.toast("Fornecedor removido com sucesso!", "green");
-		                         if ( $state.current.name == $scope.DETAIL_FORNECEDOR_STATE ) {
-		                             $state.go( $scope.LIST_FORNECEDOR_STATE );
+		                         $rootScope.toast("Tipo de quarto removido com sucesso!", "green");
+		                         if ( $state.current.name == $scope.DETAIL_TIPO_QUARTO_STATE ) {
+		                             $state.go( $scope.LIST_TIPO_QUARTO_STATE );
 		                         }
-		                         if ( $scope.model.pageRequest.content.indexOf(fornecedor) > -1 ) {
-		                             $scope.model.pageRequest.content.splice( $scope.model.pageRequest.content.indexOf(fornecedor), 1);
+		                         if ( $scope.model.pageRequest.content.indexOf(tipoQuarto) > -1 ) {
+		                             $scope.model.pageRequest.content.splice( $scope.model.pageRequest.content.indexOf(tipoQuarto), 1);
 		 
 		                             $scope.model.pageRequest.total--;
 		                             if( $scope.model.pageRequest.content.length == 0 ) {
@@ -300,6 +303,9 @@ angular.module('home')
 		    	 tipoQuartoService.listTarifaExcecoesByFiltersAndTipoQuartoId( null, null, null, $scope.model.entity.id, null, {
 		    		 callback : function ( result ) {
 		    			 $scope.model.tarifasExcecoes = result.content;
+		    			 for ( var k=0; k< $scope.model.tarifasExcecoes.length ; k++ ) {
+		    				 $scope.model.tarifasExcecoes[k].tarifas = ordenarTarifaPadrao( $scope.model.tarifasExcecoes[k].tarifas );
+		    			 }
 		    			 $scope.$apply();
 		    		 }, errorHandler : function ( message, exception ) {
 		    			 console.log("deu erro")
@@ -346,7 +352,8 @@ angular.module('home')
 		         }
 		          
 		         var data = {
-		        	tarifaExcecao : tarifaExcecao
+		        	tarifaExcecao : tarifaExcecao,
+		        	tipoQuarto : $scope.model.entity,
 		         };
 		  
 		         
@@ -373,6 +380,32 @@ angular.module('home')
 		             });
 		    }
 		     
+
+		     $scope.removeTarifaExcecao = function( ev, tarifaExcecao ) {
+		 
+		         var confirmConfig = {
+		             title   : "Remover Tarifa de Exceção",
+		             content : "Você realmente deseja remover a tarifa de exceção " + tarifaExcecao.nome + "?",
+		             ok      : "Remover"
+		         }
+		 
+		         $rootScope.confirmDialog( ev, confirmConfig )
+		 
+		             .then(function() {
+		            	 tipoQuartoService.removeTarifaExcecao ( tarifaExcecao.id, {
+		                     callback: function ( result ){
+		                         $rootScope.toast("Tarifa de exceção removida com sucesso!", "green");
+		                         if ( $scope.model.tarifasExcecoes.indexOf(tarifaExcecao) > -1 ) {
+		                        	 $scope.model.tarifasExcecoes.splice( $scope.model.tarifasExcecoes.indexOf(tarifaExcecao), 1);
+		                            
+		                         }
+		                         $scope.$apply();
+		                     }
+		                 } )
+		             }, function() {
+		             });
+		     }
+		     
 		    /**
 		     *
 		     */
@@ -393,6 +426,61 @@ angular.module('home')
 		        $scope.model.pageRequest.pageable.page = page ;
 		        $scope.model.pageRequest.pageable.size = limit;
 		    };
+		    
+		    /**
+		     * 
+		     */
+		    $scope.ativarTipoQuarto = function( ev, tipoQuarto ) {
+				 
+		         var confirmConfig = {
+		             title   : "Ativar Tipo de Quarto",
+		             content : "Você realmente deseja ativar o tipo de quarto " + tipoQuarto.nome + "?",
+		             ok      : "Ativar"
+		         }
+		 
+		         $rootScope.confirmDialog( ev, confirmConfig )
+		 
+		             .then(function() {
+		 		    	tipoQuartoService.ativarTipoQuarto( tipoQuarto.id, {
+				    		callback : function ( result ) {
+				    			$rootScope.toast("Tipo de quarto ativo com sucesso!", "green");
+		        				 if ( $state.current.name == $scope.LIST_TIPO_QUARTO_STATE	) {
+		        					 $scope.model.pageRequest.content[ $scope.model.pageRequest.content.indexOf(tipoQuarto) ].status = true;
+		        				 }
+				    			$scope.$apply();
+				    		}
+				    	})
+		             }, function() {
+		             });
+		     }
+		    
+		    /**
+		     * 
+		     */
+		    $scope.desativarTipoQuarto = function( ev, tipoQuarto ) {
+				 
+		         var confirmConfig = {
+		             title   : "Desativar Tipo de Quarto",
+		             content : "Você realmente deseja desativar o tipo de quarto " + tipoQuarto.nome + "?",
+		             ok      : "Desativar"
+		         }
+		 
+		         $rootScope.confirmDialog( ev, confirmConfig )
+		 
+		             .then(function() {
+		 		    	tipoQuartoService.desativarTipoQuarto( tipoQuarto.id, {
+				    		callback : function ( result ) {
+				    			$rootScope.toast("Tipo de quarto desativado com sucesso!", "green");
+		        				 if ( $state.current.name == $scope.LIST_TIPO_QUARTO_STATE	) {
+		        					 $scope.model.pageRequest.content[ $scope.model.pageRequest.content.indexOf(tipoQuarto) ].status = false;
+		        				 }
+
+				    			$scope.$apply();
+				    		}
+				    	})
+		             }, function() {
+		             });
+		     }
 		 
 });
 

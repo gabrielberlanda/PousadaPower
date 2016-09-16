@@ -12,10 +12,11 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.digows.blank.domain.entity.tipoquarto.tarifa.Dia;
-import com.digows.blank.domain.entity.tipoquarto.tarifa.Tarifa;
-import com.digows.blank.domain.entity.tipoquarto.tarifa.TarifaExcecao;
 import com.digows.blank.test.domain.AbstractUnitTests;
+
+import br.com.berlanda.pousadapower.domain.entity.tipoquarto.tarifa.Dia;
+import br.com.berlanda.pousadapower.domain.entity.tipoquarto.tarifa.Tarifa;
+import br.com.berlanda.pousadapower.domain.entity.tipoquarto.tarifa.TarifaExcecao;
 
 /**
  * @author berlanda

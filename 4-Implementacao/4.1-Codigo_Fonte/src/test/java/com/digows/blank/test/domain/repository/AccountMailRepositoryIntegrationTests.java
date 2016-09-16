@@ -7,9 +7,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.digows.blank.domain.entity.account.Usuario;
-import com.digows.blank.domain.repository.IAccountMailRepository;
 import com.digows.blank.test.domain.AbstractIntegrationTests;
+
+import br.com.berlanda.pousadapower.domain.entity.account.Usuario;
+import br.com.berlanda.pousadapower.domain.repository.IAccountMailRepository;
 
 /**
  * 

@@ -10,12 +10,13 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.test.context.support.WithUserDetails;
 
-import com.digows.blank.domain.entity.account.Usuario;
-import com.digows.blank.domain.entity.account.PermissaoUsuario;
-import com.digows.blank.domain.service.AccountService;
 import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+
+import br.com.berlanda.pousadapower.domain.entity.account.PermissaoUsuario;
+import br.com.berlanda.pousadapower.domain.entity.account.Usuario;
+import br.com.berlanda.pousadapower.domain.service.AccountService;
 
 /**
  * 

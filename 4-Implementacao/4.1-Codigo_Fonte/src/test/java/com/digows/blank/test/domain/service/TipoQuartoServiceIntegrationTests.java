@@ -17,14 +17,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.security.test.context.support.WithUserDetails;
 
-import com.digows.blank.domain.entity.tipoquarto.TipoQuarto;
-import com.digows.blank.domain.entity.tipoquarto.tarifa.Dia;
-import com.digows.blank.domain.entity.tipoquarto.tarifa.Tarifa;
-import com.digows.blank.domain.entity.tipoquarto.tarifa.TarifaExcecao;
-import com.digows.blank.domain.service.TipoQuartoService;
 import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+
+import br.com.berlanda.pousadapower.domain.entity.tipoquarto.TipoQuarto;
+import br.com.berlanda.pousadapower.domain.entity.tipoquarto.tarifa.Dia;
+import br.com.berlanda.pousadapower.domain.entity.tipoquarto.tarifa.Tarifa;
+import br.com.berlanda.pousadapower.domain.entity.tipoquarto.tarifa.TarifaExcecao;
+import br.com.berlanda.pousadapower.domain.service.TipoQuartoService;
 
 /**
  * @author berlanda

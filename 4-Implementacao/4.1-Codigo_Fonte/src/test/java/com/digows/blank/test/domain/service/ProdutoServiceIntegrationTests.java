@@ -10,15 +10,16 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.security.test.context.support.WithUserDetails;
 
-import com.digows.blank.domain.entity.account.PermissaoUsuario;
-import com.digows.blank.domain.entity.account.Usuario;
-import com.digows.blank.domain.entity.fornecedor.Fornecedor;
-import com.digows.blank.domain.entity.produto.Produto;
-import com.digows.blank.domain.entity.produto.TipoProduto;
-import com.digows.blank.domain.service.ProdutoService;
 import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+
+import br.com.berlanda.pousadapower.domain.entity.account.PermissaoUsuario;
+import br.com.berlanda.pousadapower.domain.entity.account.Usuario;
+import br.com.berlanda.pousadapower.domain.entity.fornecedor.Fornecedor;
+import br.com.berlanda.pousadapower.domain.entity.produto.Produto;
+import br.com.berlanda.pousadapower.domain.entity.produto.TipoProduto;
+import br.com.berlanda.pousadapower.domain.service.ProdutoService;
 
 /**
  * @author Berlanda

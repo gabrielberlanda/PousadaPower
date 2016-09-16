@@ -5,9 +5,10 @@ import java.util.Calendar;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.digows.blank.domain.entity.account.Usuario;
-import com.digows.blank.domain.entity.account.PermissaoUsuario;
 import com.digows.blank.test.domain.AbstractUnitTests;
+
+import br.com.berlanda.pousadapower.domain.entity.account.PermissaoUsuario;
+import br.com.berlanda.pousadapower.domain.entity.account.Usuario;
 
 /**
  * 

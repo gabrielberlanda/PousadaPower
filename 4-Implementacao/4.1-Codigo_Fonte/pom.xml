@@ -10,7 +10,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<groupId>com.digows</groupId>
+	<groupId>br.com.berlanda</groupId>
 	<artifactId>blank</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -18,7 +18,7 @@
 	<properties>
 		<!-- General -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.digows.blank.Application</start-class>
+		<start-class>br.com.berlanda.pousadapower.Application</start-class>
 		<java.version>1.8</java.version>
 		
 		<!-- Sonar Properties -->

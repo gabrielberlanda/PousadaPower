@@ -1,4 +1,4 @@
-package com.digows.blank.test.domain.repository;
+package br.com.berlanda.pousadapower.domain.repository;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -7,8 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.digows.blank.test.domain.AbstractIntegrationTests;
-
+import br.com.berlanda.pousadapower.domain.AbstractIntegrationTests;
 import br.com.berlanda.pousadapower.domain.entity.account.Usuario;
 import br.com.berlanda.pousadapower.domain.repository.IAccountMailRepository;
 

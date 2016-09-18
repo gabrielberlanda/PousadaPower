@@ -1,4 +1,4 @@
-package com.digows.blank.test.domain.service;
+package br.com.berlanda.pousadapower.domain.service;
 
 
 import org.junit.Assert;
@@ -10,10 +10,10 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.test.context.support.WithUserDetails;
 
-import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
+import br.com.berlanda.pousadapower.domain.AbstractIntegrationTests;
 import br.com.berlanda.pousadapower.domain.entity.account.PermissaoUsuario;
 import br.com.berlanda.pousadapower.domain.entity.account.Usuario;
 import br.com.berlanda.pousadapower.domain.service.AccountService;
@@ -87,6 +87,7 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 	 * 
 	 */
 	@Test
+	@WithUserDetails("admin@email.com")
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 		"/dataset/account/UserDataSet.xml",
 	})
@@ -102,6 +103,7 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 	 * 
 	 */
 	@Test
+	@WithUserDetails("admin@email.com")
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 		"/dataset/account/UserDataSet.xml",
 	})
@@ -117,6 +119,7 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 	 * 
 	 */
 	@Test
+	@WithUserDetails("admin@email.com")
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 		"/dataset/account/UserDataSet.xml",
 	})

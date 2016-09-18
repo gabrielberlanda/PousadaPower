@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.digows.blank.test.domain.service;
+package br.com.berlanda.pousadapower.domain.service;
+
+import javax.validation.ValidationException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,10 +13,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.security.test.context.support.WithUserDetails;
 
-import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
+import br.com.berlanda.pousadapower.domain.AbstractIntegrationTests;
 import br.com.berlanda.pousadapower.domain.entity.fornecedor.Fornecedor;
 import br.com.berlanda.pousadapower.domain.entity.pessoa.Hospede;
 import br.com.berlanda.pousadapower.domain.entity.produto.Produto;
@@ -66,7 +68,7 @@ public class PessoaServiceIntegrationTests extends AbstractIntegrationTests
 		
 	}
 	
-	@Test( expected = IllegalArgumentException.class )
+	@Test( expected = ValidationException.class )
 	@WithUserDetails("admin@email.com")
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 		"/dataset/account/UserDataSet.xml",
@@ -85,7 +87,7 @@ public class PessoaServiceIntegrationTests extends AbstractIntegrationTests
 		hospede.setCpf( "08789887930" );
 		hospede.setPlaca( "CBA0909" );
 		hospede.setModeloVeiculo( "Legacy verde" );
-		
+		 
 		hospede = this.pessoaService.insertHospede( hospede );
 	}
 	

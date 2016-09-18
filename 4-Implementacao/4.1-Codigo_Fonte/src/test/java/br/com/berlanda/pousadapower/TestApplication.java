@@ -1,4 +1,4 @@
-package com.digows.blank.test;
+package br.com.berlanda.pousadapower;
 
 import javax.sql.DataSource;
 

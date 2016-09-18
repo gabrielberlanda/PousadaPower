@@ -1,4 +1,4 @@
-package com.digows.blank.test.domain;
+package br.com.berlanda.pousadapower.domain;
 
 import java.util.Locale;
 
@@ -11,12 +11,12 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.TestExecutionListeners.MergeMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.digows.blank.test.TestApplication;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 
 import br.com.berlanda.pousadapower.Application;
+import br.com.berlanda.pousadapower.TestApplication;
 import br.com.eits.common.infrastructure.dbunit.DBUnitOperationLookup;
 import br.com.eits.common.infrastructure.dbunit.TransactionDbUnitTestExecutionListener;
 

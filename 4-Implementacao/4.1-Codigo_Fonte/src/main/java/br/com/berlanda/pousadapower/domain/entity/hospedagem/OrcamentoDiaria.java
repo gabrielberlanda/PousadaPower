@@ -6,7 +6,9 @@ package br.com.berlanda.pousadapower.domain.entity.hospedagem;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
 
@@ -16,9 +18,9 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  * @author berlanda
  *
  */
-//@Entity
-@DataTransferObject( javascript = "Diaria" )
-public class Diaria extends AbstractEntity implements Serializable
+@Entity
+@DataTransferObject( javascript = "OrcamentoDiaria" )
+public class OrcamentoDiaria extends AbstractEntity implements Serializable
 {
 
 	/**
@@ -29,17 +31,21 @@ public class Diaria extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@NotNull
+	@Column( nullable = false )
 	private Calendar dia;
 	
 	/**
 	 * 
 	 */
+	@NotNull
+	@Column( nullable = false )
 	private Double valor;
 
 	/**
 	 * 
 	 */
-	public Diaria()
+	public OrcamentoDiaria()
 	{
 		super();
 	}
@@ -47,7 +53,7 @@ public class Diaria extends AbstractEntity implements Serializable
 	/**
 	 * @param id
 	 */
-	public Diaria( Long id )
+	public OrcamentoDiaria( Long id )
 	{
 		super( id );
 	}
@@ -74,7 +80,7 @@ public class Diaria extends AbstractEntity implements Serializable
 		if ( this == obj ) return true;
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
-		Diaria other = ( Diaria ) obj;
+		OrcamentoDiaria other = ( OrcamentoDiaria ) obj;
 		if ( dia == null )
 		{
 			if ( other.dia != null ) return false;

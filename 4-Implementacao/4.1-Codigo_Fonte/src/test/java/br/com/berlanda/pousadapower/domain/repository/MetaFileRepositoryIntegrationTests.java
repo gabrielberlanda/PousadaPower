@@ -1,4 +1,4 @@
-package com.digows.blank.test.domain.repository;
+package br.com.berlanda.pousadapower.domain.repository;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,8 +13,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.digows.blank.test.domain.AbstractIntegrationTests;
-
+import br.com.berlanda.pousadapower.domain.AbstractIntegrationTests;
 import br.com.eits.common.infrastructure.jcr.IMetaFileRepository;
 import br.com.eits.common.infrastructure.jcr.MetaFile;
 

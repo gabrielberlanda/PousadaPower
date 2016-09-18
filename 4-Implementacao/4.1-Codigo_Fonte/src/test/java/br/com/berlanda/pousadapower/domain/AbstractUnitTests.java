@@ -1,4 +1,4 @@
-package com.digows.blank.test.domain;
+package br.com.berlanda.pousadapower.domain;
 
 /**
  * 

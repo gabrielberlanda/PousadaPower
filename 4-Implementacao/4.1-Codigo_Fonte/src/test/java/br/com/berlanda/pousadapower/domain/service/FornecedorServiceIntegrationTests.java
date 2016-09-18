@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.digows.blank.test.domain.service;
+package br.com.berlanda.pousadapower.domain.service;
 
 import javax.validation.ValidationException;
 
@@ -13,10 +13,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.security.test.context.support.WithUserDetails;
 
-import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
+import br.com.berlanda.pousadapower.domain.AbstractIntegrationTests;
 import br.com.berlanda.pousadapower.domain.entity.fornecedor.Fornecedor;
 import br.com.berlanda.pousadapower.domain.entity.pessoa.Hospede;
 import br.com.berlanda.pousadapower.domain.service.FornecedorService;

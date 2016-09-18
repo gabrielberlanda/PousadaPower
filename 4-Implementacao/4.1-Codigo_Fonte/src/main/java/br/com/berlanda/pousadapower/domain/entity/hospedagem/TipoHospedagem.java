@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.berlanda.pousadapower.domain.entity.conta;
+package br.com.berlanda.pousadapower.domain.entity.hospedagem;
 
 import org.directwebremoting.annotations.DataTransferObject;
 
@@ -10,8 +10,8 @@ import org.directwebremoting.annotations.DataTransferObject;
  *
  */
 @DataTransferObject( type = "enum" )
-public enum TipoItemConta
+public enum TipoHospedagem
 {
-	DIARIA,
-	PRODUTO;
+	RESERVA_ANTECIPADA,
+	SEM_RESERVA;
 }

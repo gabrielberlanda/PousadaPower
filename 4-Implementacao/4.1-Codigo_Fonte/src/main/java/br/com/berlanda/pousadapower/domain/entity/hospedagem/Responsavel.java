@@ -5,7 +5,9 @@ package br.com.berlanda.pousadapower.domain.entity.hospedagem;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
 
@@ -15,7 +17,7 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  * @author berlanda
  *
  */
-//@Entity
+@Entity
 @DataTransferObject( javascript = "Responsavel" )
 public class Responsavel extends AbstractEntity implements Serializable
 {
@@ -28,14 +30,20 @@ public class Responsavel extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@NotNull
+	@Column( nullable = false )
 	private String nome;
 	/**
 	 * 
 	 */
+	@NotNull
+	@Column( nullable = false )
 	private String email;
 	/**
 	 * 
 	 */
+	@NotNull
+	@Column( nullable = false )
 	private String telefone;
 	
 	/**

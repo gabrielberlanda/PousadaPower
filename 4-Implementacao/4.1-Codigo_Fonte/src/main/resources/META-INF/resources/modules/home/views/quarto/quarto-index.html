@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+ <header class="navbar">
+ 
+        <div ng-switch="$state.current.name" class="navbar-page">
+ 
+            <!-- LIST -->
+            <div ng-switch-when="quarto.lista" class="navbar-title" layout="row" layout-align="start center">
+                <div flex=>Listagem de Quartos</div>
+                <md-button ui-sref="quarto.novo" aria-label="create quarto" class="md-raised md-hue-1">Novo Quarto</md-button>
+            </div>
+ 
+            <!-- CREATE -->
+            <div ng-switch-when="quarto.novo" class="navbar-title" layout="row" layout-align="start center">
+                <md-button ui-sref="quarto.lista" aria-label="back to list" class="md-raised button-arrow-back">
+                    <md-icon md-font-set="zmdi zmdi-close zmdi-arrow-back zmdi-hc-lg"></md-icon>
+                </md-button>
+            </md-button>
+                <div flex="">Novo Quarto</div>
+                <md-button class="md-raised button-green" ng-click="save( model.entity )">Salvar</md-button>
+            </div>
+ 
+            <!-- EDIT -->
+            <div ng-switch-when="quarto.editar" class="navbar-title" layout="row" layout-align="start center">
+                <md-button ui-sref="quarto.lista" aria-label="back to list" class="md-raised button-arrow-back">
+                    <md-icon md-font-set="zmdi zmdi-close zmdi-arrow-back zmdi-hc-lg"></md-icon>
+                </md-button>
+                <div flex>Atualizar Quarto</div>
+                <md-button class="md-raised button-green" aria-label="save user" ng-click="save( model.entity )">Salvar</md-button>
+            </div>
+ 
+            <!-- DETAIL -->
+            <div ng-switch-when="quarto.detalhe" class="navbar-title" layout="row" layout-align="start center">
+                <md-button ui-sref="quarto.lista" aria-label="back to list" class="md-raised button-arrow-back">
+                    <md-icon md-font-set="zmdi zmdi-close zmdi-arrow-back zmdi-hc-lg"></md-icon>
+                </md-button>
+                <div flex="">Detalhe do Quarto</div>
+                <md-button class="md-raised button-blue" aria-label="back to edit" ng-click="changeToEdit($event, model.entity)">Editar</md-button>
+                <md-button class="md-raised button-red" ng-click="removeQuarto($event, model.entity)">Remover</md-button>
+            </div>
+             
+        </div>
+ 
+        <md-divider></md-divider>
+    </header>
+    
+    
+    <div ui-view style="margin-top:20px" class="border"
+    ></div>
+</html>

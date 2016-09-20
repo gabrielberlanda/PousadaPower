@@ -8,6 +8,14 @@
 	<public.fornecedor/>
 	<public.produto/>
 	<public.tipo_quarto/>
+	<public.quarto/>
 	<public.tarifa_excecao/>
 	<public.tarifa/>
+	<public.hospedagem/>
+	<public.responsavel/>
+	<public.orcamento_diaria/>
+	<public.conta_hospedagem/>
+	<public.diaria_hospedagem/>
+	<public.pagamento/>
+	<public.pagamento_hospedagem/>
 </dataset>

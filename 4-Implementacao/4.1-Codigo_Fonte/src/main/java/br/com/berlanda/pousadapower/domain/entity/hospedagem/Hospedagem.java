@@ -5,6 +5,7 @@ package br.com.berlanda.pousadapower.domain.entity.hospedagem;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -70,6 +73,10 @@ public class Hospedagem extends AbstractEntity implements Serializable
 	@OneToOne( fetch=FetchType.EAGER )
 	private ContaHospedagem contaHospedagem;
 	
+	@NotNull(message="Orçamento de diarias são obrigatórios")
+	@OneToMany( cascade= CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="hospedagem_id")
+	private Set<OrcamentoDiaria> orcamentoDiarias;
 	/**
 	 * 
 	 */
@@ -283,5 +290,23 @@ public class Hospedagem extends AbstractEntity implements Serializable
 	{
 		this.contaHospedagem = contaHospedagem;
 	}
+
+	/**
+	 * @return the tipoQuarto
+	 */
+	public TipoQuarto getTipoQuarto()
+	{
+		return tipoQuarto;
+	}
+
+	/**
+	 * @param tipoQuarto the tipoQuarto to set
+	 */
+	public void setTipoQuarto( TipoQuarto tipoQuarto )
+	{
+		this.tipoQuarto = tipoQuarto;
+	}
+	
+	
 	
 }

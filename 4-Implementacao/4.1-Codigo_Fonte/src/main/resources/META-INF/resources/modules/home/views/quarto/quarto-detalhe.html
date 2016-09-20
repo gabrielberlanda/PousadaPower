@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+	<eits-hbox >
+		<div style="width:50%">
+			<eits-vbox class="detail">
+				<label>Nome</label>
+				<span ng-if="model.entity.nome">{{model.entity.nome}}</span>
+				<span ng-if="!model.entity.nome"> - </span>
+			</eits-vbox>
+				
+			<eits-hbox>
+				<eits-vbox class="detail">
+					<label>Tipo de Quarto</label>
+					<span ng-if="model.entity.tipoQuarto.nome">{{model.entity.tipoQuarto.nome}}</span>
+					<span ng-if="!model.entity.tipoQuarto.nome"> - </span>
+				</eits-vbox>
+				<eits-vbox class="detail">
+					<label>Status</label>
+					<span ng-if="model.entity.status">{{model.entity.status}}</span>
+					<span ng-if="!model.entity.status"> - </span>
+				</eits-vbox>	
+			</eits-hbox>
+			
+			<eits-vbox class="detail">
+				<label>Situação</label>
+				<span ng-if="model.entity.ativo" ng-bind="model.entity.ativo == 'true' ? 'Ativo' : 'Desativado'">{{model.entity.ativo}}</span>
+				<span ng-if="!model.entity.ativo"> - </span>
+			</eits-vbox>
+			
+			<eits-vbox class="detail">
+				<label>Observação</label>
+				<span ng-if="model.entity.observacao" class="white-space-pre-wrap">{{model.entity.observacao}}</span>
+				<span ng-if="!model.entity.observacao"> - </span>
+			</eits-vbox>
+		</div >
+		<div style="width:400px; margin-left: 40px;">
+			<div layout="column" layout-align="center center"  class="img-list">
+				<a ng-if="model.fileRender"><img style="width: 300px; height: 300px;" ng-src="{{model.fileRender}}" alt="image"/></a>
+				<a> <img ng-if="!model.fileRender" ng-src="./static/images/sem_imagem.jpg" style="width: 300px; height: 300px;"  border="0" alt="No equipment Select"/></a>
+			</div>
+		</div>
+	</eits-hbox>
+	
+</html>

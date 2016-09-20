@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.pagamento
+		id="1000"
+		created="2015-03-30 00:00:00"
+		tipo_pagamento="0"
+		valor="400"
+		/>
+	<public.pagamento
+		id="1001"
+		created="2015-03-30 00:00:00"
+		tipo_pagamento="4"
+		bandeira_cartao="0"
+		valor="400"
+		/>
+	
+</dataset>
+  

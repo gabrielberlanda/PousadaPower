@@ -54,3 +54,18 @@
 .side-nav-index-item-selected {
 	background : #ECECEC;
 }
+.white-space-pre-wrap {
+	white-space : pre-wrap;
+}
+
+.img-list.equipment-img:hover #equipment-img {
+ 	opacity: 0.50;
+}
+
+.img-list.equipment-img:hover button {
+ 	display:block;
+}
+
+.img-list.equipment-img button {
+ 	display:none;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.pagamento_hospedagem
+		id="1000"
+		created="2015-03-30 00:00:00"
+		pagamento_id="1000"
+		estornado="true"
+		justificativa="Lançamento incorreto"
+		/>
+	<public.pagamento_hospedagem
+		id="1001"
+		created="2015-03-30 00:00:00"
+		pagamento_id="1001"
+		estornado="false"
+		/>
+	
+</dataset>
+  

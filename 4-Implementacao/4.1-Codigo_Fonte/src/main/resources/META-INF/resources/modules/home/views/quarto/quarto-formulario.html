@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+		<form name="quartoForm" id="quartoForm" >
+			<eits-hbox>
+				<eits-vbox flex=50>
+					<eits-hbox>
+				          <md-input-container width="300" class="md-block" >
+				            <label>Nome</label>
+				            <input required="true" name="nome" ng-model="model.entity.nome">
+				            <div ng-messages="quartoForm.nome.$error" md-auto-hide="false"> 
+				            	<div ng-message="required"> Campo obrigatório 
+				            	</div>
+				            </div>
+				          </md-input-container>
+		
+					</eits-hbox>
+		         		
+					
+					<md-autocomplete  width="350" style="margin-top: 8px;"
+						required
+						maxlength="100"
+					    md-input-name="tipoQuarto"
+					    md-no-cache="true"
+					    md-search-text="model.filtroTipoQuarto"
+					    md-selected-item="model.entity.tipoQuarto"
+			   		    md-selected-item-change="console.log('mudou')"
+					    md-items="tipo in listTipoQuartosByFilters( model.filtroTipoQuarto )"
+					    md-item-text="tipo.nome"
+					    md-floating-label="Tipo de Quarto">
+					  <md-item-template>
+					    <span md-highlight-text="Tipo">{{tipo.nome}}</span>
+					  </md-item-template>
+					  <div ng-messages="quartoForm.tipoQuarto.$error">
+					  	<div ng-message="required"> Campo obrigatório </div>
+					  </div>
+					</md-autocomplete>
+					
+					<md-input-container width="200">
+			          <label>Status</label>
+			          <md-select ng-model="model.entity.status">
+			            <md-option ng-repeat="status in model.status" ng-value="status.value">
+			              {{status.label}}
+			            </md-option>
+			          </md-select>
+			        </md-input-container>   
+		        </eits-vbox>
+		 	   	<eits-vbox width="400" style="margin-left: 40px;" layout-align="center center">
+					<div layout="column" layout-align="center center"  class="img-list equipment-img">
+						<a ng-if="model.fileRender" ng-click="" href=""><img style="width: 400px; height: 300px; position: relative;" ng-src="{{model.fileRender}}" id="equipment-img" alt="image"/></a>
+						<a> <img ng-if="!model.fileRender" ng-src="./static/images/sem_imagem.jpg" style="width: 300px; height: 300px;"  border="0" alt="No equipment Select"/></a>
+						
+						<md-button  style="position: absolute; " class="md-raised" ng-click="removeFile( model.entity.id )" width="150" ng-if="model.fileRender">
+							REMOVER IMAGEM
+						</md-button>
+					</div>
+					<eits-hbox style="margin-top:10px;">
+						<md-input-container >
+							<label>Arquivo</label>
+							<input aria-label="Upload" onclick="document.querySelector('#file-input').click()" style="margin-top:4px; margin-bottom:-15px" ng-model="model.entity.metaFileName" id="uploadFileInput"  width="209" />
+						</md-input-container>
+						<md-button type="button" class="md-raised" style="margin:0 0 0 -3px;background-color:rgba(0,0,0,0.12);height:36px;border-radius: 0 3px 3px 0;" onclick="document.querySelector('#file-input').click()">
+							UPLOAD
+						</md-button>
+						<input id="file-input" onchange="angular.element(this).scope().uploadFile(this)" type="file"  style="display:none;" >
+						
+					</eits-hbox>
+					<eits-hbox>
+					<label><i>(* Formatos permitidos: jpg, jpeg, png, bmp e gif.)</i></label>
+					</eits-hbox>
+				</eits-vbox>
+			</eits-hbox>
+		  <md-input-container style="width: 80%" class="md-block" >
+           <label>Observação</label>
+           <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="2" md-select-on-focus></textarea>
+         </md-input-container>  
+
+
+		</form>
+</html>

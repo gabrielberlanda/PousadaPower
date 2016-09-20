@@ -142,6 +142,28 @@
 	        .state('tipoQuarto.editar', {
 	        	url         : "/editar/{id:[0-9]{1,10}}",
 	        	templateUrl	: './modules/home/views/tipo-quarto/tipo-quarto-formulario.html',
+	        })
+	        .state('quarto', {
+	        	url 		: "/quarto",
+	        	templateUrl	: './modules/home/views/quarto/quarto-index.html',
+	        	controller	: 'QuartoController',
+	        	abstract 	: true,
+	        })
+	        .state('quarto.lista', {
+	        	url 		: "/lista",
+	        	templateUrl	: './modules/home/views/quarto/quarto-lista.html',
+	        })
+	        .state('quarto.detalhe', {
+	        	url 		: "/detalhe/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/quarto/quarto-detalhe.html',
+	        })
+	        .state('quarto.novo', {
+	        	url 		: "/novo",
+	        	templateUrl	: './modules/home/views/quarto/quarto-formulario.html',
+	        })
+	        .state('quarto.editar', {
+	        	url         : "/editar/{id:[0-9]{1,10}}",
+	        	templateUrl	: './modules/home/views/quarto/quarto-formulario.html',
 	        });
         
         $mdDateLocaleProvider.formatDate = function(date) {

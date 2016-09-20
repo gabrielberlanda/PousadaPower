@@ -75,7 +75,7 @@ angular.module('home')
 		        },
 		        pageRequest: {//PageImpl 
 		           	content: [],
-		           	pageable :{ size: 1,
+		           	pageable :{ size: 10000,
 		           	page: 0,
 		               	sort:null
 		               	}

@@ -33,6 +33,7 @@
 		<script type="text/javascript" th:src="@{/modules/home/controllers/produto/produto-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/profile/profile-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/usuario/usuario-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/quarto/quarto-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/tipo-quarto/tipo-quarto-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/tipo-quarto/popup/add-tarifa-excecao-popup-controller.js}"></script>
 	</head>
@@ -135,6 +136,13 @@
 					         <div class="md-list-item-text"  layout="row">
 					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
 					           <h3>Tipo de Quarto</h3>
+					         </div>
+					       </md-list-item>
+         				   <md-list-item class="md-2-line" ng-click="$state.go('quarto.lista')"
+					       				 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('quarto') > -1 }">
+					         <div class="md-list-item-text"  layout="row">
+					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
+					           <h3>Quarto</h3>
 					         </div>
 					       </md-list-item>
 					       

@@ -21,7 +21,9 @@ angular.module('home')
 		    $scope.EDIT_HOSPEDE_STATE     	 = "hospede.editar";
 		    $scope.DETAIL_HOSPEDE_STATE   	 = "hospede.detalhe";
 		    $scope.LIST_HOSPEDE_STATE     	 = "hospede.lista";
+		    
 		    $scope.today = new Date();
+		    
 		     /**
 		      *
 		      */
@@ -82,7 +84,7 @@ angular.module('home')
 		        		estado : null
 		        };
 		 
-		        switch( toState.name ){
+		        switch( toState.name ) {
 		            case $scope.LIST_HOSPEDE_STATE :
 		                $scope.listHospedesByFilters( null );
 		            break;

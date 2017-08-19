@@ -6,12 +6,12 @@
 		codigo="1224aaa"
 		entrada="2016-10-28 00:00:00"
 		saida="2016-10-30 00:00:00"
-		observacao=""
+		observacao="Observation I like"
 		responsavel_id="1000"
-		conta_hospedagem_id="1000"
 		status_hospedagem="2"
 		tipo_hospedagem="0"
 		tipo_quarto_id="1000"		
+		reservado_por_id="1000"
 		/>
 	
 	

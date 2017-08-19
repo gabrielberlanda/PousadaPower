@@ -181,9 +181,9 @@ public class QuartoService
 		Assert.notNull( quarto );
 		
 		Assert.notNull( quarto.getId() );
-
 		
 		quarto = this.quartoRepository.save( quarto );
+		this.quartoRepository.flush();
 		
 		if ( fileTransfer != null ) 
 		{

@@ -31,5 +31,8 @@ public interface ITipoQuartoRepository extends JpaRepository<TipoQuarto, Long>
 	@Modifying
 	@Query( value = "update TipoQuarto t set t.status = false WHERE t.id = :tipoQuartoId ")
 	public void desativarTipoQuarto (@Param("tipoQuartoId") long tipoQuartoId );
+	
+	
+	
 
 }

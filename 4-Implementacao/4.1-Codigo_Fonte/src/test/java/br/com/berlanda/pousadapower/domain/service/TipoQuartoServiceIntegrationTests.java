@@ -1010,5 +1010,27 @@ public class TipoQuartoServiceIntegrationTests extends AbstractIntegrationTests
 		Assert.fail();
 	}
 
-
+	@Test
+	@WithUserDetails("admin@email.com")
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/account/UserDataSet.xml",
+		"/dataset/endereco/PaisDataSet.xml",
+		"/dataset/endereco/EstadoDataSet.xml",
+		"/dataset/endereco/CidadeDataSet.xml",
+		"/dataset/fornecedor/FornecedorDataSet.xml",
+		"/dataSet/tipoquarto/TipoQuartoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaExcecaoDataSet.xml",
+		"/dataSet/tipoquarto/tarifa/TarifaDataSet.xml",
+		"/dataSet/hospedagem/ResponsavelDataSet.xml",
+		"/dataSet/hospedagem/HospedagemDataSet.xml",
+		"/dataSet/hospedagem/OrcamentoDiariaDataSet.xml",
+		"/dataSet/conta/ContaHospedagemDataSet.xml",
+		"/dataSet/conta/pagamento/PagamentoDataSet.xml",
+		"/dataSet/conta/DiariaHospedagemDataSet.xml",
+		"/dataSet/conta/PagamentoHospedagemDataSet.xml",
+	})
+	public void testing()
+	{
+		System.out.println( "PAPEAU NUKY DOE" );
+	}
 }

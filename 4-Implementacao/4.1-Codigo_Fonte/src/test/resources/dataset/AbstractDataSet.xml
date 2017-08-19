@@ -11,8 +11,8 @@
 	<public.quarto/>
 	<public.tarifa_excecao/>
 	<public.tarifa/>
-	<public.hospedagem/>
 	<public.responsavel/>
+	<public.hospedagem/>
 	<public.orcamento_diaria/>
 	<public.conta_hospedagem/>
 	<public.diaria_hospedagem/>

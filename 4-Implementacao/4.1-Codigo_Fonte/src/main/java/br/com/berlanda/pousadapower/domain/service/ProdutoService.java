@@ -64,7 +64,6 @@ public class ProdutoService
 		
 		produto.validarCampos();
 		
-		
 		return this.produtoRepository.save( produto );
 	}
 	
@@ -91,7 +90,6 @@ public class ProdutoService
 	public void removeProduto ( Long produtoId )
 	{
 		Assert.notNull( produtoId, "Informe um produto a ser removido" );
-		
 		this.produtoRepository.delete( produtoId );
 	}
 	
@@ -105,4 +103,6 @@ public class ProdutoService
 	{
 		return this.produtoRepository.listByFilters( filter, page);
 	}
+	
+	
 }

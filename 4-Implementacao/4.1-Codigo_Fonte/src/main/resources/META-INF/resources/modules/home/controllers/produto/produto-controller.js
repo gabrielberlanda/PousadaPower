@@ -128,10 +128,9 @@ angular.module('home')
 		                $scope.$apply();
 		             }
 		         });
-		 
 		     };
 		 
-
+		     
 		     $scope.listFornecedoresByFilters = function( filter ) {
 		    	 var deferred = $q.defer();
 		    	 
@@ -217,7 +216,6 @@ angular.module('home')
 		                         $scope.$apply ();
 		                     }
 		                 })
-		 
 		             } 
 		         }else {
 		             $rootScope.toast( "Formulário inválido!", "red" );

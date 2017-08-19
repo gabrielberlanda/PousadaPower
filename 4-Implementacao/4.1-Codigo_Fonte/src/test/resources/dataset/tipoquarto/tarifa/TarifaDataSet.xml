@@ -13,42 +13,42 @@
 		id="1001"
 		created="2015-03-30 00:00:00"
 		dia="1"
-		preco="300"
+		preco="310"
 		tipo_quarto_id="1000"
 		/>	
 	<public.tarifa
 		id="1002"
 		created="2015-03-30 00:00:00"
 		dia="2"
-		preco="300"
+		preco="320"
 		tipo_quarto_id="1000"
 		/>
 	<public.tarifa
 		id="1003"
 		created="2015-03-30 00:00:00"
 		dia="3"
-		preco="300"
+		preco="330"
 		tipo_quarto_id="1000"
 		/>
 	<public.tarifa
 		id="1004"
 		created="2015-03-30 00:00:00"
 		dia="4"
-		preco="300"
+		preco="340"
 		tipo_quarto_id="1000"
 		/>	
 	<public.tarifa
 		id="1005"
 		created="2015-03-30 00:00:00"
 		dia="5"
-		preco="300"
+		preco="350"
 		tipo_quarto_id="1000"
 		/>
 	<public.tarifa
 		id="1006"
 		created="2015-03-30 00:00:00"
 		dia="6"
-		preco="300"
+		preco="360"
 		tipo_quarto_id="1000"
 		/>
 		

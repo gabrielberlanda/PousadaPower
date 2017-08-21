@@ -26,7 +26,7 @@
 	          <eits-hbox> 
 		          <md-input-container width="200">
 		            <label>Telefone</label>
-		            <input required="true" ui-mask="(99) 9999-9999" ng-model="model.entity.telefone" name="telefone">
+		            <input required="true" ui-mask="(99) 9999-9999" ui-options="{addDefaultPlaceholder : false}" ng-model="model.entity.telefone" name="telefone">
 		            <div ng-messages="fornecedorForm.telefone.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório 
 		            	</div>
@@ -47,7 +47,7 @@
 			<eits-hbox>
 		          <md-input-container width="300" class="md-block">
 		            <label>CNPJ</label>
-		            <input ng-model="model.entity.cnpj" name="cnpj"  ui-mask="99.999.999/9999-99"  ng-blur="validarCNPJ( model.entity.cnpj, this )" required >
+		            <input ng-model="model.entity.cnpj" name="cnpj"  ui-mask="99.999.999/9999-99" ui-options="{addDefaultPlaceholder : false}"  ng-blur="validarCNPJ( model.entity.cnpj, this )" required >
 		            <div ng-messages="fornecedorForm.cnpj.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório 
 		            	</div>

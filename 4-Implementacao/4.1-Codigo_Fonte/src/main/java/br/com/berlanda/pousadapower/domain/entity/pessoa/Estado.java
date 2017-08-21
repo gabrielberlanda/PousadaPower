@@ -41,7 +41,7 @@ public class Estado extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@ManyToOne( optional= false, fetch=FetchType.EAGER )
+	@ManyToOne( optional= false, fetch=FetchType.LAZY )
 	private Pais pais;
 
 	/*-------------------------------------------------------------------

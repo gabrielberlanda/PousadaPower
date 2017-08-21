@@ -71,7 +71,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	    @Size(max=7, message="A tarifa de execeção deve conter no maximo 7 tarifa")
 	})
 	@NotNull( message = "Informe as tarifas")
-	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@OneToMany( fetch = FetchType.LAZY, cascade= CascadeType.ALL )
 	@JoinColumn(name="tarifa_excecao_id")
 	private Set<Tarifa> tarifas;
 	
@@ -79,7 +79,7 @@ public class TarifaExcecao extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@NotNull
-	@ManyToOne( fetch = FetchType.EAGER )
+	@ManyToOne( fetch = FetchType.LAZY )
 	private TipoQuarto tipoQuarto;
 
 	/**

@@ -5,6 +5,7 @@ package br.com.berlanda.pousadapower.domain.repository.conta;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.berlanda.pousadapower.domain.entity.conta.PagamentoHospedagem;
@@ -20,6 +21,6 @@ public interface IPagamentoHospedagemRepository extends JpaRepository<PagamentoH
 	 * @param id
 	 * @return
 	 */
-	List<PagamentoHospedagem> listByContaHospedagemId( Long id );
+	public List<PagamentoHospedagem> findByContaId( Long id );
 
 }

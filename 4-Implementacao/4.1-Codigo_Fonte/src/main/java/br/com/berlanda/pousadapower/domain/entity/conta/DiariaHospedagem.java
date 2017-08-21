@@ -31,10 +31,10 @@ public class DiariaHospedagem extends AbstractEntity implements Serializable
 	 */
 	private static final long serialVersionUID = 2228685745516929775L;
 	
-	@ManyToOne( fetch = FetchType.EAGER, optional = false )
+	@ManyToOne( fetch = FetchType.LAZY, optional = false )
 	private ContaHospedagem contaHospede;
 	
-	@ManyToOne ( fetch = FetchType.EAGER, optional = false )
+	@ManyToOne ( fetch = FetchType.LAZY, optional = false )
 	private OrcamentoDiaria diaria;
 	
 	private boolean estonardo;

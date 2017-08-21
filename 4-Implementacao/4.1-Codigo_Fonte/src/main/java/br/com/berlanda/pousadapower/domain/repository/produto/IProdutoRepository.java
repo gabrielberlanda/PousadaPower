@@ -7,6 +7,7 @@ package br.com.berlanda.pousadapower.domain.repository.produto;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -33,6 +34,11 @@ public interface IProdutoRepository extends JpaRepository<Produto, Long>
 				+ "OR FILTER( produto.precoUnitario, :filter ) = TRUE "
 				+ "OR FILTER( produto.precoCusto, :filter ) = TRUE )")
 	public Page<Produto> listByFilters ( @Param("filter") String filter, Pageable page );
+	
+	@EntityGraph( attributePaths = {
+			"fornecedor"
+	})
+	public Produto findById( long id );
 	
 	
 }

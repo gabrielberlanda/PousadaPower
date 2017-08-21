@@ -70,7 +70,7 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	    @Size(min=7, message="A tarifa padrão deve conter 7 tarifas"),
 	    @Size(max=7, message="A tarifa padrão deve conter 7 tarifas")
 	})
-	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@OneToMany( fetch = FetchType.LAZY, cascade= CascadeType.ALL )
 	@JoinColumn(name="tipo_quarto_id")
 	private Set<Tarifa> tarifasPadrao;
 
@@ -80,7 +80,6 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	public TipoQuarto()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -89,7 +88,6 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	public TipoQuarto( Long id )
 	{
 		super( id );
-		// TODO Auto-generated constructor stub
 	}
 
 	/* (non-Javadoc)
@@ -214,7 +212,5 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	{
 		this.status = status;
 	}
-	
-	
 	
 }

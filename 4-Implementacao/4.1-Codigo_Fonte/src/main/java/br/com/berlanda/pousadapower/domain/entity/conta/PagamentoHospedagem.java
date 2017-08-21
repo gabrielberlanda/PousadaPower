@@ -35,11 +35,11 @@ public class PagamentoHospedagem extends AbstractEntity implements Serializable
 	private static final long serialVersionUID = -3208349495726464348L;
 	
 	@NotNull
-	@OneToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
+	@OneToOne(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
 	private Pagamento pagamento;
 	
 	@NotNull
-	@ManyToOne( fetch = FetchType.EAGER )
+	@ManyToOne( fetch = FetchType.LAZY )
 	private ContaHospedagem conta;
 	
 	private String justificativa;

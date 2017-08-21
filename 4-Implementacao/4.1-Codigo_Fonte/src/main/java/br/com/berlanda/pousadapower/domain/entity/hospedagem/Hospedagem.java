@@ -80,7 +80,7 @@ public class Hospedagem extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@NotNull
-	@ManyToOne( fetch = FetchType.EAGER, optional = false )
+	@ManyToOne( fetch = FetchType.LAZY, optional = false )
 	private TipoQuarto tipoQuarto;
 	
 	/**
@@ -108,21 +108,21 @@ public class Hospedagem extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@NotNull( message="Informe quem reservou" )
-	@ManyToOne( fetch = FetchType.EAGER, optional = false )
+	@ManyToOne( fetch = FetchType.LAZY, optional = false )
 	private Usuario reservadoPor;
 	
 	/**
 	 * 
 	 */
 	@NotNull(message="Orçamento de diarias são obrigatórios")
-	@OneToMany( cascade= CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany( cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="hospedagem_id")
 	private Set<OrcamentoDiaria> orcamentoDiarias;
 	
 	/**
 	 * 
 	 */
-	@ManyToOne( fetch = FetchType.EAGER )
+	@ManyToOne( fetch = FetchType.LAZY )
 	private Quarto quarto;
 	
 	/**

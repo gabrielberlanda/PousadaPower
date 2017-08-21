@@ -102,7 +102,7 @@ public class TipoQuartoService
 	@Transactional( readOnly=true )
 	public TipoQuarto findTipoQuartoById( long tipoQuartoId )
 	{
-		TipoQuarto tipoQuarto = this.tipoQuartoRepository.findOne( tipoQuartoId );
+		TipoQuarto tipoQuarto = this.tipoQuartoRepository.findById( tipoQuartoId );
 		
 		Assert.notNull( tipoQuarto, "Tipo de Quarto não encontrado" );
 		
@@ -130,7 +130,8 @@ public class TipoQuartoService
 	 */
 	public Page<TarifaExcecao> listTarifaExcecoesByFiltersAndTipoQuartoId( String filter, Calendar dataInicio, Calendar dataFim, Long tipoQuartoId, PageRequest page )
 	{
-		return this.tarifaExceccaoRepository.listByFiltersAndTipoQuartoId( filter, dataInicio, dataFim, tipoQuartoId, page );
+		final Page<TarifaExcecao> tarifasExcecoes = this.tarifaExceccaoRepository.listByFiltersAndTipoQuartoId( filter, dataInicio, dataFim, tipoQuartoId, page );
+		return tarifasExcecoes;
 	}
 	
 	/**

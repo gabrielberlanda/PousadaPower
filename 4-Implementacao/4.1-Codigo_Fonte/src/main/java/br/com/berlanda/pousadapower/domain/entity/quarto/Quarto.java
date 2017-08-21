@@ -70,7 +70,7 @@ public class Quarto extends AbstractEntity implements Serializable
 	private String observacao;
 	
 	@NotNull
-	@ManyToOne( fetch = FetchType.EAGER, optional = false )
+	@ManyToOne( fetch = FetchType.LAZY, optional = false )
 	private TipoQuarto tipoQuarto;
 	
 	@NotNull

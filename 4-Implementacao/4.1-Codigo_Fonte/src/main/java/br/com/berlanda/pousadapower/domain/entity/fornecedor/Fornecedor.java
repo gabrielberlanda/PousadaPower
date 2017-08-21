@@ -74,7 +74,7 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@ManyToOne( fetch = FetchType.EAGER )
+	@ManyToOne( fetch = FetchType.LAZY )
 	private Cidade cidade;
 	
 	/**

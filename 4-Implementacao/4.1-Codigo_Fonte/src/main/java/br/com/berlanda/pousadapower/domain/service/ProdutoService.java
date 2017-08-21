@@ -76,7 +76,7 @@ public class ProdutoService
 	{
 		Assert.notNull( produtoId, "Informe o id do produto" );
 		
-		Produto produto = this.produtoRepository.findOne( produtoId );
+		Produto produto = this.produtoRepository.findById( produtoId );
 		
 		Assert.notNull( produto, "Produto não encontrado" );
 		

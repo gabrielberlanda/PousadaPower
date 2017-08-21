@@ -132,7 +132,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@ManyToOne( optional = true, fetch = FetchType.EAGER )
+	@ManyToOne( optional = true, fetch = FetchType.LAZY )
 	private Cidade cidade;
 	
 	/**

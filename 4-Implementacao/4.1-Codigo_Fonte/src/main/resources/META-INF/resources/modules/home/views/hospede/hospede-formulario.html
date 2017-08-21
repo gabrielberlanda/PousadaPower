@@ -27,7 +27,7 @@
 	          <eits-hbox> 
 		          <md-input-container width="200">
 		            <label>Telefone</label>
-		            <input required="true" ui-mask="(99) 9999-9999" ng-model="model.entity.telefone" name="telefone">
+		            <input required="true" ui-mask="(99) 9999-9999"  ui-options="{addDefaultPlaceholder : false}" ng-model="model.entity.telefone" name="telefone">
 		            <div ng-messages="hospedeForm.telefone.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório 
 		            	</div>
@@ -36,7 +36,7 @@
 		          
 		          <md-input-container width="200">
 		            <label>Celular</label>
-		            <input ng-model="model.entity.celular" ui-mask="(99) 99999-999?9" >
+		            <input ng-model="model.entity.celular" ui-mask="(99) 99999-999?9" ui-options="{addDefaultPlaceholder : false}">
 		          </md-input-container>
 	          </eits-hbox>
 	          <eits-hbox>
@@ -101,7 +101,7 @@
           <eits-hbox>
     		      <md-input-container width="200" class="md-block" >
 	            <label>Cep</label>
-	            <input ng-model="model.entity.cep" ui-mask="99999-999" >
+	            <input ng-model="model.entity.cep" ui-mask="99999-999" ui-options="{addDefaultPlaceholder : false}" >
 	          </md-input-container>
            	  <md-input-container width="200" class="md-block" >
 	            <label>Bairro</label>
@@ -127,7 +127,7 @@
 		            <label>CPF</label>
 		            <input ng-model="model.entity.cpf" ng-required="model.entity.pais.cpfRequerido ? true : false "
 		            		ng-blur="validarCPF( model.entity.cpf )" id="cpfInput" name="cpfInput" 
-		            		type="text" ui-mask="999.999.999-99" clear-on-blur="false" > 
+		            		type="text" ui-mask="999.999.999-99" clear-on-blur="false" ui-options="{addDefaultPlaceholder : false}" > 
         	        <div ng-messages="hospedeForm.cpfInput.$error" md-auto-hide="false"> 
 		            	<div ng-message="cpfValido"> CPF inválido 
 		            	</div>

@@ -90,9 +90,9 @@ angular.module('home')
 		     *
 		     */
 		    $scope.$watch( "[model.pageRequest.pageable.size, model.pageRequest.pageable.page]" , function( value, oldValue ){
-		        if( $scope.model.pageRequest.content ) {
-		            $scope.listTipoQuartosByFilters ( $scope.model.query.filter.name );
-		        }
+//		        if( $scope.model.pageRequest.content ) {
+//		            $scope.listTipoQuartosByFilters ( $scope.model.query.filter.name );
+//		        }
 		    }, true);
 		 
 		    /*-------------------------------------------------------------------
@@ -308,6 +308,7 @@ angular.module('home')
 		    			 }
 		    			 $scope.$apply();
 		    		 }, errorHandler : function ( message, exception ) {
+		    			 console.log( exception );
 		    			 console.log("deu erro")
 		    		 }
 		    	 })

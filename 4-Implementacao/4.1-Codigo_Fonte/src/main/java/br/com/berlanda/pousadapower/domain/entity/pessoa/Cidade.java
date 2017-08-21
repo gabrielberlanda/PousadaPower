@@ -42,7 +42,7 @@ public class Cidade extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@ManyToOne( optional = false, fetch = FetchType.EAGER )
+	@ManyToOne( optional = false, fetch = FetchType.LAZY )
 	private Estado estado;
 
 	/*-------------------------------------------------------------------

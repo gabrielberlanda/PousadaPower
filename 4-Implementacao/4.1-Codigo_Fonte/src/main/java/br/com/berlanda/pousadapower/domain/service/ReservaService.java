@@ -89,11 +89,15 @@ public class ReservaService
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param reservaId
+	 */
 	public void cancelarReserva ( long reservaId )
 	{
 		Hospedagem reserva = this.findReservaById( reservaId );
 		
-		List<PagamentoHospedagem> pagamentosHospedagem = this.pagamentoHospedagemRepository.listByContaHospedagemId ( reserva.getContaHospedagem().getId() );
+		List<PagamentoHospedagem> pagamentosHospedagem = this.pagamentoHospedagemRepository.findByContaId( reserva.getContaHospedagem().getId() );
 		
 		Double total = 0d;
 		for ( PagamentoHospedagem pagamentoHospedagem : pagamentosHospedagem )

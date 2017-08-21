@@ -43,10 +43,10 @@ public class ProdutoConsumido extends AbstractEntity implements Serializable
 	@Column( nullable = false )
 	private Double precoUnitario;
 	
-	@ManyToOne( fetch = FetchType.EAGER, optional = false )
+	@ManyToOne( fetch = FetchType.LAZY, optional = false )
 	private ContaHospedagem conta;
 	
-	@ManyToOne( fetch = FetchType.EAGER, optional = false )
+	@ManyToOne( fetch = FetchType.LAZY, optional = false )
 	private Produto produto;
 
 	/**

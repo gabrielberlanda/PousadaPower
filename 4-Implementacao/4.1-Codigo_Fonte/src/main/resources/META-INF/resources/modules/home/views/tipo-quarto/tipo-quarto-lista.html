@@ -1,74 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" 
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
-
-
 	<form>
-	   <eits-hbox>
-	       <md-input-container width="300" class="md-block">
-	         <label>Filtro de Tipos de Quarto</label>
-	         <input ng-model="model.query.filter.name">
-	       </md-input-container>
-	       <md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listTipoQuartosByFilters( model.query.filter.name )"> Filtrar </md-button>
-	   </eits-hbox>
+		<eits-hbox>
+			<md-input-container width="300" class="md-block">
+				<label>Filtro de Tipos de Quarto</label>
+				<input ng-model="model.query.filter.name">
+			</md-input-container>
+			<md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listTipoQuartosByFilters( model.query.filter.name )"> Filtrar </md-button>
+		</eits-hbox>
 	</form>
-	
-<md-toolbar class="md-table-toolbar md-primary">
-  <div class="md-toolbar-tools">
-    <span>Tipos de Quarto</span>
-  </div>
-</md-toolbar>
-
-<md-table-container class="table" style="border: 1px #DDDDDD solid">
-  <table md-table>
-    <thead md-head ng-if="model.pageRequest.content.length">
-      <tr md-row>
-        <th md-column style="width: 60%" ><span>Nome</span></th>
-        <th md-column style="width: 10%"><span>Ocupação máxima</span></th>
-        <th md-column style="width: 10%" ><span>Status</span></th>
-        <th md-column style="width: 20%">Ações</th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row  md-auto-select ng-click="changeToDetail($event, tipoQuarto)" ng-repeat="tipoQuarto in model.pageRequest.content">
-        <td md-cell>{{tipoQuarto.nome}}</td>
-        <td md-cell>{{tipoQuarto.ocupacaoMaxima}}</td>
-        <td md-cell>{{tipoQuarto.status  ? "Ativo" : "Desativado" }}</td>
-        <td md-cell> 
-       	    <md-button ng-click="changeToEdit($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
-            	<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
-            </md-button>
-            <md-button ng-click="ativarTipoQuarto($event, tipoQuarto)" ng-if="!tipoQuarto.status" aria-label="remove" class="md-raised table-button">
-            	<md-icon md-font-set="zmdi zmdi-check  zmdi-hc-lg"></md-icon>
-            </md-button>
-            <md-button ng-click="desativarTipoQuarto($event, tipoQuarto)" ng-if="tipoQuarto.status" aria-label="desativar" class="md-raised table-button">
-            	<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg"></md-icon>
-            </md-button>
-            <md-button ng-click="removeTipoQuarto($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
-            	<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
-            </md-button>      
-                  
-        </td>
-      </tr>
-      <div style="height: 57px; margin-left:20px;" layout="row" layout-align="start center" ng-if="!model.pageRequest.content.length">
-      	 <span>Nenhum registro foi encontrado.</span>
-      </div>
-    </tbody>
-  </table>
-</md-table-container>
-
-
-<!-- Quase
-<!-- 			<div class="default-paginator" layout layout-align="end center" ng-if="model.pageRequest.content.length > 0"> -->
-<!-- 				{{ model.pageRequest.pageable.page + 1 }} de {{ totalPagesCrianca }} -->
-<!-- 				<md-button class="md-icon-button" ng-disabled="(model.pageRequest.pageable.page + 1) < 2" ng-click="onCriancaPaginationChange(false)"> -->
-<!-- 					<i style="font-size: 20px;" class="zmdi zmdi-chevron-left" ng-style="(model.pageRequest.pageable.page + 1) < 2 && {'color': '#BEBEBE'} || ''"></i> -->
-<!-- 				</md-button> -->
-<!-- 				<md-button class="md-icon-button" ng-disabled="(model.pageRequest.pageable.page + 1) >= totalPagesFamilia" ng-click="onCriancaPaginationChange(true)"> -->
-<!-- 					<i style="font-size: 20px;" class="zmdi zmdi-chevron-right" ng-style="(model.pageRequest.pageable.page + 1) >= Math.ceil(model.pageRequest.total/model.pageRequest.pageable.size) && {'color': '#BEBEBE'} || ''"></i> -->
-<!-- 				</md-button> -->
-<!-- 	  		</div> -->
-<!-- {{model.pageRequest.pageable}} -->
-<!-- <md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"  md-on-paginate="getDesserts" ></md-table-pagination> -->
-	
+	<md-table-container class="table" style="border: 1px #DDDDDD solid">
+		<table md-table>
+			<thead md-head ng-if="model.pageRequest.content.length">
+				<tr md-row>
+					<th md-column style="width: 60%" ><span>Nome</span></th>
+					<th md-column style="width: 10%"><span>Ocupação máxima</span></th>
+					<th md-column style="width: 10%" ><span>Status</span></th>
+					<th md-column style="width: 20%">Ações</th>
+				</tr>
+			</thead>
+			<tbody md-body>
+				<tr md-row  md-auto-select ng-click="changeToDetail($event, tipoQuarto)" ng-repeat="tipoQuarto in model.pageRequest.content">
+					<td md-cell>{{tipoQuarto.nome}}</td>
+					<td md-cell>{{tipoQuarto.ocupacaoMaxima}}</td>
+					<td md-cell>{{tipoQuarto.status  ? "Ativo" : "Desativado" }}</td>
+					<td md-cell>
+						<md-button ng-click="changeToEdit($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
+							<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
+						</md-button>
+						<md-button ng-click="ativarTipoQuarto($event, tipoQuarto)" ng-if="!tipoQuarto.status" aria-label="remove" class="md-raised table-button">
+							<md-icon md-font-set="zmdi zmdi-check  zmdi-hc-lg"></md-icon>
+						</md-button>
+						<md-button ng-click="desativarTipoQuarto($event, tipoQuarto)" ng-if="tipoQuarto.status" aria-label="desativar" class="md-raised table-button">
+							<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg"></md-icon>
+						</md-button>
+						<md-button ng-click="removeTipoQuarto($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
+							<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+						</md-button>
+					</td>
+				</tr>
+				<div style="height: 57px; margin-left:20px;" layout="row" layout-align="start center" ng-if="!model.pageRequest.content.length">
+					<span>Nenhum registro foi encontrado.</span>
+				</div>
+			</tbody>
+		</table>
+	</md-table-container>
 </html>

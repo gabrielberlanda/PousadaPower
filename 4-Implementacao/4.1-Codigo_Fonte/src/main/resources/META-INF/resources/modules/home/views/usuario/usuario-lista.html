@@ -1,60 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" 
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
-
-
 	<form>
-	   <eits-hbox>
-	       <md-input-container width="300" class="md-block">
-	         <label>Filtro de Usuários</label>
-	         <input ng-model="model.query.filter.name">
-	       </md-input-container>
-	       <md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listUsersByFilters( model.query.filter.name )"> Filtrar </md-button>
-	   </eits-hbox>
+		<eits-hbox>
+			<md-input-container flex="70" class="md-block">
+				<input placeholder="Busque por nome e email" ng-model="model.query.filter.name">
+			</md-input-container>
+			<md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listUsersByFilters( model.query.filter.name )"> Filtrar </md-button>
+		</eits-hbox>
 	</form>
-	
-<md-toolbar class="md-table-toolbar md-primary">
-  <div class="md-toolbar-tools">
-    <span>Usuários</span>
-  </div>
-</md-toolbar>
-
-<md-table-container class="table" style="border: 1px #DDDDDD solid">
-  <table md-table>
-    <thead md-head ng-if="model.pageRequest.content.length">
-      <tr md-row>
-        <th md-column style="width: 40%" ><span>Nome</span></th>
-        <th md-column style="width: 30%"><span>Email</span></th>
-        <th md-column style="width: 10%">Tipo</th>
-        <th md-column style="width: 10%">Status</th>
-        <th md-column style="width: 20%">Ações</th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row  md-auto-select ng-click="changeToDetail($event, usuario)" ng-repeat="usuario in model.pageRequest.content">
-        <td md-cell >{{usuario.name}}</td>
-        <td md-cell>{{usuario.email}}</td>
-        <td md-cell>{{usuario.role}}</td>
-        <td md-cell>{{statusBind( usuario.enabled )}}</td>
-        <td md-cell> 
-       	    <md-button ng-click="changeToEdit($event,usuario)" aria-label="remove" class="md-raised table-button">
-            	<md-icon md-font-set="zmdi  zmdi-edit zmdi-hc-lg" ></md-icon>
-            </md-button>
-            <md-button ng-if="usuario.enabled == false" ng-click="activateUser($event, usuario)" aria-label="activate" class="md-raised button-green table-button">
-            	<md-icon md-font-set="zmdi  zmdi-check zmdi-hc-lg" ></md-icon>
-            </md-button>
-            <md-button ng-if="usuario.enabled == true" ng-click="deactivateUser($event, usuario)" aria-label="deactivate" class="md-raised md-warn table-button">
-            	<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg" ></md-icon>
-            </md-button> 
-        </td>
-      </tr>
-      <div style="height: 57px; margin-left:20px;" layout="row" layout-align="start center" ng-if="!model.pageRequest.content.length">
-      	 <span>Nenhum registro foi encontrado.</span>
-      </div>
-    </tbody>
-  </table>
-</md-table-container>
-
-<md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"  md-on-paginate="getDesserts" md-page-select></md-table-pagination>
-	
+	<md-table-container class="table" style="border: 1px #DDDDDD solid">
+		<table md-table>
+			<thead md-head ng-if="model.pageRequest.content.length">
+				<tr md-row>
+					<th md-column style="width: 40%" ><span>Nome</span></th>
+					<th md-column style="width: 30%"><span>Email</span></th>
+					<th md-column style="width: 10%">Tipo</th>
+					<th md-column style="width: 10%">Status</th>
+					<th md-column style="width: 20%">Ações</th>
+				</tr>
+			</thead>
+			<tbody md-body>
+				<tr md-row  md-auto-select ng-click="changeToDetail($event, usuario)" ng-repeat="usuario in model.pageRequest.content">
+					<td md-cell >{{usuario.name}}</td>
+					<td md-cell>{{usuario.email}}</td>
+					<td md-cell>{{usuario.role}}</td>
+					<td md-cell>{{statusBind( usuario.enabled )}}</td>
+					<td md-cell>
+						<md-button ng-click="changeToEdit($event,usuario)" aria-label="remove" class="md-raised table-button">
+							<md-icon md-font-set="zmdi  zmdi-edit zmdi-hc-lg" ></md-icon>
+						</md-button>
+						<md-button ng-if="usuario.enabled == false" ng-click="activateUser($event, usuario)" aria-label="activate" class="md-raised button-green table-button">
+							<md-icon md-font-set="zmdi  zmdi-check zmdi-hc-lg" ></md-icon>
+						</md-button>
+						<md-button ng-if="usuario.enabled == true" ng-click="deactivateUser($event, usuario)" aria-label="deactivate" class="md-raised md-warn table-button">
+							<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg" ></md-icon>
+						</md-button>
+					</td>
+				</tr>
+				<div style="height: 57px; margin-left:20px;" layout="row" layout-align="start center" ng-if="!model.pageRequest.content.length">
+					<span>Nenhum registro foi encontrado.</span>
+				</div>
+			</tbody>
+		</table>
+	</md-table-container>
+	<md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"  md-on-paginate="getDesserts" md-page-select></md-table-pagination>
 </html>

@@ -9,7 +9,7 @@
             <!-- LIST -->
             <div ng-switch-when="usuario.lista" class="navbar-title" layout="row" layout-align="start center">
                 <div flex=>Listagem de Usuários</div>
-                <md-button ui-sref="usuario.novo" aria-label="create usuario" class="md-raised md-primary">Novo Usuário</md-button>
+                <md-button ui-sref="usuario.novo" aria-label="create usuario" class="md-raised md-accent">Novo Usuário</md-button>
             </div>
  
             <!-- CREATE -->
@@ -19,7 +19,7 @@
                 </md-button>
             </md-button>
                 <div flex="">Novo Usuário</div>
-                <md-button class="md-raised md-primary" ng-click="save( model.entity )">Salvar</md-button>
+                <md-button class="md-raised md-accent" ng-click="save( model.entity )">Salvar</md-button>
             </div>
  
             <!-- EDIT -->
@@ -28,7 +28,7 @@
                     <md-icon md-font-set="zmdi zmdi-arrow-back zmdi-hc-lg"></md-icon>
                 </md-button>
                 <div flex>Atualizar Usuário</div>
-                <md-button class="md-raised md-primary" aria-label="save user" ng-click="save( model.entity )">Salvar</md-button>
+                <md-button class="md-raised md-accent" aria-label="save user" ng-click="save( model.entity )">Salvar</md-button>
             </div>
  
             <!-- DETAIL -->
@@ -37,7 +37,7 @@
                     <md-icon md-font-set="zmdi zmdi-arrow-back zmdi-hc-lg"></md-icon>
                 </md-button>
                 <div flex="">Detalhe do Usuário</div>
-                <md-button class="md-raised md-primary" aria-label="back to edit" ng-click="changeToEdit($event, model.entity)">Editar</md-button>
+                <md-button class="md-raised md-accent" aria-label="back to edit" ng-click="changeToEdit($event, model.entity)">Editar</md-button>
                 <md-button class="md-raised md-accent" ng-if="!model.entity.enabled" ng-click="activateUser($event, model.entity)">Ativar Usuário</md-button>
                 <md-button class="md-raised md-warn" ng-if="model.entity.enabled" ng-click="deactivateUser($event, model.entity)">Desativar Usuário</md-button>
             </div>

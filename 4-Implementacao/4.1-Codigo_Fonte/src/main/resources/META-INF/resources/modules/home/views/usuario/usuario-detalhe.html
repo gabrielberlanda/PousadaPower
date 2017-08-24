@@ -3,32 +3,28 @@
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 
 	<eits-hbox >
-	
-		<eits-vbox class="detail">
+		<eits-vbox class="detail" flex="30">
 			<label>Nome</label>
 			<span ng-if="model.entity.name">{{model.entity.name}}</span>
 			<span ng-if="!model.entity.name"> - </span>
 		</eits-vbox>
-		
-		<eits-vbox class="detail"> 
-			<label>Email</label>
-			<span>{{model.entity.email}}</span>
-			<span ng-if="!model.entity.email"> - </span>
-		</eits-vbox>
-		
-		<eits-vbox class="detail">
-			<label>Tipo</label>
-			<span>{{model.entity.role}}</span>
-			<span ng-if="!model.entity.role"> - </span>
-		</eits-vbox>
-		
 		<eits-vbox class="detail">
 			<label>Status</label>
 			<span ng-if="model.entity.enabled">Ativo</span>
 			<span ng-if="!model.entity.enabled">Desativado</span>
 		</eits-vbox>
-		
-	
 	</eits-hbox>
+			
+	<eits-vbox class="detail"> 
+		<label>Email</label>
+		<span>{{model.entity.email}}</span>
+		<span ng-if="!model.entity.email"> - </span>
+	</eits-vbox>
+	
+	<eits-vbox class="detail">
+		<label>Tipo</label>
+		<span>{{model.entity.role}}</span>
+		<span ng-if="!model.entity.role"> - </span>
+	</eits-vbox>
 	
 </html>

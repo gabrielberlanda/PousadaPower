@@ -5,6 +5,7 @@ package br.com.berlanda.pousadapower.domain.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -37,4 +38,9 @@ public interface IQuartoRepository extends JpaRepository<Quarto, Long>
 					+ "AND quarto.ativo = TRUE "
 					+ "AND ( :statusQuarto = NULL OR quarto.status = :statusQuarto )" )
 	public int countQuartoByTipoQuartoId( @Param("tipoQuartoId") long tipoQuartoId, @Param("statusQuarto") StatusQuarto statusQuarto );
+	
+	@EntityGraph( attributePaths = {
+			"tipoQuarto"
+	})
+	public Quarto findById( long quartoId );
 }

@@ -30,7 +30,7 @@
         <sonar.tests>src/test</sonar.tests>
 
 		<!-- Others -->
-		<eits-java-common.version>1.0.5-RELEASE</eits-java-common.version>
+		<eits-java-common.version>1.0.6-RELEASE</eits-java-common.version>
 		<dwr.version>3.0.1-RELEASE</dwr.version>
 		<apache.common.io.version>2.1</apache.common.io.version>
 		<apache.common.fileupload.version>1.3.1</apache.common.fileupload.version>
@@ -40,8 +40,8 @@
 		<eits-ng.version>1.1.0-SNAPSHOT</eits-ng.version>
 		<eits-md.version>1.3.0-SNAPSHOT</eits-md.version>
 		<jquery.version>2.2.0</jquery.version>
-		<angularjs.version>1.5.0</angularjs.version>
-		<angular-material.version>1.1.1</angular-material.version>
+		<angularjs.version>1.6.5</angularjs.version>
+		<angular-material.version>1.1.4</angular-material.version>
 		<angular-material-data-table.version>0.9.8</angular-material-data-table.version>
 		<uirouter.version>0.2.18</uirouter.version>
 		<iconic-font.version>2.2.0</iconic-font.version>

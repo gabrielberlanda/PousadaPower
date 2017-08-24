@@ -36,14 +36,22 @@ angular.module('authentication')
 				headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 			};
 			
-			$http.post( "./authenticate", $.param($scope.model.entity), config)
-				.success( function( data, status, headers, config ) {
-					$window.location.href = "./";
-					$rootScope.$user = data;
-				})
-				.error( function( data, status, headers, config ){
-					$mdToast.showSimple( (data && data.message) ? data.message : data );
-			});
+			$http.post('./authenticate',  $.param($scope.model.entity), config).then(
+					function( data, status, headers, config ) {
+						$window.location.href = "./";
+						$rootScope.$user = data;
+					}, function( err ){
+						$mdToast.showSimple( (err.data && err.data.message) ? err.data.message : err.data );
+					}  
+			)
+//			$http.post( "./authenticate", $.param($scope.model.entity), config)
+//				.success( function( data, status, headers, config ) {
+//					$window.location.href = "./";
+//					$rootScope.$user = data;
+//				})
+//				.error( function( data, status, headers, config ){
+//					$mdToast.showSimple( (data && data.message) ? data.message : data );
+//			});
     	}
     }
 });

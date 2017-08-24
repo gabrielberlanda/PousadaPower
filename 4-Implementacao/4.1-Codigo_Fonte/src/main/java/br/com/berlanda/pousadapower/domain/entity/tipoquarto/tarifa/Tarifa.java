@@ -3,8 +3,6 @@
  */
 package br.com.berlanda.pousadapower.domain.entity.tipoquarto.tarifa;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;

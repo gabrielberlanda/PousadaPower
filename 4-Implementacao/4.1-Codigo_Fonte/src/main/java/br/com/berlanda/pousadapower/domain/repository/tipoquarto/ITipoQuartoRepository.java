@@ -23,7 +23,8 @@ public interface ITipoQuartoRepository extends JpaRepository<TipoQuarto, Long>
 	@EntityGraph( attributePaths = {
 			"tarifasPadrao"
 	})
-	@Query( value = "FROM TipoQuarto tipoQuarto "
+	@Query( value = "SELECT DISTINCT tipoQuarto "
+			+ "FROM TipoQuarto tipoQuarto "
 					+ "WHERE FILTER(tipoQuarto.nome, :filter) = TRUE "
 					+ "OR FILTER ( tipoQuarto.ocupacaoMaxima, :filter) = TRUE ")
 	public Page<TipoQuarto> listByFilters ( @Param("filter") String filter, Pageable page );

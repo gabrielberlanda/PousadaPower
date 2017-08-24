@@ -176,8 +176,7 @@
 	/**
 	 * 
 	 */
-	module
-	.config(function($mdThemingProvider) {
+	module.config(function($mdThemingProvider) {
 	  $mdThemingProvider.theme('default')
 	    .primaryPalette('blue-grey')
 	});

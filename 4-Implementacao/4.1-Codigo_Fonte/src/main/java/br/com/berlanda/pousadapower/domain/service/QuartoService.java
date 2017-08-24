@@ -73,7 +73,7 @@ public class QuartoService
 	{
 		Assert.notNull( quartoId );
 		
-		Quarto quarto = this.quartoRepository.findOne( quartoId );
+		Quarto quarto = this.quartoRepository.findById( quartoId );
 		
 		Assert.notNull( quarto, "Quarto não encontrado" );
 		

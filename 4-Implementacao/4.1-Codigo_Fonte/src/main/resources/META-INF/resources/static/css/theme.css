@@ -4,30 +4,30 @@
 	padding: 20px 20px 20px 20px;
 }
 
-.toast {
-    background-color : #000;
-    border           : solid 1px #000;
-    color            : #fff;
-    font-weight      : bold;
-    margin           : 0 auto;
-    position         : fixed;
-    box-shadow       : none;
-}
+/* .toast { */
+/*     background-color : #000; */
+/*     border           : solid 1px #000; */
+/*     color            : #fff; */
+/*     font-weight      : bold; */
+/*     margin           : 0 auto; */
+/*     position         : fixed; */
+/*     box-shadow       : none; */
+/* } */
 
-.toast.red {
+.toast.red .md-toast-content {
     background-color : #f5a69a;
     border-color     : #d77a6c;
     color            : #872818;
 }
 
-.toast.green {
+.toast.green .md-toast-content{
     color            : #30503d;
     background-color : #66c08b;
     border-color     : #3d9260;
 }
 
 
-.toast.yellow {
+.toast.yellow .md-toast-content{
     color            : #8b550c;
     background-color : #f0ad4e;
     border-color     : #ee9d31;
@@ -68,4 +68,17 @@
 
 .img-list.equipment-img button {
  	display:none;
+}
+
+.circle-option {
+	border-radius:50%; 
+	height: 15px; 
+	width: 15px; 
+	background: #607D8B; 
+	margin-right: 20px;
+}
+
+.button-arrow-back{
+    width: 40px !important;
+    min-width: 40px;
 }

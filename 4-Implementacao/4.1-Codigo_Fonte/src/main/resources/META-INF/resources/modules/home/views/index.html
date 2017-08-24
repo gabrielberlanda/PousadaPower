@@ -42,13 +42,13 @@
 
 		<!-- Header -->
   		<md-toolbar md-scroll-shrink="">
-    		<eits-hbox class="md-toolbar-tools" padding-left="20" padding-right="20" vertical-align="center">
-
+  			<div class="md-toolbar-tools" layout="start center">
+  				<md-button class="md-icon-button" aria-label="menu" ng-click="toggleMenuSideNavHandler()">
+					<md-icon class="zmdi zmdi-menu zmdi-hc-2x"></md-icon>
+				</md-button>
 				<h1>Sistema Gerenciador de Pousada </h1>
 				<span flex=""></span>
-				
-				<label class="md-body-1" th:text="${#authentication.name}"></label>
-				
+				<label class="md-body-1">Olá, {{$usuario.name}}</label>
 				<md-menu id="menu">
 					<div>
 	      				<md-button class="md-icon-button" aria-label="Options" ng-click="$mdOpenMenu()">
@@ -69,9 +69,7 @@
 				            	Configurações
 				          	</md-button>
 				        </md-menu-item>
-				        
 				        <md-menu-divider></md-menu-divider>
-				        
 				        <md-menu-item>
 				          	<md-button onclick="window.location = './logout'">
 				            	<md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
@@ -80,7 +78,7 @@
 				        </md-menu-item>
 					</md-menu-content>
     			</md-menu>
-    		</eits-hbox>
+  			</div>
 
     		<md-progress-linear md-mode="indeterminate" ng-if="loading" 
     			style="position: fixed; top: 59px;">
@@ -92,60 +90,18 @@
 			 	<md-sidenav
 			 		flex="20"
 			        class="md-sidenav-left"
-			        md-component-id="left"
-			        md-is-locked-open="true"
+			        md-component-id="{{menuSideNavId}}"
 			        md-whiteframe="4">
 			        <md-content layout-padding ="">
 						<div layout="row" layout-align="center center">
-							<img height="80" th:src="@{/static/images/pousada-logo.png}" alt="eits it solutions"/>
+							<img height="80" th:src="@{/static/images/logo-preto.png}" alt="logo"/>
 						</div>
-							
 						<md-divider></md-divider>
-						
 						<md-list flex="" >
-					       <md-list-item class="md-2-line" ng-click="$state.go('hospede.lista')"
-					       		 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('hospede') > -1 }">
-					         <div class="md-list-item-text"  layout="row">
-					           <div style="border-radius:50%; height: 17px; width: 17px; background: #607D8B; margin-right: 20px;"></div>
-					           <h3>Hospedes</h3>
-					         </div>
-					       </md-list-item>
-     					   <md-list-item class="md-2-line" ng-click="$state.go('usuario.lista')"
-     					   		 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('usuario') > -1 }">
-					         <div class="md-list-item-text"  layout="row">
-					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
-					           <h3>Usuário</h3>
-					         </div>
-					       </md-list-item>
-					       <md-list-item class="md-2-line" ng-click="$state.go('fornecedor.lista')"
-					       		 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('fornecedor') > -1 }">
-					         <div class="md-list-item-text"  layout="row">
-					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
-					           <h3>Fornecedor</h3>
-					         </div>
-					       </md-list-item>
-					       <md-list-item class="md-2-line" ng-click="$state.go('produto.lista')"
-					       				 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('produto') > -1 }">
-					         <div class="md-list-item-text"  layout="row">
-					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
-					           <h3>Produto</h3>
-					         </div>
-					       </md-list-item>
-     					   <md-list-item class="md-2-line" ng-click="$state.go('tipoQuarto.lista')"
-					       				 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('tipoQuarto') > -1 }">
-					         <div class="md-list-item-text"  layout="row">
-					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
-					           <h3>Tipo de Quarto</h3>
-					         </div>
-					       </md-list-item>
-         				   <md-list-item class="md-2-line" ng-click="$state.go('quarto.lista')"
-					       				 ng-class="{'side-nav-index-item-selected': $state.current.name.indexOf ('quarto') > -1 }">
-					         <div class="md-list-item-text"  layout="row">
-					           <div style="border-radius:50%; height: 15px; width: 15px; background: #607D8B; margin-right: 20px;"></div>
-					           <h3>Quarto</h3>
-					         </div>
-					       </md-list-item>
-					       
+						  <md-list-item ng-repeat="option in menuOptions" ng-click="changeStateByOption(option)">
+						  	<div class="circle-option"></div>
+						    <p>{{ option.name }}</p>
+						  </md-list-item>
 				       </md-list>
 				       <md-divider> </md-divider>
 				       
@@ -153,7 +109,7 @@
 			      
 			    </md-sidenav>
 			    
-		  		<md-content  flex="80" style=" background-color: white; padding:20px 20px 20px 20px;" ui-view="">
+		  		<md-content  flex="100" style=" background-color: white; padding:20px;" ui-view="">
 					<md-progress-linear md-mode="indeterminate">
 					</md-progress-linear>
 		  		</md-content>

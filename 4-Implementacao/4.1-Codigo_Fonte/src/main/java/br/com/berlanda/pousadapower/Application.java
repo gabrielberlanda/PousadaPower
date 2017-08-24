@@ -1,21 +1,31 @@
 package br.com.berlanda.pousadapower;
 
+import java.lang.annotation.Annotation;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.directwebremoting.annotations.DataTransferObject;
+import org.directwebremoting.spring.DwrAnnotationPostProcessor;
+import org.directwebremoting.spring.DwrClassPathBeanDefinitionScanner;
 import org.directwebremoting.spring.DwrSpringServlet;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.config.ConfigFileApplicationListener;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -194,7 +204,22 @@ public class Application extends SpringBootServletInitializer
 			registration.setName( "dwrSpringServlet" );
 			return registration;
 		}
+
+		/**
+		 * Process all spring beans with @RemoteProxy
+		 * @return
+		 */
+		@Bean
+		public DwrAnnotationPostProcessor dwrAnnotationPostProcessor( ApplicationContext applicationContext )
+		{
+			final BeanDefinitionRegistry beanDefinitionRegistry = (BeanDefinitionRegistry) applicationContext.getAutowireCapableBeanFactory();
+			final ClassPathBeanDefinitionScanner scanner = new DwrClassPathBeanDefinitionScanner(beanDefinitionRegistry);
+	        scanner.addIncludeFilter(new AnnotationTypeFilter(DataTransferObject.class));
+	        scanner.scan("br.com.berlanda.pousadapower.domain.entity.**");
+			return new DwrAnnotationPostProcessor();
+		}
 		
+
 		//-----------
 		// Locale
 		//-----------

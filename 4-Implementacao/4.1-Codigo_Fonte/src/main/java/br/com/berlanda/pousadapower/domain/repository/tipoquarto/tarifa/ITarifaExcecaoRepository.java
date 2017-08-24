@@ -25,7 +25,8 @@ public interface ITarifaExcecaoRepository extends JpaRepository<TarifaExcecao, L
 			"tarifas",
 			"tipoQuarto"
 	})
-	@Query("FROM TarifaExcecao tarifaExcecao "
+	@Query("SELECT DISTINCT tarifaExcecao "
+			+ "FROM TarifaExcecao tarifaExcecao "
 			+ "WHERE FILTER( tarifaExcecao.nome, :filter) = TRUE "
 			+ "AND ( "
 				+ " ( CAST(:dataInicio as date ) = NULL AND CAST(:dataFim as date ) = NULL ) OR "

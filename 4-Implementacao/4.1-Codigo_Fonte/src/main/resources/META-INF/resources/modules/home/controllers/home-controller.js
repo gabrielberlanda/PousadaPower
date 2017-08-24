@@ -12,14 +12,41 @@ angular.module('home')
     /*-------------------------------------------------------------------
      * 		 				 	ATTRIBUTES
      *-------------------------------------------------------------------*/
-    //----STATES
+   $scope.menuOptions = [
+	   {
+		   name		: 'Usuários',
+		   state	: 'usuario.lista'
+	   },
+	   {
+		   name		: 'Hospedes',
+		   state	: 'hospede.lista'
+	   },
+	   {
+		   name		: 'Fornecedores',
+		   state	: 'fornecedor.lista'
+	   },
+	   {
+		   name		: 'Produtos',
+		   state	: 'produto.lista'
+	   },
+	   {
+		   name		: 'Tipos de Quarto',
+		   state	: 'tipoQuarto.lista'
+	   },
+	   {
+		   name		: 'Quartos',
+		   state	: 'quarto.lista'
+	   },
+   ]
 		   
+		   
+    //----STATES
 
 	//-----
 	/**
 	 * 
 	 */
-	$scope.menuSideNavId = "menuSideNav";
+	$scope.menuSideNavId = "menu";
 
 	/*-------------------------------------------------------------------
      * 		 				  	POST CONSTRUCT
@@ -35,6 +62,14 @@ angular.module('home')
     	console.log("toggleMenuSideNavHandler");
     	$mdSidenav($scope.menuSideNavId).toggle();
     };
+    
+    /**
+     * 
+     */
+    $scope.changeStateByOption = function( option ) {
+    	$state.go( option.state );
+    	$mdSidenav( $scope.menuSideNavId).close();
+    }
     
     
     var DialogController = ["$scope", "$mdDialog", "$sce", "confirmConfig", function ($scope, $mdDialog, $sce, confirmConfig) {
@@ -134,18 +169,24 @@ angular.module('home')
    $rootScope.toast = function( message, type ) {
 
        $mdToast.show({
-           template: "<md-toast class=\"toast"+type + "\">"+
+           template: "<md-toast class=\"toast "+ type + "\">"+
                "<span flex>" + message + "</span>" +
-               "<md-button aria-label=\"close\" class=\"md-icon-button\" style=\"position: absolute;top: 0;right: -4px;\" aria ng-click=\"$mdToast.hide()\">"+
-               	"<md-icon md-font-set=\"zmdi zmdi-close zmdi-hc-fw\" style=\"font-size:18px\"></md-icon>"+
+               "<md-button aria-label=\"close\" class=\"md-icon-button\" aria ng-click=\"closeToast()\">"+
+               	"<md-icon md-font-set=\"zmdi zmdi-close zmdi-hc-fw\" style=\"font-size:18px; color: #FFF;\"></md-icon>"+
                "</md-button>"+
                "</md-toast>",
            hideDelay: arguments[2] ? arguments[2] : 3000,
-           position: "top right left"
+           position: "bottom right"
        });
 
    }
 
+   /**
+    * 
+    */
+   $rootScope.closeToast = function() {
+	   $mdToast.hide();
+   }
    /**
     * 
     */
@@ -207,6 +248,7 @@ angular.module('home')
 		} else {
 			$rootScope.progressState = false;
 		}
+		$rootScope.$apply();
 	});
    
 

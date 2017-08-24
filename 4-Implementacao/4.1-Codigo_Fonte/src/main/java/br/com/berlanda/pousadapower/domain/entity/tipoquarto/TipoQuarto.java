@@ -46,6 +46,9 @@ public class TipoQuarto extends AbstractEntity implements Serializable
 	@Column( nullable = false, unique = true, length = 50)
 	private String nome;
 	
+	/**
+	 * 
+	 */
 	@NotNull (message ="Status do tipo de quarto não pode ser nulo") 
 	@Column ( nullable = false )
 	private Boolean status;

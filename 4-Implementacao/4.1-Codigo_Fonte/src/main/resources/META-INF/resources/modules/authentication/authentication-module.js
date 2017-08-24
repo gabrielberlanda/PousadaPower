@@ -41,6 +41,14 @@
 		$rootScope.$state 		= $state;
 		$rootScope.$stateParams = $stateParams;
 	});
+	
+	/**
+	 * 
+	 */
+	module.config(function($mdThemingProvider) {
+	  $mdThemingProvider.theme('default')
+	    .primaryPalette('blue-grey')
+	});
 
 	/**
 	 * 

@@ -170,13 +170,13 @@ angular.module('home')
 
        $mdToast.show({
            template: "<md-toast class=\"toast "+ type + "\">"+
-               "<span flex>" + message + "</span>" +
-               "<md-button aria-label=\"close\" class=\"md-icon-button\" aria ng-click=\"closeToast()\">"+
-               	"<md-icon md-font-set=\"zmdi zmdi-close zmdi-hc-fw\" style=\"font-size:18px; color: #FFF;\"></md-icon>"+
-               "</md-button>"+
-               "</md-toast>",
-           hideDelay: arguments[2] ? arguments[2] : 3000,
-           position: "bottom right"
+			               "<span flex style=\"font-size: 16px; \">" + message + "</span>" +
+			               "<md-button aria-label=\"close\" class=\"md-icon-button\" aria ng-click=\"closeToast()\">"+
+			               		"<md-icon md-font-set=\"zmdi zmdi-close zmdi-hc-fw\" style=\"font-size:18px; color: #FFF;\"></md-icon>"+
+			               "</md-button>"+
+		               "</md-toast>",
+           hideDelay: arguments[2] ? arguments[2] : 5000,
+           position: "bottom left"
        });
 
    }

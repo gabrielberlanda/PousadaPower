@@ -81,4 +81,14 @@
 .button-arrow-back{
     width: 40px !important;
     min-width: 40px;
+    margin-right: 10px;
+}
+
+.button-green {
+	background-color: #0de559 !important;
+	color: #FFF !important;
+}
+
+.button-green md-icon{
+	color: #FFF !important;
 }

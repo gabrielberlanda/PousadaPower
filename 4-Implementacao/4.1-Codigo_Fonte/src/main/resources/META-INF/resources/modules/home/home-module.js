@@ -179,6 +179,7 @@
 	module.config(function($mdThemingProvider) {
 	  $mdThemingProvider.theme('default')
 	    .primaryPalette('blue-grey')
+	    .warnPalette('red')
 	});
 	/**
 	 * 

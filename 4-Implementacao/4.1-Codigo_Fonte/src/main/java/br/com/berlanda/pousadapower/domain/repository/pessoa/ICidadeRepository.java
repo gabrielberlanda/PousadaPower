@@ -5,6 +5,7 @@ package br.com.berlanda.pousadapower.domain.repository.pessoa;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,8 +20,10 @@ import br.com.berlanda.pousadapower.domain.entity.pessoa.Pais;
 public interface ICidadeRepository extends JpaRepository<Cidade, Long>
 {
 
-	@Query ( value = "SELECT cidade "
-			+ "FROM Cidade cidade "
+	@EntityGraph( attributePaths = {
+			"estado.pais.id"
+	})
+	@Query ( value =  "FROM Cidade cidade "
 			+ "WHERE cidade.estado.id = :estadoId "
 			+ "AND ( "
 				+ "FILTER( cidade.id, :filter ) = TRUE OR "

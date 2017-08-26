@@ -31,10 +31,10 @@ angular.module('home')
 	    		filtroEstado : null,
 	    		filtroCidade : null,
 	    		filtroPais : null,
+	    		pais: null,
+	    		estado: null,
 		        entity : {
 		            cidade : null,
-		            pais: null,
-		            estado : null
 		        },
 		 
 		        query : {
@@ -207,8 +207,8 @@ angular.module('home')
 		             callback: function (result) {
 		                 $scope.model.entity = result;
 		                 if ( $scope.model.entity.cidade.id ) {
-		                	 $scope.model.entity.estado = $scope.model.entity.cidade.estado;
-		                	 $scope.model.entity.pais = $scope.model.entity.cidade.estado.pais;
+		                	 $scope.model.estado = $scope.model.entity.cidade.estado;
+		                	 $scope.model.pais = $scope.model.entity.cidade.estado.pais;
 		                 }
 		                 $scope.$apply();
 		             }

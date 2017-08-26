@@ -30,11 +30,11 @@
 						<md-button ng-click="changeToEdit($event,usuario)" aria-label="remove" class="md-raised table-button">
 							<md-icon md-font-set="zmdi  zmdi-edit zmdi-hc-lg" ></md-icon>
 						</md-button>
-						<md-button ng-if="usuario.enabled == false" ng-click="activateUser($event, usuario)" aria-label="activate" class="md-raised button-green table-button">
-							<md-icon md-font-set="zmdi  zmdi-check zmdi-hc-lg" ></md-icon>
+						<md-button ng-if="usuario.enabled == false" ng-click="activateUser($event, usuario)" aria-label="activate" class="md-raised table-button">
+							<md-icon md-font-set="zmdi  zmdi-check zmdi-hc-lg" class="tc-green" ></md-icon>
 						</md-button>
-						<md-button ng-if="usuario.enabled == true" ng-click="deactivateUser($event, usuario)" aria-label="deactivate" class="md-raised md-warn table-button">
-							<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg" ></md-icon>
+						<md-button ng-if="usuario.enabled == true" ng-click="deactivateUser($event, usuario)" aria-label="deactivate" class="md-raised table-button">
+							<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg" class="tc-red"></md-icon>
 						</md-button>
 					</td>
 				</tr>

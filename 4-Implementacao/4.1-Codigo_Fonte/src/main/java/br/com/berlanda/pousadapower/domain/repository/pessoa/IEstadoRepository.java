@@ -17,7 +17,6 @@ import br.com.berlanda.pousadapower.domain.entity.pessoa.Estado;
  */
 public interface IEstadoRepository extends JpaRepository<Estado, Long>
 {
-	
 	@Query ( value = "SELECT estado "
 			+ "FROM Estado estado "
 			+ "WHERE estado.pais.id = :paisId "

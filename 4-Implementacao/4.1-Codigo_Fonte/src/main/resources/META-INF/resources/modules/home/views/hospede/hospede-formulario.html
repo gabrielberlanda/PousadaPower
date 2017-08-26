@@ -1,187 +1,162 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" 
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
-
-		<form name="hospedeForm" id="hospedeForm" >
+	<form name="hospedeForm" id="hospedeForm" >
+		<eits-hbox>
+			<md-input-container flex="35" class="md-block" >
+				<label>Nome</label>
+				<input required="true" md-maxlength="50" name="nome" ng-model="model.entity.nome">
+				<div ng-messages="hospedeForm.nome.$error" md-auto-hide="false">
+					<div ng-message="required"> Campo obrigatório 
+					</div>
+				</div>
+			</md-input-container>
+			<md-input-container flex="20" class="push-left-md">
+				<label>Sexo</label>
+				<md-select ng-model="model.entity.sexo">
+					<md-option  value="MASCULINO" >
+						Masculino
+					</md-option>
+					<md-option  value="FEMININO" >
+						Feminino
+					</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container flex="20" class="push-left-md">
+				<label>Data Nascimento</label>
+				<md-datepicker md-max-date="today" name="dataNascimento" ng-model="model.entity.dataNascimento" />
+				<div ng-messages="hospedeForm.dataNascimento.$error" md-auto-hide="false">
+					<div ng-message="valid">Informe uma data correta</div>
+				</div>
+			</md-input-container>
+		</eits-hbox>
 		
-			<eits-hbox>
-		          <md-input-container width="300" class="md-block" >
-		            <label>Nome</label>
-		            <input required="true" name="nome" ng-model="model.entity.nome">
-		            <div ng-messages="hospedeForm.nome.$error" md-auto-hide="false"> 
-		            	<div ng-message="required"> Campo obrigatório 
-		            	</div>
-		            </div>
-		          </md-input-container>
-
-		          <md-input-container width="300" class="md-block" >
-		            <label>Email</label>
-		            <input required="true" name="email" type="email" ng-model="model.entity.email">
-        		    <div ng-messages="hospedeForm.email.$error" md-auto-hide="false"> 
-		            	<div ng-message="required"> Campo obrigatório </div>
-		            	<div ng-message="email"> Insira um email válido </div>
-		            </div>
-		          </md-input-container>
-
-			</eits-hbox>
-	          <eits-hbox> 
-		          <md-input-container width="200">
-		            <label>Telefone</label>
-		            <input required="true" ui-mask="(99) 9999-9999"  ui-options="{addDefaultPlaceholder : false}" ng-model="model.entity.telefone" name="telefone">
-		            <div ng-messages="hospedeForm.telefone.$error" md-auto-hide="false"> 
-		            	<div ng-message="required"> Campo obrigatório 
-		            	</div>
-		            </div>
-		          </md-input-container>
-		          
-		          <md-input-container width="200">
-		            <label>Celular</label>
-		            <input ng-model="model.entity.celular" ui-mask="(99) 99999-999?9" ui-options="{addDefaultPlaceholder : false}">
-		          </md-input-container>
-	          </eits-hbox>
-	          <eits-hbox>
-
-				<md-autocomplete  width="200" style="margin-top: 8px;"
-					maxlength="100"
-				    md-input-name="pais"
-				    md-no-cache="true"
-				    md-search-text="model.filtroPais"
-				    md-selected-item="model.entity.pais"
-				    ng-disabled="model.entity.estado.id"
-		   		    md-selected-item-change="console.log('mudou')"
-				    md-items="pais in listPaisByFilters( model.filtroPais )"
-				    md-item-text="pais.nome"
-				    md-floating-label="Pais">
-				  <md-item-template>
-				    <span md-highlight-text="Pais">{{pais.nome}}</span>
-				  </md-item-template>
-				</md-autocomplete>
-		      
-		      
-				<md-autocomplete  width="200" style="margin-top: 8px; margin-left: 20px;"
-					maxlength="100"
-					ng-disabled="!model.entity.pais || !model.entity.pais.id || model.entity.cidade.id"
-				    md-input-name="estado"
-				    md-no-cache="true"
-				    md-search-text="model.filtroEstado"
-				    md-selected-item="model.entity.estado"
-		   		    md-selected-item-change="console.log('mudou')"
-				    md-items="estado in listEstadoByFilters( model.filtroEstado, model.entity.pais.id )"
-				    md-item-text="estado.nome"
-				    md-floating-label="Estado">
-				    
-				  <md-item-template>
-				    <span md-highlight-text="Estado">{{estado.nome}}</span>
-				  </md-item-template>
-				</md-autocomplete>
-				
-				
-				<md-autocomplete  width="200" style="margin-top: 8px; margin-left: 20px;"
-					maxlength="100"
-					ng-disabled="!model.entity.estado || !model.entity.estado.id"
-				    md-input-name="cidade"
-				    md-no-cache="true"
-				    ng-required="model.entity.pais.id || model.entity.estado.id"
-				    md-search-text="model.filtroCidade"
-				    md-selected-item="model.entity.cidade"
-		   		    md-selected-item-change="console.log('mudou')"
-				    md-items="cidade in listCidadeByFilters( model.filtroCidade, model.entity.estado.id )"
-				    md-item-text="cidade.nome"
-				    md-floating-label="Cidade">
-				  <md-item-template>
-				    <span md-highlight-text="Cidade">{{cidade.nome}}</span>
-				  </md-item-template>
-			      <div ng-messages="hospedeForm.cidade.$error">
-				      <div ng-message="required">O campo cidade torna-se obrigatório quando informado um pais ou estado</div>
-		    	  </div>
-				</md-autocomplete>
-	          
-          </eits-hbox>
-          
-          <eits-hbox>
-    		      <md-input-container width="200" class="md-block" >
-	            <label>Cep</label>
-	            <input ng-model="model.entity.cep" ui-mask="99999-999" ui-options="{addDefaultPlaceholder : false}" >
-	          </md-input-container>
-           	  <md-input-container width="200" class="md-block" >
-	            <label>Bairro</label>
-	            <input ng-model="model.entity.bairro">
-	          </md-input-container>
-                 <md-input-container width="200" class="md-block" >
-	            <label>Complemento</label>
-	            <input ng-model="model.entity.complemento">
-	          </md-input-container>
-                <md-input-container width="200" class="md-block" >
-	            <label>Numero</label>
-	            <input ng-model="model.entity.numero">
-	          </md-input-container>
-          </eits-hbox>
-          
-			<eits-hbox>
-		          <md-input-container width="300" class="md-block">
-		            <label>RG</label>
-		            <input ng-model="model.entity.rg">
-		          </md-input-container>
-		          
-		          <md-input-container width="300" class="md-block">
-		            <label>CPF</label>
-		            <input ng-model="model.entity.cpf" ng-required="model.entity.pais.cpfRequerido ? true : false "
-		            		ng-blur="validarCPF( model.entity.cpf )" id="cpfInput" name="cpfInput" 
-		            		type="text" ui-mask="999.999.999-99" clear-on-blur="false" ui-options="{addDefaultPlaceholder : false}" > 
-        	        <div ng-messages="hospedeForm.cpfInput.$error" md-auto-hide="false"> 
-		            	<div ng-message="cpfValido"> CPF inválido 
-		            	</div>
-   			           	<div ng-message="required"> CPF é obrigatório para Brasileiros
-		            	</div>
-		            </div>
-		          </md-input-container>
-                  <md-input-container width="300" class="md-block">
-		            <label>Passaporte</label>
-		            <input ng-disabled="model.entity.pais.cpfRequerido" ng-model="model.entity.passaporte">
-		          </md-input-container>
-			</eits-hbox>
-          
-	          <eits-hbox>
-          			<md-input-container width="200">
-						<label>Data de Nascimento</label>
-						<md-datepicker md-max-date="today" name="dataNascimento" ng-model="model.entity.dataNascimento" />
-						<div ng-messages="hospedeForm.dataNascimento.$error" md-auto-hide="false">
-							<div ng-message="valid">Informe uma data correta</div>
-						</div>
-					</md-input-container>
-
-	                 <md-input-container width="200">
-				       <label>Sexo</label>
-				       <md-select ng-model="model.entity.sexo">
-				         <md-option  value="MASCULINO" >
-				           Masculino
-				         </md-option>
-	    			     <md-option  value="FEMININO" >
-				           Feminino
-				         </md-option>
-				       </md-select>
-				     </md-input-container>
-			    
-	          </eits-hbox>
-
-				<eits-hbox> 
-				
-				</eits-hbox>
-     		      <eits-hbox>
-	     		      <md-input-container width="200" class="md-block" >
-			            <label>Modelo do Veiculo</label>
-			            <input ng-model="model.entity.modeloVeiculo">
-			          </md-input-container>
-            		  
-            		  <md-input-container width="200" class="md-block" >
-			            <label>Placa</label>
-			            <input ng-model="model.entity.placa">
-			          </md-input-container>
-     		      </eits-hbox>
-
-		          <md-input-container style="width: 70%" class="md-block" >
-		            <label>Observação</label>
-		            <textarea ng-model="model.entity.observacao" md-maxlength="500" rows="2" md-select-on-focus></textarea>
-		          </md-input-container>
-		</form>
+		<md-input-container flex="50" class="md-block" >
+			<label>Email</label>
+			<input required="true" name="email" type="email" md-maxlength="100" ng-model="model.entity.email">
+			<div ng-messages="hospedeForm.email.$error" md-auto-hide="false">
+				<div ng-message="required"> Campo obrigatório </div>
+				<div ng-message="email"> Insira um email válido </div>
+			</div>
+		</md-input-container>
+		
+		<eits-hbox>
+			<md-input-container flex="20" >
+				<label>Telefone</label>
+				<input required="true" ui-mask="(99) 9999-9999"  ui-options="{addDefaultPlaceholder : false}" ng-model="model.entity.telefone" name="telefone">
+				<div ng-messages="hospedeForm.telefone.$error" md-auto-hide="false">
+					<div ng-message="required"> Campo obrigatório 
+					</div>
+				</div>
+			</md-input-container >
+			<md-input-container class="push-left-md" flex="20">
+				<label>Celular</label>
+				<input ng-model="model.entity.celular" ui-mask="(99) 99999-999?9" ui-options="{addDefaultPlaceholder : false}">
+			</md-input-container>
+		</eits-hbox>
+		<eits-hbox>
+			<md-autocomplete  flex="20"
+				maxlength="100"
+				md-input-name="pais"
+				md-no-cache="true"
+				md-search-text="model.filtroPais"
+				md-selected-item="model.pais"
+				ng-disabled="model.estado.id"
+				md-selected-item-change="console.log('mudou')"
+				md-items="pais in listPaisByFilters( model.filtroPais )"
+				md-item-text="pais.nome"
+				md-floating-label="Pais">
+				<md-item-template>
+					<span md-highlight-text="Pais">{{pais.nome}}</span>
+				</md-item-template>
+			</md-autocomplete>
+			<md-autocomplete class="push-left-md" flex="20"
+				maxlength="100"
+				ng-disabled="!model.pais || !model.pais.id || model.entity.cidade.id"
+				md-input-name="estado"
+				md-no-cache="true"
+				md-search-text="model.filtroEstado"
+				md-selected-item="model.estado"
+				md-selected-item-change="console.log('mudou')"
+				md-items="estado in listEstadoByFilters( model.filtroEstado, model.pais.id )"
+				md-item-text="estado.nome"
+				md-floating-label="Estado">
+				<md-item-template>
+					<span md-highlight-text="Estado">{{estado.nome}}</span>
+				</md-item-template>
+			</md-autocomplete>
+			<md-autocomplete  class="push-left-md" flex="20"
+				maxlength="100"
+				ng-disabled="!model.estado || !model.estado.id"
+				md-input-name="cidade"
+				md-no-cache="true"
+				ng-required="model.pais.id || model.estado.id"
+				md-search-text="model.filtroCidade"
+				md-selected-item="model.entity.cidade"
+				md-selected-item-change="console.log('mudou')"
+				md-items="cidade in listCidadeByFilters( model.filtroCidade, model.estado.id )"
+				md-item-text="cidade.nome"
+				md-floating-label="Cidade">
+				<md-item-template>
+					<span md-highlight-text="Cidade">{{cidade.nome}}</span>
+				</md-item-template>
+				<div ng-messages="hospedeForm.cidade.$error">
+					<div ng-message="required">O campo cidade torna-se obrigatório quando informado um pais ou estado</div>
+				</div>
+			</md-autocomplete>
+		</eits-hbox>
+		<eits-hbox>
+			<md-input-container class="md-block" flex="20" >
+				<label>Cep</label>
+				<input ng-model="model.entity.cep" ui-mask="99999-999" ui-options="{addDefaultPlaceholder : false}" >
+			</md-input-container>
+			<md-input-container flex="20" class="push-left-md">
+				<label>Bairro</label>
+				<input ng-model="model.entity.bairro">
+			</md-input-container>
+			<md-input-container flex="20" class="push-left-md" >
+				<label>Numero</label>
+				<input ng-model="model.entity.numero">
+			</md-input-container>
+		</eits-hbox>
+		<md-input-container  class="md-block" flex="70" >
+			<label>Complemento</label>
+			<input ng-model="model.entity.complemento">
+		</md-input-container>
+		<eits-hbox>
+			<md-input-container class="md-block" flex="20">
+				<label>RG</label>
+				<input ng-model="model.entity.rg"  ng-disabled="!model.pais.brasil || !model.pais">
+			</md-input-container>
+			<md-input-container flex="20" class="md-block push-left-md">
+				<label>CPF</label>
+				<input ng-model="model.entity.cpf" ng-disabled="!model.pais.brasil || !model.pais" ng-required="model.pais.brasil ? true : false "
+					ng-blur="validarCPF( model.entity.cpf )" id="cpfInput" name="cpfInput" 
+					type="text" ui-mask="999.999.999-99" clear-on-blur="false" ui-options="{addDefaultPlaceholder : false}" > 
+				<div ng-messages="hospedeForm.cpfInput.$error" md-auto-hide="false">
+					<div ng-message="cpfValido"> CPF inválido 
+					</div>
+					<div ng-message="required"> CPF é obrigatório para Brasileiros
+					</div>
+				</div>
+			</md-input-container>
+			<md-input-container flex="20" class="md-block push-left-md">
+				<label>Passaporte</label>
+				<input ng-disabled="model.pais.brasil || !model.pais"ng-model="model.entity.passaporte">
+			</md-input-container>
+		</eits-hbox>
+			<md-input-container  class="md-block" flex="30">
+				<label>Modelo do Veiculo</label>
+				<input ng-model="model.entity.modeloVeiculo">
+			</md-input-container>
+			<md-input-container flex="30" class="md-block" >
+				<label>Placa</label>
+				<input ng-model="model.entity.placa">
+			</md-input-container>
+		</eits-hbox>
+		<md-input-container  class="md-block" >
+			<label>Observação</label>
+			<textarea ng-model="model.entity.observacao" md-maxlength="500" rows="2" md-select-on-focus></textarea>
+		</md-input-container>
+	</form>
 </html>

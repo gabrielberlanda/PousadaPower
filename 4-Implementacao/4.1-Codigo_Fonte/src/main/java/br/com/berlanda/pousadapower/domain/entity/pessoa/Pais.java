@@ -7,10 +7,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.UniqueConstraint;
 
 import org.directwebremoting.annotations.DataTransferObject;
-import org.hibernate.envers.Audited;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -41,7 +39,8 @@ public class Pais extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	private Boolean cpfRequerido;
+	@Column()
+	private boolean brasil;
 	
 	/*-------------------------------------------------------------------
 	* 		 					CONSTRUTORES
@@ -66,7 +65,6 @@ public class Pais extends AbstractEntity implements Serializable
 	/*-------------------------------------------------------------------
 	*							METODOS
 	*-------------------------------------------------------------------*/
-	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -75,7 +73,7 @@ public class Pais extends AbstractEntity implements Serializable
 	{
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ( cpfRequerido ? 1231 : 1237 );
+		result = prime * result + ( brasil ? 1231 : 1237 );
 		result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
 		return result;
 	}
@@ -90,7 +88,7 @@ public class Pais extends AbstractEntity implements Serializable
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		Pais other = ( Pais ) obj;
-		if ( cpfRequerido != other.cpfRequerido ) return false;
+		if ( brasil != other.brasil ) return false;
 		if ( nome == null )
 		{
 			if ( other.nome != null ) return false;
@@ -98,7 +96,6 @@ public class Pais extends AbstractEntity implements Serializable
 		else if ( !nome.equals( other.nome ) ) return false;
 		return true;
 	}
-
 	/*-------------------------------------------------------------------
 	*						GETTERS AND SETTERS
 	*-------------------------------------------------------------------*/
@@ -111,6 +108,21 @@ public class Pais extends AbstractEntity implements Serializable
 		return nome;
 	}
 
+	/**
+	 * @return the brasil
+	 */
+	public boolean isBrasil()
+	{
+		return brasil;
+	}
+
+	/**
+	 * @param brasil the brasil to set
+	 */
+	public void setBrasil( boolean brasil )
+	{
+		this.brasil = brasil;
+	}
 
 	/**
 	 * @param name the name to set
@@ -120,20 +132,5 @@ public class Pais extends AbstractEntity implements Serializable
 		this.nome = nome;
 	}
 
-	/**
-	 * @return the cpfRequerido
-	 */
-	public boolean isCpfRequerido()
-	{
-		return cpfRequerido;
-	}
-
-	/**
-	 * @param cpfRequerido the cpfRequerido to set
-	 */
-	public void setCpfRequerido( boolean cpfRequerido )
-	{
-		this.cpfRequerido = cpfRequerido;
-	}
 
 }

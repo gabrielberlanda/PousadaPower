@@ -53,7 +53,7 @@ public class PessoaService
 	
 		if ( hospede.getCidade() != null ) 
 		{
-			if ( hospede.getCidade().getEstado().getPais().isCpfRequerido() ) {
+			if ( hospede.getCidade().getEstado().getPais().isBrasil() ) {
 				Assert.notNull( hospede.getCpf(), "CPF é obrigatório" );
 			}
 		}
@@ -66,7 +66,7 @@ public class PessoaService
 		
 		if ( hospede.getCidade() != null ) 
 		{
-			if ( hospede.getCidade().getEstado().getPais().isCpfRequerido() ) {
+			if ( hospede.getCidade().getEstado().getPais().isBrasil() ) {
 				Assert.notNull( hospede.getCpf(), "CPF é obrigatório" );
 			}
 		}
@@ -80,7 +80,7 @@ public class PessoaService
 		
 		Hospede hospede = new Hospede();
 		
-		hospede = this.hospedeRepository.findOne( hospedeId );
+		hospede = this.hospedeRepository.findById( hospedeId );
 		
 		Assert.notNull( hospede, "Hospede não encontrado" );
 		

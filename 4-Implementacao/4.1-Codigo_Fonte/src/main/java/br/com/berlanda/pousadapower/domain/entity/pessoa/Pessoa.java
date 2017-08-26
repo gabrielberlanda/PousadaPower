@@ -63,7 +63,7 @@ public class Pessoa extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@Column ( unique = true, length = 9 )
+	@Column ( unique = true, length = 13 )
 	private String rg;
 	
 	/**

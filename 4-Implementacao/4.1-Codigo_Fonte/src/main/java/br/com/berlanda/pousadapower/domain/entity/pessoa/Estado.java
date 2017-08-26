@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import org.directwebremoting.annotations.DataTransferObject;
-import org.hibernate.envers.Audited;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -78,7 +77,6 @@ public class Estado extends AbstractEntity implements Serializable
 	/*-------------------------------------------------------------------
 	*							METODOS
 	*-------------------------------------------------------------------*/
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

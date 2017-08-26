@@ -4,16 +4,6 @@
 	padding: 20px 20px 20px 20px;
 }
 
-/* .toast { */
-/*     background-color : #000; */
-/*     border           : solid 1px #000; */
-/*     color            : #fff; */
-/*     font-weight      : bold; */
-/*     margin           : 0 auto; */
-/*     position         : fixed; */
-/*     box-shadow       : none; */
-/* } */
-
 .toast.red .md-toast-content {
     background-color : #f5a69a;
     border-color     : #d77a6c;
@@ -42,8 +32,8 @@
 }
 
 .table-button {
-	min-width: 25px !important;
-	width: 32px !important;
+	min-width: 36px !important;
+	width: 36px !important;
 }
 
 .table tbody tr:hover {
@@ -93,6 +83,13 @@
 	color: #FFF !important;
 }
 
+.tc-green {
+	color: #0de559 !important;
+}
+
+.tc-red {
+	color: red !important;
+}
 .tc-white {
 	color: #FFF !important;
 }

@@ -6,6 +6,7 @@ package br.com.berlanda.pousadapower.domain.repository.pessoa;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,11 +19,9 @@ import br.com.berlanda.pousadapower.domain.entity.pessoa.Hospede;
  */
 public interface IHospedeRepository extends JpaRepository<Hospede, Long>
 {
-	
-
-
-	@Query( value = "SELECT new Hospede( hospede.id, hospede.nome, hospede.email, hospede.telefone, hospede.cidade ) "
-			+ "FROM Hospede hospede "
+	@EntityGraph( attributePaths = {"cidade"})
+	@Query( value =
+			"FROM Hospede hospede "
 			+ "LEFT JOIN hospede.cidade cidade "
 			+ "WHERE ( FILTER (hospede.id, :filter) = TRUE "
 				+ "OR FILTER( hospede.nome, :filter ) = TRUE "
@@ -35,5 +34,9 @@ public interface IHospedeRepository extends JpaRepository<Hospede, Long>
 				+ "OR FILTER( hospede.placa, :filter ) = TRUE "
 				+ "OR FILTER( cidade.nome, :filter ) = TRUE ) " )
 	public Page<Hospede> listHospedeByFilters ( @Param("filter") String filter, Pageable page );
+	
+	@EntityGraph( attributePaths = { "cidade.estado.pais.id"} )
+	public Hospede findById( long id );
+	
 	
 }

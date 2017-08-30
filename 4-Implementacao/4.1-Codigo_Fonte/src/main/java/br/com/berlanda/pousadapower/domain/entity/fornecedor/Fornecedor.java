@@ -61,7 +61,7 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@Column ( length= 50 )
+	@Column ( length= 30 )
 	private String inscricaoEstadual;
 
 	/**
@@ -80,14 +80,20 @@ public class Fornecedor extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@Column( length = 50 )
-	private String endereco;
+	@Column( length = 250 )
+	private String complemento;
 	
 	/**
 	 * 
 	 */
 	@Column ( length = 50 )
 	private String bairro;
+	
+	/**
+	 * 
+	 */
+	@Column( nullable = true, length= 50 )
+	private String cep;
 	
 	/**
 	 * 
@@ -139,7 +145,6 @@ public class Fornecedor extends AbstractEntity implements Serializable
 		this.inscricaoEstadual = inscricaoEstadual;
 		this.cnpj = cnpj;
 		this.cidade = cidade;
-		this.endereco = endereco;
 		this.bairro = bairro;
 		this.numero = numero;
 		this.observacao = observacao;
@@ -154,10 +159,11 @@ public class Fornecedor extends AbstractEntity implements Serializable
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ( ( bairro == null ) ? 0 : bairro.hashCode() );
+		result = prime * result + ( ( cep == null ) ? 0 : cep.hashCode() );
 		result = prime * result + ( ( cidade == null ) ? 0 : cidade.hashCode() );
 		result = prime * result + ( ( cnpj == null ) ? 0 : cnpj.hashCode() );
+		result = prime * result + ( ( complemento == null ) ? 0 : complemento.hashCode() );
 		result = prime * result + ( ( email == null ) ? 0 : email.hashCode() );
-		result = prime * result + ( ( endereco == null ) ? 0 : endereco.hashCode() );
 		result = prime * result + ( ( inscricaoEstadual == null ) ? 0 : inscricaoEstadual.hashCode() );
 		result = prime * result + ( ( nomeFantasia == null ) ? 0 : nomeFantasia.hashCode() );
 		result = prime * result + ( ( numero == null ) ? 0 : numero.hashCode() );
@@ -166,7 +172,7 @@ public class Fornecedor extends AbstractEntity implements Serializable
 		result = prime * result + ( ( telefone == null ) ? 0 : telefone.hashCode() );
 		return result;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -182,6 +188,11 @@ public class Fornecedor extends AbstractEntity implements Serializable
 			if ( other.bairro != null ) return false;
 		}
 		else if ( !bairro.equals( other.bairro ) ) return false;
+		if ( cep == null )
+		{
+			if ( other.cep != null ) return false;
+		}
+		else if ( !cep.equals( other.cep ) ) return false;
 		if ( cidade == null )
 		{
 			if ( other.cidade != null ) return false;
@@ -192,16 +203,16 @@ public class Fornecedor extends AbstractEntity implements Serializable
 			if ( other.cnpj != null ) return false;
 		}
 		else if ( !cnpj.equals( other.cnpj ) ) return false;
+		if ( complemento == null )
+		{
+			if ( other.complemento != null ) return false;
+		}
+		else if ( !complemento.equals( other.complemento ) ) return false;
 		if ( email == null )
 		{
 			if ( other.email != null ) return false;
 		}
 		else if ( !email.equals( other.email ) ) return false;
-		if ( endereco == null )
-		{
-			if ( other.endereco != null ) return false;
-		}
-		else if ( !endereco.equals( other.endereco ) ) return false;
 		if ( inscricaoEstadual == null )
 		{
 			if ( other.inscricaoEstadual != null ) return false;
@@ -234,6 +245,7 @@ public class Fornecedor extends AbstractEntity implements Serializable
 		else if ( !telefone.equals( other.telefone ) ) return false;
 		return true;
 	}
+
 
 	/**
 	 * @return the nomeFantasia
@@ -347,20 +359,38 @@ public class Fornecedor extends AbstractEntity implements Serializable
 		this.cidade = cidade;
 	}
 
+
+
 	/**
-	 * @return the endereco
+	 * @return the complemento
 	 */
-	public String getEndereco()
+	public String getComplemento()
 	{
-		return endereco;
+		return complemento;
 	}
 
 	/**
-	 * @param endereco the endereco to set
+	 * @param complemento the complemento to set
 	 */
-	public void setEndereco( String endereco )
+	public void setComplemento( String complemento )
 	{
-		this.endereco = endereco;
+		this.complemento = complemento;
+	}
+
+	/**
+	 * @return the cep
+	 */
+	public String getCep()
+	{
+		return cep;
+	}
+
+	/**
+	 * @param cep the cep to set
+	 */
+	public void setCep( String cep )
+	{
+		this.cep = cep;
 	}
 
 	/**

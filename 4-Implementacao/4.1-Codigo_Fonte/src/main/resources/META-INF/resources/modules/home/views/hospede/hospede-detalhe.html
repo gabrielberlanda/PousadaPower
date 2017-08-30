@@ -105,21 +105,24 @@
 		<span>{{model.entity.complemento}}</span>
 		<span ng-if="!model.entity.complemento"> - </span>
 	</eits-vbox>
-	
-	<eits-vbox class="detail">
-		<label>Modelo do Veiculo</label>
-		<span>{{model.entity.modeloVeiculo}}</span>
-		<span ng-if="!model.entity.modeloVeiculo"> - </span>
-	</eits-vbox>
-	<eits-vbox class="detail">
-		<label>Placa</label>
-		<span>{{model.entity.placa}}</span>
-		<span ng-if="!model.entity.placa"> - </span>
-	</eits-vbox>
-
 	<eits-vbox class="detail">
 		<label>Observação</label>
 		<span>{{model.entity.observacao}}</span>
 		<span ng-if="!model.entity.observacao"> - </span>
 	</eits-vbox>
+	<md-subheader class="md-no-sticky">Informação do Veículo</md-subheader>
+	<eits-hbox class="push-top-md">
+		<eits-vbox class="detail">
+			<label>Modelo do Veiculo</label>
+			<span>{{model.entity.modeloVeiculo}}</span>
+			<span ng-if="!model.entity.modeloVeiculo"> - </span>
+		</eits-vbox>
+		<eits-vbox class="detail push-left-md">
+			<label>Placa</label>
+			<span>{{model.entity.placa}}</span>
+			<span ng-if="!model.entity.placa"> - </span>
+		</eits-vbox>
+	</eits-hbox>
+
+
 </html>

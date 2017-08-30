@@ -145,18 +145,20 @@
 				<input ng-disabled="model.pais.brasil || !model.pais"ng-model="model.entity.passaporte">
 			</md-input-container>
 		</eits-hbox>
-			<md-input-container  class="md-block" flex="30">
-				<label>Modelo do Veiculo</label>
-				<input ng-model="model.entity.modeloVeiculo">
-			</md-input-container>
-			<md-input-container flex="30" class="md-block" >
-				<label>Placa</label>
-				<input ng-model="model.entity.placa">
-			</md-input-container>
-		</eits-hbox>
 		<md-input-container  class="md-block" >
 			<label>Observação</label>
 			<textarea ng-model="model.entity.observacao" md-maxlength="500" rows="2" md-select-on-focus></textarea>
 		</md-input-container>
+		<md-subheader class="md-no-sticky">Informação do Veículo</md-subheader>
+		<eits-hbox class="push-top-md">
+			<md-input-container  class="md-block" flex="30">
+				<label>Modelo do Veiculo</label>
+				<input ng-model="model.entity.modeloVeiculo">
+			</md-input-container>
+			<md-input-container flex="30" class="md-block push-left-md" >
+				<label>Placa</label>
+				<input ng-model="model.entity.placa">
+			</md-input-container>
+		</eits-hbox>
 	</form>
 </html>

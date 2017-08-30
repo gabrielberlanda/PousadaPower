@@ -53,9 +53,7 @@ public class FornecedorService
 	{
 		Assert.notNull(  fornecedorId, "Informe o id do fornecedor!");
 		
-		Fornecedor fornecedor = new Fornecedor();
-		
-		fornecedor = this.fornecedorRepository.findOne( fornecedorId );
+		final Fornecedor fornecedor = this.fornecedorRepository.findById( fornecedorId );
 		
 		Assert.notNull( fornecedor, "Fornecedor não encontrado" );
 		

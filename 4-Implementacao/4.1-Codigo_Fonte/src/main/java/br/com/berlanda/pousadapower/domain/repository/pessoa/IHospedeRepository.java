@@ -35,6 +35,11 @@ public interface IHospedeRepository extends JpaRepository<Hospede, Long>
 				+ "OR FILTER( cidade.nome, :filter ) = TRUE ) " )
 	public Page<Hospede> listHospedeByFilters ( @Param("filter") String filter, Pageable page );
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@EntityGraph( attributePaths = { "cidade.estado.pais.id"} )
 	public Hospede findById( long id );
 	

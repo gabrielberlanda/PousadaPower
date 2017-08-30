@@ -4,8 +4,7 @@
 	<form>
 		<eits-hbox>
 			<md-input-container flex="70" class="md-block">
-				<label>Filtro de Fornecedores</label>
-				<input ng-model="model.query.filter.name">
+				<input placeholder="Busque por razão social, nome fantasia e cnpj" ng-model="model.query.filter.name">
 			</md-input-container>
 			<md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listFornecedoresByFilters( model.query.filter.name )"> Filtrar </md-button>
 		</eits-hbox>

@@ -3,9 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 	<form>
 		<eits-hbox>
-			<md-input-container width="300" class="md-block">
-				<label>Filtro de Tipos de Quarto</label>
-				<input ng-model="model.query.filter.name">
+			<md-input-container flex="70" class="md-block">
+				<input ng-model="model.query.filter.name" placeholder="Busque por nome e ocupação máxima">
 			</md-input-container>
 			<md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listTipoQuartosByFilters( model.query.filter.name )"> Filtrar </md-button>
 		</eits-hbox>
@@ -36,7 +35,7 @@
 							<md-icon md-font-set="zmdi zmdi-block zmdi-hc-lg"></md-icon>
 						</md-button>
 						<md-button ng-click="removeTipoQuarto($event, tipoQuarto)" aria-label="remove" class="md-raised table-button">
-							<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+							<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg" class="tc-red"></md-icon>
 						</md-button>
 					</td>
 				</tr>

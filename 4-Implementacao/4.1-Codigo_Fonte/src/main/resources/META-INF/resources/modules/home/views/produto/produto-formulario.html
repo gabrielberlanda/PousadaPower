@@ -5,7 +5,7 @@
 		<form name="produtoForm" id="produtoForm" >
 			
 			<eits-hbox>
-		          <md-input-container width="300" class="md-block" >
+		          <md-input-container flex="50" class="md-block" >
 		            <label>Nome</label>
 		            <input required="true" name="nome" ng-model="model.entity.nome">
 		            <div ng-messages="produtoForm.nome.$error" md-auto-hide="false"> 
@@ -13,16 +13,15 @@
 		            	</div>
 		            </div>
 		          </md-input-container>
-		          
 
 			</eits-hbox>
-          		<md-input-container style="width: 70%" class="md-block" >
+          		<md-input-container flex="70" class="md-block" >
 		            <label>Descrição</label>
 		            <textarea ng-model="model.entity.descricao" md-maxlength="200" rows="2" md-select-on-focus></textarea>
 		          </md-input-container>
 		          
 	          <eits-hbox> 
-		          <md-input-container width="200">
+		          <md-input-container flex="15">
 		            <label>Quantidade Estoque</label>
 		            <input required="true" min="0" ng-model="model.entity.quantidadeEstoque" type="number" name="quantidadeEstoque">
 		            <div ng-messages="produtoForm.quantidadeEstoque.$error" md-auto-hide="false"> 
@@ -31,7 +30,7 @@
 		            </div>
 		          </md-input-container>
 		          
-		          <md-input-container width="200">
+		          <md-input-container flex="15" class="push-left-md">
 		            <label>Quantidade Miníma</label>
 		            <input required="true" min="0" ng-model="model.entity.quantidadeMinima" type="number" name="quantidadeMinima">
 		            <div ng-messages="produtoForm.quantidadeMinima.$error" md-auto-hide="false"> 
@@ -42,7 +41,7 @@
 	          </eits-hbox>
 			
 			<eits-hbox>
-		          <md-input-container width="200">
+		          <md-input-container flex="15">
 		            <label>Preço Unitário (R$)</label>
 		            <input required="true" min="0" ng-model="model.entity.precoUnitario" type="number" name="precoUnitario">
 		            <div ng-messages="produtoForm.precoUnitario.$error" md-auto-hide="false"> 
@@ -51,7 +50,7 @@
 		            </div>
 		          </md-input-container>
 		          
-		          <md-input-container width="200">
+		          <md-input-container flex="15" class="push-left-md">
 		            <label>Preço Custo (R$)</label>
 		            <input required="true" min="0" ng-model="model.entity.precoCusto" type="number" name="precoCusto">
 		            <div ng-messages="produtoForm.precoCusto.$error" md-auto-hide="false"> 
@@ -66,7 +65,7 @@
 	          <eits-hbox>
          
 
-                 <md-input-container width="200" style="margin-top: 26px;">
+                 <md-input-container flex="15" >
 			       <label>Tipo Produto</label>
 			       <md-select ng-model="model.entity.tipoProduto">
 			         <md-option  value="BEBIDA" >
@@ -81,7 +80,7 @@
 			       </md-select>
 			     </md-input-container>
 
-					<md-autocomplete  width="350" style="margin-top: 8px;"
+					<md-autocomplete  flex="35" class="push-left-md"
 						required
 						maxlength="100"
 					    md-input-name="fornecedor"

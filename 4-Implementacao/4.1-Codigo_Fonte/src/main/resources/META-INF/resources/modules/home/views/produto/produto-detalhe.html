@@ -2,27 +2,26 @@
 <html xmlns:ng="http://angularjs.org" 
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 
-	<eits-hbox >
+	<eits-vbox class="detail">
+		<label>Nome</label>
+		<span ng-if="model.entity.nome">{{model.entity.nome}}</span>
+		<span ng-if="!model.entity.nome"> - </span>
+	</eits-vbox>
 	
-		<eits-vbox class="detail">
-			<label>Nome</label>
-			<span ng-if="model.entity.nome">{{model.entity.nome}}</span>
-			<span ng-if="!model.entity.nome"> - </span>
-		</eits-vbox>
+	<eits-vbox class="detail"> 
+		<label>Descrição</label>
+		<span>{{model.entity.descricao}}</span>
+		<span ng-if="!model.entity.descricao"> - </span>
+	</eits-vbox>
+	<eits-hbox >
 		
-		<eits-vbox class="detail"> 
-			<label>Descrição</label>
-			<span>{{model.entity.descricao}}</span>
-			<span ng-if="!model.entity.descricao"> - </span>
-		</eits-vbox>
-		
-		<eits-vbox class="detail">
+		<eits-vbox class="detail" flex="20">
 			<label>Quantidade Estoque</label>
 			<span>{{model.entity.quantidadeEstoque}}</span>
 			<span ng-if="!model.entity.quantidadeEstoque"> - </span>
 		</eits-vbox>
 		
-		<eits-vbox class="detail">
+		<eits-vbox class="detail push-left-md" flex="20" >
 			<label>Quantidade Miníma</label>
 			<span>{{model.entity.quantidadeMinima}}</span>
 			<span ng-if="!model.entity.quantidadeMinima"> - </span>
@@ -30,29 +29,32 @@
 		
 	</eits-hbox>
 	<eits-hbox>
-		<eits-vbox class="detail">
-			<label>Preço unitário</label>
+		<eits-vbox class="detail" flex="20">
+			<label>Preço Unitário</label>
 			<span>{{model.entity.precoUnitario | currency }}</span>
 			<span ng-if="!model.entity.precoUnitario"> - </span>
 		</eits-vbox>
 
-		<eits-vbox class="detail">
+		<eits-vbox class="detail push-left-md" flex="20">
 			<label>Preço Custo</label>
 			<span>{{model.entity.precoCusto | currency }}</span>
 			<span ng-if="!model.entity.precoCusto"> - </span>
 		</eits-vbox>
 		
-		<eits-vbox class="detail">
+		
+	</eits-hbox>
+	
+	<eits-hbox>
+		<eits-vbox class="detail" flex="20">
 			<label>Tipo Produto</label>
 			<span>{{model.entity.tipoProduto}}</span>
 			<span ng-if="!model.entity.tipoProduto"> - </span>
 		</eits-vbox>
-		<eits-vbox class="detail">
+		<eits-vbox class="detail push-left-md" flex="20">
 			<label>Fornecedor</label>
 			<span>{{model.entity.fornecedor.nomeFantasia}}</span>
 			<span ng-if="!model.entity.fornecedor.nomeFantasia"> - </span>
 		</eits-vbox>
-		
 	</eits-hbox>
 	
 </html>

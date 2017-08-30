@@ -9,7 +9,7 @@
             <!-- LIST -->
             <div ng-switch-when="produto.lista" class="navbar-title" layout="row" layout-align="start center">
                 <div flex=>Listagem de Produtos</div>
-                <md-button ui-sref="produto.novo" aria-label="create produto" class="md-raised md-hue-1">Novo Produto</md-button>
+                <md-button ui-sref="produto.novo" aria-label="create produto" class="md-raised md-accent">Novo Produto</md-button>
             </div>
  
             <!-- CREATE -->
@@ -19,7 +19,7 @@
                 </md-button>
             </md-button>
                 <div flex="">Novo Produto</div>
-                <md-button class="md-raised button-green" ng-click="save( model.entity )">Salvar</md-button>
+                <md-button class="md-raised md-accent" ng-click="save( model.entity )">Salvar</md-button>
             </div>
  
             <!-- EDIT -->
@@ -28,7 +28,7 @@
                     <md-icon md-font-set="zmdi zmdi-close zmdi-arrow-back zmdi-hc-lg"></md-icon>
                 </md-button>
                 <div flex>Atualizar Produto</div>
-                <md-button class="md-raised button-green" aria-label="save user" ng-click="save( model.entity )">Salvar</md-button>
+                <md-button class="md-raised md-accent" aria-label="save user" ng-click="save( model.entity )">Salvar</md-button>
             </div>
  
             <!-- DETAIL -->
@@ -37,8 +37,8 @@
                     <md-icon md-font-set="zmdi zmdi-close zmdi-arrow-back zmdi-hc-lg"></md-icon>
                 </md-button>
                 <div flex="">Detalhe do Produto</div>
-                <md-button class="md-raised button-blue" aria-label="back to edit" ng-click="changeToEdit($event, model.entity)">Editar</md-button>
-                <md-button class="md-raised button-red" ng-click="removeProduto($event, model.entity)">Remover</md-button>
+                <md-button class="md-raised md-accent" aria-label="back to edit" ng-click="changeToEdit($event, model.entity)">Editar</md-button>
+                <md-button class="md-raised md-warn" ng-click="removeProduto($event, model.entity)">Remover</md-button>
             </div>
              
         </div>

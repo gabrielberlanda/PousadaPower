@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 	<form>
 		<eits-hbox>
-			<md-input-container width="300" class="md-block">
+			<md-input-container flex="70" class="md-block">
 				<label>Filtro de Quartos</label>
 				<input ng-model="model.query.filter.name">
 			</md-input-container>
@@ -29,10 +29,10 @@
 					<td md-cell ng-style="quarto.status == 'LIMPO' && {'color':'green'} || quarto.status == 'SUJO' && {'color':'red'}">{{quarto.status}}</td>
 					<td md-cell>
 						<md-button ng-click="changeToEdit($event, quarto)" aria-label="remove" class="md-raised table-button">
-							<md-icon md-font-set="zmdi zmdi-close zmdi-edit zmdi-hc-lg"></md-icon>
+							<md-icon md-font-set="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
 						</md-button>
 						<md-button ng-click="removeQuarto($event, quarto)" aria-label="remove" class="md-raised table-button">
-							<md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+							<md-icon md-font-set="zmdi zmdi-delete zmdi-hc-lg" class="tc-red"></md-icon>
 						</md-button>
 					</td>
 				</tr>

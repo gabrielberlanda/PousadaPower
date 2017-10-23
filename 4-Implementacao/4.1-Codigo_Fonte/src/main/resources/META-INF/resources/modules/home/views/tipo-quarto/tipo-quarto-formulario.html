@@ -4,15 +4,15 @@
 
 		<form name="tipoQuartoForm" id="tipoQuartoForm" >
 			<eits-hbox>
-		          <md-input-container width="300" class="md-block" >
+		          <md-input-container flex="30" class="md-block" >
 		            <label>Nome</label>
-		            <input required="true" name="nome" ng-model="model.entity.nome">
+		            <input required="true" md-maxlength="50" name="nome" ng-model="model.entity.nome">
 		            <div ng-messages="tipoQuartoForm.nome.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório
 		            	</div>
 		            </div>
 		          </md-input-container>
-			        <md-input-container ng-if="model.entity.id">
+			      <md-input-container flex="15" class="push-left-md" ng-if="model.entity.id">
 			          <label>Status</label>
 			          <md-select ng-model="model.entity.status">
 			            <md-option ng-value="true">
@@ -22,7 +22,7 @@
 			              Desativado
 			            </md-option>
 			          </md-select>
-			        </md-input-container>
+			      </md-input-container>
 			</eits-hbox>
 			
 			<md-input-container width="300" class="md-block">

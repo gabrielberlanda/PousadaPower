@@ -7,7 +7,7 @@
 			<eits-hbox>
 		          <md-input-container flex="50" class="md-block" >
 		            <label>Nome</label>
-		            <input required="true" name="nome" ng-model="model.entity.nome">
+		            <input required="true" name="nome" md-maxlength="50" ng-model="model.entity.nome">
 		            <div ng-messages="produtoForm.nome.$error" md-auto-hide="false"> 
 		            	<div ng-message="required"> Campo obrigatório 
 		            	</div>

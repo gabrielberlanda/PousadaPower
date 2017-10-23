@@ -6,7 +6,7 @@
 			<eits-hbox>
 				<eits-vbox flex=50>
 					<eits-hbox>
-				          <md-input-container width="300" class="md-block" >
+				          <md-input-container flex="40" class="md-block" >
 				            <label>Nome</label>
 				            <input required="true" name="nome" ng-model="model.entity.nome">
 				            <div ng-messages="quartoForm.nome.$error" md-auto-hide="false"> 
@@ -14,7 +14,6 @@
 				            	</div>
 				            </div>
 				          </md-input-container>
-		
 					</eits-hbox>
 		         		
 					
@@ -55,12 +54,15 @@
 							REMOVER IMAGEM
 						</md-button>
 					</div>
-					<eits-hbox style="margin-top:10px;">
+					<eits-hbox layout="row" layout-align="start center" >
 						<md-input-container >
 							<label>Arquivo</label>
-							<input aria-label="Upload" onclick="document.querySelector('#file-input').click()" style="margin-top:4px; margin-bottom:-15px" ng-model="model.entity.metaFileName" id="uploadFileInput"  width="209" />
+							<input aria-label="Upload"  
+								onclick="document.querySelector('#file-input').click()" 
+								style="margin-top:4px; margin-bottom:-15px; width:300px;" 
+								ng-model="model.entity.metaFileName" id="uploadFileInput" />
 						</md-input-container>
-						<md-button type="button" class="md-raised" style="margin:0 0 0 -3px;background-color:rgba(0,0,0,0.12);height:36px;border-radius: 0 3px 3px 0;" onclick="document.querySelector('#file-input').click()">
+						<md-button type="button" class="md-raised md-primary" onclick="document.querySelector('#file-input').click()">
 							UPLOAD
 						</md-button>
 						<input id="file-input" onchange="angular.element(this).scope().uploadFile(this)" type="file"  style="display:none;" >
